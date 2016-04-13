@@ -3,3 +3,4 @@ _site/
 _exclude/*
 .jekyll-metadata
 deploy.sh
+.idea
