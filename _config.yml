@@ -1,0 +1,22 @@
+# Site settings
+title: Sarah Aslanifar
+tagline: Procrastination Terminator
+email: Sarah@testedminds.com
+description: > # this means to ignore newlines until "baseurl"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://sarahaslanifar.com" # the base hostname & protocol for your site
+twitter_username: saslani
+github_username:  saslani
+paginate: 1
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+sass:
+    style: :compressed
+
+# Gems
+gems: [jekyll-paginate]
