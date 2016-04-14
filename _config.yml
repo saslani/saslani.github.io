@@ -12,6 +12,9 @@ twitter_username: saslani
 github_username:  saslani
 paginate: 1
 
+#Disqus
+#comments: true
+
 # Build settings
 markdown: kramdown
 highlighter: pygments
