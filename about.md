@@ -3,4 +3,4 @@ layout: page
 title: About
 permalink: /about/
 ---
-Haya! My name is Sarah
+I am a complicated person, I need more time to write something up!
