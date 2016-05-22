@@ -50,7 +50,8 @@ categories: java
             port(serverPort);
             
             get("/", (req, res) ->
-                "It's time to sparkle and shine! See the README to get started. Version: " + version);
+                "It's time to sparkle and shine! See the README to 
+                    get started. Version: " + version);
 
             get("/examples/:id", new GetExampleHandler(dao));
             post("/examples", new PostExampleHandler(dao));
@@ -63,7 +64,9 @@ categories: java
 
     public class PostExampleHandler implements Route {
     
-      final static Logger logger = LoggerFactory.getLogger(PostExampleHandler.class);
+      final static Logger logger = LoggerFactory
+        .getLogger(PostExampleHandler.class);
+        
       private final ExampleDao dao;
     
       public PostExampleHandler(ExampleDao dao) {
@@ -80,7 +83,8 @@ categories: java
           example.validate();
         } catch (ExampleException e) {
           res.status(400);
-          String message = String.format("Invalid Example: %s", e.getMessage());
+          String message = String.format("Invalid Example: %s", 
+            e.getMessage());
           logger.warn(message);
           return message;
         } catch (JsonSyntaxException e) {
@@ -100,31 +104,54 @@ categories: java
 > Functional test units are of course supported and easy to write.
 
     @Test
-        public void postWithInvalidJsonReturnsBadRequest() throws Exception {
-        String response = http.postJson(DEFAULT_HOST_URL + "/examples", "bunk body", 400);
+        public void postWithInvalidJsonReturnsBadRequest() 
+            throws Exception {
+        String response = http
+            .postJson(DEFAULT_HOST_URL + 
+                "/examples", 
+                "bunk body", 
+                400);
         assertEquals("Invalid JSON: bunk body", response);
     }
     
     @Test
-    public void postWithInvalidExampleReturnsBadRequest() throws Exception {
+    public void postWithInvalidExampleReturnsBadRequest() 
+        throws Exception {
         String incompleteExample = "{\"name\" : \"foo\"}";
-        String response = http.postJson(DEFAULT_HOST_URL + "/examples", incompleteExample, 400);
+        String response = http
+            .postJson(DEFAULT_HOST_URL + 
+                "/examples", 
+                incompleteExample, 
+                400);
         assertEquals("Invalid Example: type is a required field", response);
     }
     
     @Test
-    public void putWithValidJsonAndIdReturnsUpdatedExample() throws Exception {
+    public void putWithValidJsonAndIdReturnsUpdatedExample() 
+        throws Exception {
         Example saved = dao.create(new Example("foo", "bar"));
-        String response = http.putJson(DEFAULT_HOST_URL + "/examples/" + saved.getId(), "junk", 400);
+        String response = http
+            .putJson(DEFAULT_HOST_URL + 
+                "/examples/" + 
+                saved.getId(), 
+                "junk", 
+                400);
         assertEquals("Example is not valid", response);
     }
     
     @Test
-    public void putWithMissingIdReturnsNotFound() throws Exception {
+    public void putWithMissingIdReturnsNotFound() 
+        throws Exception {
         Example saved = dao.create(new Example("foo", "bar"));
         Example update = new Example(saved.getId(), "foo", "baz");
-        String response = http.putJson(DEFAULT_HOST_URL + "/examples/" + saved.getId()+1, new Gson().toJson(update), 404);
-        assertEquals("Example with id " + saved.getId()+1 +" does not exist.", response);
+        String response = http
+            .putJson(DEFAULT_HOST_URL + 
+                "/examples/" + 
+                saved.getId()+1, 
+                new Gson().toJson(update), 
+                404);
+        assertEquals("Example with id " + saved.getId()+1 +" does not exist.", 
+            response);
     }
 
 
@@ -137,11 +164,14 @@ categories: java
     public class FunctionalTestSuite {
       protected static final String HOST = "localhost";
       protected static final int PORT = 4551;
-      protected static final String DEFAULT_HOST_URL = String.format("http://%s:%d", HOST, PORT);
-      private static CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+      protected static final String DEFAULT_HOST_URL = 
+        String.format("http://%s:%d", HOST, PORT);
+      private static CloseableHttpClient httpClient = 
+        HttpClientBuilder.create().build();
       protected static HttpTestUtils http = new HttpTestUtils(httpClient);
     
-      // NB: Composing rather than inheriting here to make BeforeClass behavior
+      // NB: Composing rather than inheriting here to make 
+      // BeforeClass behavior
       // in this class behave as expected. JUnit would normally run the
       private static DatabaseTestRunner dbTest = new DatabaseTestRunner();
     
@@ -174,7 +204,9 @@ categories: java
         Map<String, String> params = DatabaseUrl.params(url);
         String dataSourceUrl = JdbcUrl.build(params);
         Flyway flyway = new Flyway();
-        flyway.setDataSource(dataSourceUrl, params.get("user"), params.get("password"));
+        flyway.setDataSource(dataSourceUrl, 
+            params.get("user"), 
+            params.get("password"));
         flyway.migrate();
       }
     
