@@ -123,7 +123,8 @@ categories: java
                 "/examples", 
                 incompleteExample, 
                 400);
-        assertEquals("Invalid Example: type is a required field", response);
+        assertEquals("Invalid Example: type is a required field", 
+            response);
     }
     
     @Test
@@ -150,7 +151,8 @@ categories: java
                 saved.getId()+1, 
                 new Gson().toJson(update), 
                 404);
-        assertEquals("Example with id " + saved.getId()+1 +" does not exist.", 
+        assertEquals(
+            "Example with id " + saved.getId()+1 +" does not exist.", 
             response);
     }
 
