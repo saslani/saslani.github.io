@@ -10,3 +10,9 @@
         "global",
         "syntax-highlighting"
 ;
+
+img[src$='#sparkler-presentation-img'] {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: solid black 1px;
+}
