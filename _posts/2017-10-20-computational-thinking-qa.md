@@ -5,6 +5,8 @@ date:   2017-10-20 22:04:39
 categories: computer science
 ---
 
+[SCNA-2017](https://scna.softwarecraftsmanship.org/sarah-aslanifar/)
+
 I didn't learn to program when she was five, but I have been developing software for the past 13 years. I am the owner of Tested Minds, where along with consulting, I built a product called Literately to teach my husband and friends to read and write Farsi. I enjoys watching her two sons apply algorithms and the basics of computer science to the real world.
 
 ### Topic: Computational Thinking
