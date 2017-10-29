@@ -5,67 +5,68 @@ date:   2017-10-20 22:04:39
 categories: computer science
 ---
 
-I've been an engineer for the past 14 years, but probably have been only thinking computationally for the last 7. To explain what I mean by that, let's start with talking about what computational thinking is NOT.
 
-![Computational Thinking for kids of all ages](/assets/images/scna_extended/01.jpeg#scna_extended #scna_extended "Computational Thinking for kids of all ages")
+**Computational Thinking for kids all ages!**
+
+I've been an engineer for the past 14 years, but probably have been only thinking computationally for the last 7. To explain what I mean by that, let's start with talking about what computational thinking is NOT.
 
 ___
 
 Computational thinking is NOT thinking in programming language syntax. I think the worst thing you could do to get someone interested in programming is to introduce them to syntax like Java, C, or Fortran on day one. Why would they want to bother learning these unfamiliar, arcane details like pointers, classes, compilation? Rather, let's start with a goal. What problem are they trying to solve? Can this problem be framed as a computational one that a computer can do much faster than we could?
 
-    #include <iostream>
+{% highlight c++ %}
+#include <iostream>
 
-    using namespace std;
+using namespace std;
 
-    struct node
+struct node
+{
+  int data;
+  node *next;
+};
+
+class linked_list
+{
+  private:
+    node *head,*tail;
+  public:
+    linked_list()
     {
-      int data;
-      node *next;
-    };
+      head = NULL;
+      tail = NULL;
+    }
 
-
-
-    class linked_list
+    void add_node(int n)
     {
-      private:
-        node *head,*tail;
-      public:
-        linked_list()
+        node *tmp = new node;
+        tmp->data = n;
+        tmp->next = NULL;
+
+        if(head == NULL)
         {
-          head = NULL;
-          tail = NULL;
+            head = tmp;
+            tail = tmp;
         }
-
-        void add_node(int n)
+        else
         {
-            node *tmp = new node;
-            tmp->data = n;
-            tmp->next = NULL;
-
-            if(head == NULL)
-            {
-                head = tmp;
-                tail = tmp;
-            }
-            else
-            {
-                tail->next = tmp;
-                tail = tail->next;
-            }
-          }
-        };
+            tail->next = tmp;
+            tail = tail->next;
+        }
+      }
+    };
+{% endhighlight %}
 
 ___
 
 Nowadays, there are over 256 programing languages. The first program I can remember writing was over 20 years ago in DOS. When I started programming professionally, 14 years ago, I always gave it my all to deliver the project. But it took me some time to really go **deep** to try to understand **why** the program was going to work before I even wrote it.
 
-![](/assets/images/scna_extended/03.jpeg#scna_extended )
+![](/assets/images/scna_extended/03.jpeg#scna_extended)
 
 ___
 
 In 2010, I left ThoughtWorks and started my own consultancy, Tested Minds. Which then allowed me to really think and pick projects that I was really interested in. Then, I made my first project from a genuine desire to have a computer solve a problem for me. I wanted to teach my husband read and write Farsi. I wanted him to practice as much as he wanted too. But I didn’t have time or was available all the time to sit with him.
 
-![](/assets/images/scna_extended/04.jpeg#scna_extended )
+![](/assets/images/scna_extended/04.jpeg#scna_extended)
 
 ___
 
@@ -76,7 +77,7 @@ The computation I wanted literately to do included things like:
 
 My mother is a retired elementary teacher, and most of her career she was in first grade. She had performed these computations for a long time! Her and I put a curriculum together which I then put it online for free as literately-Farsi!
 
-![](/assets/images/scna_extended/05.jpeg#scna_extended )
+![](/assets/images/scna_extended/05.jpeg#scna_extended)
 
 ___
 
@@ -91,7 +92,7 @@ So this raises two questions:
 * How early can we introduce computational thinking?
 * How early can we introduce programming?
 
-![](/assets/images/scna_extended/06.jpeg#scna_extended )
+![](/assets/images/scna_extended/06.jpeg#scna_extended)
 
 ___
 
@@ -103,7 +104,7 @@ Arithmetic is type of mathematics, integers, real numbers, complex numbers. You 
 
 Mathematics is the way to precisely represent data and proof a formula. In order to do computation and order the computers to be able to run algorithm you need to be quite precise, that’s why mathematics is important in computation
 
-![](/assets/images/scna_extended/07.jpeg#scna_extended )
+![](/assets/images/scna_extended/07.jpeg#scna_extended)
 
 ___
 
@@ -115,14 +116,14 @@ So we can already see that we have already started to slow down…
 
 Of course some of you geniuses can go easily up to 15…20…30…digits. But you’re weird…in a good way! :)
 
-![](/assets/images/scna_extended/08.jpeg#scna_extended )
+![](/assets/images/scna_extended/08.jpeg#scna_extended)
 
 ___
 
 How about this one?
 How long would it take a human brain to get this answer? And how likely would we be to make a mistake along the way because of a bug in our brain’s programming?
 
-    What's the 100th number in the Fibonacci sequence
+**What's the 100th number in the Fibonacci sequence**
 
 ___
 
@@ -131,23 +132,28 @@ This is where a computer can really help us out - Clojure syntax.
 How long does it take for us to write that in our language of choice once you know an algorithm to generate the sequence?
 How long would it take for a computer to run that code?
 
-    (def fib
-      (->> [0N 1N]
-        (iterate (fn [[a b]] [b (+' a b)]))
-        (map first)))
+{% highlight clojure %}
+(def fib
+  (->> [0N 1N]
+    (iterate (fn [[a b]] [b (+' a b)]))
+    (map first)))
+{% endhighlight %}
 
 ___
 
-    (def fib
-      (->> [0N 1N]
-        (iterate (fn [[a b]] [b (+' a b)]))
-        (map first)))
+{% highlight clojure %}
+(def fib
+  (->> [0N 1N]
+    (iterate (fn [[a b]] [b (+' a b)]))
+    (map first)))
 
-    (nth fib 100)
+(nth fib 100)
 
-    **345,224,848,179,261,915,075**
+{% endhighlight %}
 
-    "Elapsed time: 0.059953 msecs"
+**345,224,848,179,261,915,075**
+
+"Elapsed time: 0.059953 msecs"
 
 ___
 
@@ -155,21 +161,22 @@ Before we write the code, we need to frame the problem in a precise, repeatable 
 
 I’ll make the claim that there’s nothing the computer can do that the human brain cannot, given enough time and memory. But are the computers always faster and more efficient?
 
+{% highlight clojure %}
+;; Define the Fibonacci as:
+(def fib
 
-    ;; Define the Fibonacci as:
-    (def fib
+  ;; start with 0 and 1 as a vector for initial inputs, a and b.
+  (->> [0N 1N]
 
-      ;; start with 0 and 1 as a vector for initial inputs, a and b.
-      (->> [0N 1N]
+    ;; create an infinite, lazy sequence of vectors by iterating a function over those inputs that returns a new vector of b and the sum of a and b
+    (iterate (fn [[a b]] [b (+' a b)]))
 
-        ;; create an infinite, lazy sequence of vectors by iterating a function over those inputs that returns a new vector of b and the sum of a and b
-        (iterate (fn [[a b]] [b (+' a b)]))
+    ;; map the first function over that sequence to convert to an infinite, lazy sequence of BigInt’s.
+    (map first)))
 
-        ;; map the first function over that sequence to convert to an infinite, lazy sequence of BigInt’s.
-        (map first)))
-
-    ;; We can now use functions like nth or take on this sequence.
-    (nth fib 100)
+;; We can now use functions like nth or take on this sequence.
+(nth fib 100)
+{% endhighlight %}
 
 ___
 
@@ -179,15 +186,15 @@ Noisy image recognition is a computational problem that humans can do subconscio
 
 And that’s what Luis Von Ahn did!
 
-![](/assets/images/scna_extended/13.jpeg#scna_extended )
+![](/assets/images/scna_extended/13.jpeg#scna_extended)
 
 ___
 
-How about Amazon Mechanical Turk: https://www.mturk.com/mturk/welcome
+[How about Amazon Mechanical Turk](https://www.mturk.com/mturk/welcome)
 
 This is an example of what our brain can read and comprehend with one look but computers are not yet sophisticated enough to do. Most humans can't do numeric manipulation quickly. Most computers can't do free-form pattern-matching the way our brains can.
 
-![](/assets/images/scna_extended/14.jpeg#scna_extended )
+![](/assets/images/scna_extended/14.jpeg#scna_extended)
 
 ___
 
@@ -197,7 +204,7 @@ I love this quote from him:
 
 > "Story of computing is the story of humanity"
 
-![](/assets/images/scna_extended/15.jpeg#scna_extended )
+![](/assets/images/scna_extended/15.jpeg#scna_extended)
 
 ___
 
@@ -205,7 +212,7 @@ Computing started out as human computers (mostly women). Computation, preformed 
 
 In one of his articles, Grady mentions. Computational thinking drove our imagination, it goes beyond what computers can do and what we can do in present time
 
-![](/assets/images/scna_extended/16.jpeg#scna_extended )
+![](/assets/images/scna_extended/16.jpeg#scna_extended)
 
 ___
 
@@ -216,7 +223,7 @@ You are computing on a daily basis. You planned your route to this conference. Y
 How do we gain skill in **consciously** thinking of problems computationally? And if we can do so as adults, how early can humans start? Can we make computational and mathematical thinking like a second language at home to teach our kids while we practice ourselves?
 
 
-![](/assets/images/scna_extended/17.jpeg#scna_extended )
+![](/assets/images/scna_extended/17.jpeg#scna_extended)
 
 ___
 
@@ -228,7 +235,7 @@ Well, as a mother of two, I have a couple of research subjects that volunteer fo
 
 My bet is that computational thinking is a great way to start.
 
-![](/assets/images/scna_extended/18.jpeg#scna_extended )
+![](/assets/images/scna_extended/18.jpeg#scna_extended)
 
 ___
 
@@ -240,40 +247,42 @@ When we were expecting our first child six years ago, we were complete apprentic
 
 At just a few months old, babies can…
 
-![](/assets/images/scna_extended/19.jpeg#scna_extended )
+![](/assets/images/scna_extended/19.jpeg#scna_extended)
 
 ___
 
 Predict sequences of events:
+
 * running water => bath time
 * mommy goes to fridge with a glass => water
 * putting shoes on => go outside
 
-![](/assets/images/scna_extended/20.jpeg#scna_extended )
+![](/assets/images/scna_extended/20.jpeg#scna_extended)
 
 ___
 
 Connect cause and effect:
+
 * shaking a rattle => makes a sound
 * pushing a toy off the table => drop, bang…the joy of gravity!
 * cry => Mommy or Daddy will pay instant attention and maybe pick me up.
 
-![](/assets/images/scna_extended/21.gif#scna_extended )
+![](/assets/images/scna_extended/21.gif#scna_extended)
 
 ___
 
 Relative sizes when the ratio is at least 2:1
+
 * babies are small / parents are big
 
-![](/assets/images/scna_extended/22.jpeg#scna_extended )
+![](/assets/images/scna_extended/22.jpeg#scna_extended)
 
 ___
 
 I wanted to share this video with you, when I watched it really blew my mind!
 
-[to think](/assets/images/scna_extended/23.mp4 target="_blank)
 
-[Full video link](https://youtu.be/ue1h1_vRLtU?t=22m21s)
+<video controls="controls" name="To Think" src="/assets/images/scna_extended/23.mp4"></video>
 
 If you look into the eyes of a 6 month old child, when he or she is in the park. She looks around and with that look she performs computation, she’s analyzing the world around her. How far mommy is, how she can get her attention, or grab her favorite toy
 
@@ -290,7 +299,7 @@ Of course that doesn’t mean as we age we’re not capable of learning new skil
 Given the impact on brain development, it’s not surprising several studies emphasize the significant long-term impacts of creative environments.
 
 
-![](/assets/images/scna_extended/24.jpeg#scna_extended )
+![](/assets/images/scna_extended/24.jpeg#scna_extended)
 
 ___
 
@@ -299,7 +308,7 @@ In a great book, Mindstorms, Seymour Papert suggests we look at Mathematics as a
 Kids are pressured in K-12 to learn STEM after potentially having gone that 2000 days without mathematical or computational thinking. They can become afraid of math because of the unfamiliarity of material like symbolic notation as a model for a real-world pattern, the lack of immediate feedback, and a fear of failure of not being a “math person”.
 
 
-![](/assets/images/scna_extended/25.jpeg#scna_extended )
+![](/assets/images/scna_extended/25.jpeg#scna_extended)
 
 ___
 
@@ -311,7 +320,7 @@ I love this quote from her:
 
 When learning mathematics, or a complicated algorithm for that matter, you have to be patient and allow your brain to deeply understand the problem, and to enjoy the path to solve it.
 
-![](/assets/images/scna_extended/26.jpeg#scna_extended )
+![](/assets/images/scna_extended/26.jpeg#scna_extended)
 
 ___
 
@@ -325,7 +334,7 @@ The first place that I started and personally love is sorting laundry! That’s 
 
 Now how to go from here:
 
-![](/assets/images/scna_extended/28.jpeg#scna_extended )
+![](/assets/images/scna_extended/28.jpeg#scna_extended)
 
 ___
 
@@ -333,9 +342,7 @@ to here:
 
 Organize the closet by type of cloths, color, sleeve length and so on!
 
-![](/assets/images/scna_extended/29.jpeg#scna_extended )
-
-___
+![](/assets/images/scna_extended/29.jpeg#scna_extended)
 
 **How do we turn a basic daily chore into a computational thinking exercise?**
 
@@ -353,13 +360,13 @@ Kidding!
 
 But seriously, how many people know this algorithm off the top of your head and can live code it like we’re in a bad job interview?
 
-![](/assets/images/scna_extended/32.jpeg#scna_extended )
+![](/assets/images/scna_extended/32.jpeg#scna_extended)
 
 ___
 
 Better yet, how many of you who use a pre-implemented solution or can code it, could show us what merge sort looks like without a computer?
 
-![](/assets/images/scna_extended/33.jpeg#scna_extended )
+![](/assets/images/scna_extended/33.jpeg#scna_extended)
 
 ___
 
@@ -370,7 +377,7 @@ For those who are not familiar with the implementation
 2.	Repeatedly merge sublists to produce new sorted sublists until there is only 1 sublist remaining. This will be the sorted list.
 
 
-![](/assets/images/scna_extended/34.gif#scna_extended )
+![](/assets/images/scna_extended/34.gif#scna_extended)
 
 ___
 
@@ -378,24 +385,25 @@ ___
 
 This is one example of merge sort in ruby
 
-    def mergesort(array)
-      return array if array.length == 1
-      middle = array.length / 2
-      merge mergesort(array[0...middle]), mergesort(array[middle..-1])
-    end
+{% highlight ruby %}
+def mergesort(array)
+  return array if array.length == 1
+  middle = array.length / 2
+  merge mergesort(array[0...middle]), mergesort(array[middle..-1])
+end
 
-    def merge(left, right)
-      result = []
+def merge(left, right)
+  result = []
 
-      until left.length == 0 || right.length == 0 do
-        result << (left.first <= right.left ? left.shift : right.shift)
-      end
-    end
-
+  until left.length == 0 || right.length == 0 do
+    result << (left.first <= right.left ? left.shift : right.shift)
+  end
+end
+{% endhighlight %}
 
 This is NOT how you want to introduce the algorithm to your 5 years old!    
 
-![](/assets/images/scna_extended/confusedArmin.png#scna_extended )
+![](/assets/images/scna_extended/confusedArmin.png#scna_extended)
 
 We don't want to get hung up on teaching classes, Ruby, or any other syntax yet. Rather, we need to build some intuition in the child about different sorting algorithms, and how merge sort might work in particular.
 
@@ -411,7 +419,7 @@ Then without saying much I started the merge sort and he became interested. I in
 
 He also likes to know that the work he does is valuable and appreciated. So he was more than happy to make this video and explain how he does the sorting!
 
-[Armin Merge sort](/assets/images/scna_extended/36.mov" target="_blank)
+<video controls="controls" name="Merge Sort" src="/assets/images/scna_extended/36.mov"></video>
 
 Not only did he get an introduction to sorting, but he’s already seen his first divide and conquer algorithm. Divide and conquer is a family of algorithms and a useful pattern, and shows up in politics from time to time as well…something for another talk, perhaps.
 
@@ -421,7 +429,7 @@ Once he was comfortable with the algorithm and had done a fair amount of debuggi
 
 Patience, Persistence, and Repetition are very important character traits during practice. This is what gives us the tolerance for failed attempts, letting us learn from them instead of simply giving up. This is how we build deep learning, understanding, and mastery.
 
-![](/assets/images/scna_extended/37.jpeg#scna_extended )
+![](/assets/images/scna_extended/37.jpeg#scna_extended)
 
 ___
 
@@ -432,6 +440,7 @@ Marsha Jean Falco invented this game in 1974 and introduced it to outside in 199
 The goal is to find three cards where each feature, when looked individually is either all the same OR all different.
 
 Each card contains four features:
+
 * color (red, purple or green)
 * shape (oval, squiggle or diamond)
 * number (one, two or three)
@@ -442,7 +451,7 @@ The person with most SETs wins
 
 This is a speed game that encourages the players to apply the logic and speed in order to win.
 
-![](/assets/images/scna_extended/38.jpeg#scna_extended )
+![](/assets/images/scna_extended/38.jpeg#scna_extended)
 
 ___
 
@@ -456,7 +465,7 @@ This is Keith Devlin, he is an author of 34 books and over 80 articles. Among th
 
 The Set game makes the concept of sets fun.
 
-![](/assets/images/scna_extended/39.jpeg#scna_extended )
+![](/assets/images/scna_extended/39.jpeg#scna_extended)
 
 ___
 
@@ -468,7 +477,7 @@ When we eventually introduce the programming concept of a Set, like the Clojure 
 
 The shared information of the physical should ease the jump from the physical to the abstract, and vice versa.
 
-![](/assets/images/scna_extended/40.jpeg#scna_extended )
+![](/assets/images/scna_extended/40.jpeg#scna_extended)
 
 ___
 
@@ -480,13 +489,13 @@ It sounded very interesting. At the time, I thought it would be just too early f
 
 Let’s see Armin’s interaction with Cubetto 101!
 
-![](/assets/images/scna_extended/41.jpeg#scna_extended )
+![](/assets/images/scna_extended/41.jpeg#scna_extended)
 
 ___
 
 As you see, this robot doesn’t have a screen. But each step blinks on the board while Cubetto is performing it so the child can make the connection. When functions are used, as well as the step that the function is executing.
 
-[Cubetto 101](/assets/images/scna_extended/42.mov" target="_blank)
+<video controls="controls" name="Cubetto 101" src="/assets/images/scna_extended/42.mov"></video>
 
 ___
 
@@ -495,7 +504,7 @@ Here is another great thing: Before Armin put in the commands, he pseudo-coded t
 Then when we started putting the commands on the board, Armin realized it’s a pattern.
 He used a function block to define the pattern, DRY up his “code”, and run the program!
 
-![](/assets/images/scna_extended/43.jpeg#scna_extended )
+![](/assets/images/scna_extended/43.jpeg#scna_extended)
 
 ___
 
@@ -504,7 +513,7 @@ A big part of mathematics is describing some pattern you observe in the world in
 
 At the end of the day, this is a big part of what we’re doing as programmers.
 
-![](/assets/images/scna_extended/44.jpeg#scna_extended )
+![](/assets/images/scna_extended/44.jpeg#scna_extended)
 
 ___
 
@@ -512,7 +521,7 @@ To translate the computational thinking from the physical world to the virtual, 
 
 He and his colleagues created the LOGO programming language and visualization environment in 1967.
 
-![](/assets/images/scna_extended/45.jpeg#scna_extended )
+![](/assets/images/scna_extended/45.jpeg#scna_extended)
 
 ___
 
@@ -520,21 +529,21 @@ For those of you who are interested, several languages have now implemented LOGO
 
 For Armin, the next step, when he’s ready, is to project his patterns on the computer. Learner can then take a step farther and come up with some absolutely beautiful designs. Take a look:
 
-![](/assets/images/scna_extended/46.jpeg#scna_extended )
+![](/assets/images/scna_extended/46.jpeg#scna_extended)
 
 ___
 
-![](/assets/images/scna_extended/47.jpeg#scna_extended )
+![](/assets/images/scna_extended/47.jpeg#scna_extended)
 
 ___
 
-![](/assets/images/scna_extended/48.jpeg#scna_extended )
+![](/assets/images/scna_extended/48.jpeg#scna_extended)
 
 ___
 
 For the pythonista’s in the audience, there’s python-turtle
 
-![](/assets/images/scna_extended/49.jpeg#scna_extended )
+![](/assets/images/scna_extended/49.jpeg#scna_extended)
 
 And now we bounce back from the virtual to the physical: Before we introduce Armin to these kinds of drawings, we need to teach him about angles!
 
@@ -552,7 +561,7 @@ He realized after we put the dots in 5 degree intervals, he needed to connect th
 
 He started with a triangle, to square, pentagon, hexagon, octagon… and so on till he got a circle.
 
-![](/assets/images/scna_extended/50.jpeg#scna_extended )
+![](/assets/images/scna_extended/50.jpeg#scna_extended)
 
 ___
 
@@ -584,7 +593,7 @@ For example, design a parachute that safely lands an egg… just use your imagin
 
 These are the techniques that are so crucial in computational thinking and when put in such fun way encourages the children to learn them without thinking they are learning STEM
 
-![](/assets/images/scna_extended/52.jpeg#scna_extended )
+![](/assets/images/scna_extended/52.jpeg#scna_extended)
 
 ___
 
@@ -593,7 +602,18 @@ When learning mathematics or learning to look at a problem computationally,
 * Be very patient, be persistent and allow yourself or the learner to digest the information without being under the pressure
 * Don’t set up high expectations, don’t take shortcuts to meet those expectations. Let things progress naturally
 
-![](/assets/images/scna_extended/53.jpeg#scna_extended )
+### Guidelines
+
+* Be patient
+* Be persistent
+* Do not set high expectations
+* Do not teach programing syntax yet
+* Make it about day-to-day life, be precise
+  * what temprature should the oven be on?
+  * how many more minutes you need to play?
+* Let the child manage money
+* Show them fractiles
+* Have them watch your speed when you are driving (warning: this could be problematic!)
 
 ___
 
@@ -601,7 +621,7 @@ I know many of you want to go home tonight and start teaching or learning. Let m
 
 Jeffery Karpicke is a 10 year faculty staff at Purdue University, in Cognitive Psychology department.
 
-![](/assets/images/scna_extended/54.jpeg#scna_extended )
+![](/assets/images/scna_extended/54.jpeg#scna_extended)
 
 ___
 
@@ -626,22 +646,17 @@ Retrieval - One week after the learning session
 
 So next time you are learning new information, keep Jeffrey Karpicke’s research in mind and give it try!
 
-![](/assets/images/scna_extended/55.jpeg#scna_extended )
+![](/assets/images/scna_extended/55.jpeg#scna_extended)
 
 ___
 
-Here is another very important guideline:
-When you are not wrong you don't come up with anything original!
+### Don't fear mistakes!
 
-We're pushing and expecting kids to be right and that's how we take originality and creativity away form them.
-
-Learn from attempts, don’t fear them. Celebrate the effort…the pride from the wins will come naturally. Encourage them to keep trying and become resilient to things not working.
-
-Revise your work, change your methodologies!
-
-Look at the problem at different angles and persist till you succeed.
-
-![](/assets/images/scna_extended/56.jpeg#scna_extended )
+* When you are not wrong, you don't come up with anything original! We are pushing and expecting our kids to be always right; and that's how we take originality and creativity away from them.
+* Learn from attempts, don't fear them. Celebrate the effort... the pride form the wins will come naturally. Encourage children to keep trying and become resilient to things not working.
+* Revise your work, change your methodologies!
+* Don't tell your children they are smart, even if the tests say are! It dismisses the hard work they are doing, and have to continue doing, to achieve their goals.
+* Let your children get bored from time to time to encourage their creativity.
 
 ___
 
@@ -659,7 +674,7 @@ This was amazing to us, because we’d never explicitly taught him this. But if 
 
 Armin connected the colors and created a graph and he showed it to Bobby saying, “Look, Daddy…a graph!” Bobby was so proud and told him he’d made a color dependency graph.
 
-![](/assets/images/scna_extended/57.jpeg#scna_extended )
+![](/assets/images/scna_extended/58.jpeg#scna_extended)
 
 ___
 
@@ -667,19 +682,21 @@ Armin was so proud of himself, he went to his room and signed his work.
 
 Mom and dad this picture is for both of you, this is my first graph
 
-![](/assets/images/scna_extended/58.jpeg#scna_extended )
+![](/assets/images/scna_extended/59.jpeg#scna_extended)
 
 ___
 
-Now, I invite and encourage you to go home and try some of these techniques out for yourself. Look at the problems at a different angle, computationally! Here are a few links to the tools I’ve shown.
+### Toys and Games
 
-![](/assets/images/scna_extended/59.jpeg#scna_extended )
+* [Cubetto](http://wwww.primotoys.com)
+* [SET](http://amzn.to/2gaByle)
+* [Clojure Turtle](https://github.com/google/clojure-turtle)
 
 ___
 
 And as something special for SCNA:
 
-![](/assets/images/scna_extended/60.jpeg#scna_extended )
+![](/assets/images/scna_extended/61.jpeg#scna_extended)
 
 ___
 
@@ -687,14 +704,24 @@ Stay in touch, let me know how you are doing or if you have ideas you would like
 
 Tonight, I want you to implement merge sort with cards and have fun doing that!
 
-![](/assets/images/scna_extended/61.jpeg#scna_extended )
+* [@saslani](@saslani)
+* [SarahAslanifar.com](http://sarahaslanifar.com)
+* [linkedin/felfli](http://www.linkedin.com/in/felfeli)
+* [sarah@testedminds.com](sarah@testedminds.com)
 
 ___
 
-![](/assets/images/scna_extended/62.jpeg#scna_extended )
-
-___
-
-![](/assets/images/scna_extended/63.jpeg#scna_extended )
+### References
+* [Jeffrey Karpicke - Learning Memory](www.apa.org/science/about/psa/2016/06/learning-memory.aspx)
+* [Keith Devlin - Introduction to Mathematics](amzn.to/2hEn4mM)
+* [Keith Devlin - The Joy of Sets](amzn.to/2hQIjSt)
+* [Baby Human - Genius in Diaper 1](https://www.amazon.com/Baby-Human-Geniuses-in-Diapers/dp/B000127IG6)
+* [Baby Human - Genius in Diaper 2](amzn.to/2zBstTQ)
+* [Creativity in Early Brain Development](https://earlyarts.co.uk/blog/creativity-in-early-brain-development)
+* [Young Brains](dm16174grt2cj.cloudfront.net/Downloads_Research/young_brains.pdf)
+* [Brains Are Build Not Born](https://www.kidsclubchildcare.com.au/the-science-of-early-childhood-development/)
+* [Blue1647](www.blue1647.com)
+* [Top Secret Rosies](www.imdb.com/title/tt1587359/)
+* [Do Schools Kill Creativity?](https://www.ted.com/playlists/171/the_most_popular_talks_of_all)
 
 ___
