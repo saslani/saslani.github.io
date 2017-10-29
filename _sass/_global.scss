@@ -49,6 +49,12 @@ a:hover {
     margin: 0 auto;
 }
 
+.post hr.slides {
+  border-bottom: 1px solid $gray4;
+  padding-top: 1em;
+  max-width: 100%;
+}
+
 .post:last-of-type hr {
     border-bottom: none;
 }
