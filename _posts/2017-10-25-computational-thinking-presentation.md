@@ -5,6 +5,12 @@ date:   2017-10-20 22:04:39
 categories: computer science
 ---
 
+When I was first asked about speaking at SCNA, I know exactly what I wanted to talk about, Computational Thinking and how early can we start. It was almost a year since we started working with my older son, Armin to teach him think computationally and ask questions. As time passed and I was preparing for my talk, I started having doubts about whether or not this top will be of interest to others, specially those without kids. I had these doubts until about an hour before my talk! During the talk, I was looking at the audience, seeing them engaged, nodding and laughing. That, of course, made me happy. I felt like I was able to connect to them. But after my talk, during the Q&A, I was pleasantly surprised and happy with so many people come to me and ask variety of questions from their own experience, learning in general, or teaching their children. One professor even came to me and asked talked to me about how he is trying to make education and programing fun for his students. Another student, mentioned that's how he felt about learning programing language but hadn't really seen anybody talk about it before. One student said, he was introduced to programing syntax first before learning to think computationally, and he's been struggling with learning how to program.
+
+It was very heartwarming to see I was able to connect to so many people at SCNA. Therefore, I decided to put the content in my blog and make it available to everyone. Hope this helps.
+
+
+<hr class="slides">
 
 **Computational Thinking for kids all ages!**
 
