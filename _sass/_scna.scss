@@ -1,0 +1,54 @@
+.programing-language-icon {
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.image-small {
+  width: 100px;
+  float: right;
+}
+
+.image-medium {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
+figcaption {
+  font-size: 10px;
+}
+
+.wrapper {
+  max-width: 60em;
+}
+
+
+.container {
+  overflow: hidden;
+  margin-top: 20px;
+
+  .row {
+    overflow: hidden;
+  }
+
+  .left, .right {
+    float: left
+  }
+
+  .left {
+    padding-right: 5px;
+  }
+
+  .right {
+    padding-left: 5px
+  }
+
+  .text {
+    width: 70%
+  }
+
+  .image {
+    width: 30%;
+  }
+}
