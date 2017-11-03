@@ -21,13 +21,13 @@ My talk is going to be about computational thinking. The main thing I want to co
 
 People might think computational thinking starts with STEM education efforts in K-12 and might not spend time trying to teach younger kids about math. I could have been one of those people, but when we were expecting our first child, Armin, my husband and I started watching a lot of documentaries about parenting and early childhood development. We were astonished to find out that the kids start reacting to mathematical situations a few months after they’re born!
 
-One epiphany came from a segment in National Geographic’s “The Science of Babies” about some of Karen Wynn’s work at The Infant Cognition Center at Yale. In one segment, the researchers show a doll to a ten-month old in a setup similar to a puppet show. Then a curtain covers the stage where the doll is sitting, and the child could see another puppet go behind the curtain. Then the researcher sneakily removes the first puppet without the baby being able to see it. The curtain falls and only one puppet remains.
+One epiphany came from a segment in National Geographic’s “The Science of Babies” about some of Karen Wynn’s work at The Infant Cognition Center at Yale. In one segment, the researchers show a doll to a six-month old in a setup similar to a puppet show. Then a curtain covers the stage where the doll is sitting, and the child could see another puppet go behind the curtain. Then the researcher sneakily removes the first puppet without the baby being able to see it. The curtain falls and only one puppet remains.
 
 1 + 1 = 1?
 
 The baby is astonished and starts staring and banging the table! Every time the curtain was lifted and the answer was what they expected, however, the baby looked bored and looked away after only a few seconds. Dr. Wynn and her team replicated these results with six-month olds and even four-month olds, demonstrating that babies recognize addition and subtraction if only subconsciously.
 
-Think about that…a baby can recognize mathematical inconsistency in the real world years before they can recognize a grammatical model of the world like “2 – 1 = 1”!
+Think about that! A baby can recognize mathematical inconsistency in the real world years before they can recognize a grammatical model of the world like “2 – 1 = 1”!
 
 That idea really clicked for me after reading Seymour Papert’s book from 1980, “Mindstorms”. Dr. Papert spent much of his professional career at the MIT AI Lab developing methods to allow children to use a programming language and visualization environment called Logo to explore mathematical ideas. Like a programming language, mathematical notation is just another language. There is a bigger idea behind the language that goes beyond the syntax. There should be no reason why kids should be afraid of math in school unless it’s been made frightening and unfamiliar, or made out to be something that only “smart kids” can do.
 
