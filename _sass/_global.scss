@@ -23,7 +23,7 @@ html {
 .wrapper {
     margin: 0 auto;
     padding: 0 1em;
-    max-width: 48em; /* using max-width to not let the reading column width get too wide */
+    max-width: 90%; /* using max-width to not let the reading column width get too wide */
 }
 
 @media (min-width: 34em) {
