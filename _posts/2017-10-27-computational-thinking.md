@@ -26,8 +26,8 @@ categories: computer science
   </p>
 </div>
 
-<div class="section">
-  <div class="title">Computational Thinking for kids of all ages!</div>
+<section>
+  <title>Computational Thinking for kids of all ages!</title>
 
   <div class="container">
     <p>
@@ -163,10 +163,10 @@ categories: computer science
       </ul>
     </p>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">Let’s look at computation vs. arithmetic</div>
+<section>
+  <title>Let’s look at computation vs. arithmetic</title>
   <div class="container">
     <div class="left text">
       The word "computation" is often used synonymously to mean "numeric computation". Computation is the act of processing the data, calculation and reckoning
@@ -177,10 +177,10 @@ categories: computer science
       <img src="/assets/images/scna_extended/07.jpeg" />
     </div>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">Human brain vs. computers</div>
+<section>
+  <title>Human brain vs. computers</title>
   <div class="container">
     <div class="left text">
       <p>
@@ -297,10 +297,10 @@ categories: computer science
       <img src="/assets/images/scna_extended/14.jpeg" />
     </div>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">Human Computing</div>
+<section>
+  <title>Human Computing</title>
   <div class="container">
     <div class="row">
       <div class="left text">
@@ -349,10 +349,10 @@ categories: computer science
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">How early we can start?</div>
+<section>
+  <title>How early we can start?</title>
 
   <div class="container">
     <div class="left text">
@@ -535,10 +535,10 @@ categories: computer science
       When learning mathematics, or any complicated algorithm for that matter, we have to be patient and allow our brain to deeply understand the problem, and to enjoy the path to solve it.
     </p>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">Where to start?</div>
+<section>
+  <title>Where to start?</title>
   <div class="container">
     <p>
       Now that we know math and computation are essential, where do we start? For kids or ourselves? Let’s not forget, it’s not as though every K-12 is already a programmer and computational thinker, they’re going to need to learn, too.
@@ -955,10 +955,10 @@ categories: computer science
       <img src="/assets/images/scna_extended/blue2.jpg" />
     </div>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">Guidelines</div>
+<section>
+  <title>Guidelines</title>
   <div class="container">
     <p>
       When learning mathematics or learning to look at a problem computationally. Be very patient, be persistent and allow ourselves or the
@@ -990,10 +990,10 @@ categories: computer science
       </li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">Spaced Repetition Learning</div>
+<section>
+  <title>Spaced Repetition Learning</title>
   <div class="container">
     <div class="row">
       <div class="left text">
@@ -1060,10 +1060,10 @@ categories: computer science
       So next time we are learning new information, let's keep Jeffrey Karpicke’s research in mind and give it try!
     </p>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">Math Language</div>
+<section>
+  <title>Math Language</title>
   <div class="container">
     <p>
       This is a proud parent moment I wanted to share with you and the importance of looking at Math as a language!
@@ -1098,10 +1098,10 @@ categories: computer science
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">Toys and Games in this Blog</div>
+<section>
+  <title>Toys and Games in this Blog</title>
   <div class="container">
     <ul>
       <li><a href="https://www.primotoys.com/" target="blank">Cubetto</a></li>
@@ -1109,16 +1109,16 @@ categories: computer science
       <li><a href="https://github.com/google/clojure-turtle" target="blank">Clojure Turtle</a></li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="section">
+<section>
   <div class="container">
     And as something special for SCNA:
     <img src="/assets/images/scna_extended/61.jpeg" />
   </div>
-</div>
+</section>
 
-<div class="section">
+<section>
   <div class="container">
     Stay in touch; let me know how you are doing or if you have ideas you would like to share!
     <ul>
@@ -1126,10 +1126,10 @@ categories: computer science
       <li>sarah@testedminds.com</li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="section">
-  <div class="title">References</div>
+<section>
+  <title>References</title>
   <div class="container">
     <li><a href="http://www.apa.org/science/about/psa/2016/06/learning-memory.aspx" target="blank">Jeffrey Karpicke - Learning Memory</a></li>
     <li><a href="http://amzn.to/2gRrzy2" target="blank">Keith Devlin - Introduction to Mathematics</a></li>
@@ -1144,4 +1144,4 @@ categories: computer science
     <li><a href="http://www.imdb.com/title/tt1587359/" target="blank">Top Secret Rosies</a></li>
     <li><a href="https://www.ted.com/playlists/171/the_most_popular_talks_of_all" target="blank">Do Schools Kill Creativity?</a></li>
   </div>
-</div>
+</section>
