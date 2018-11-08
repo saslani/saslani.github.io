@@ -500,12 +500,26 @@ Warning: this article is not for those who believe in Young Earth creationism, d
 <section>
   <div class="container">
     <div class="left text">
-      We have to decide what organization we want before we have a shanty town
-      Who set’s the goal and the vision and what are we here to achieve
-      Across all these style leader is setting a long term vision on how life is going to be in 5, 10, 20 years from now
-      Do you, as employee, want to leave there?
-      What does the leader do? How do you handle disagreement and intolerance? is the plan prison the person? cast them out?
-      If everyone is agreeable then leadership is easy. What what if there’s diversity? what’s someone’s prospective as someone else’s view point? what about diversity of values
+      <p>
+        So far, we looked into the history of groups and organizations. We understood why we're social and why forming teams
+        was essential to our survival. Also, as Dunbar suggests as our teams and organizations got bigger the need for leaders
+        grow. Not only just a leader, but also the leadership style. In a modern society a company who wants to run their
+        organization like an impulsive red is not going to survive. Meanwhile, military cannot operate in pluralistic green or
+        evolutionary teal, especially during war!
+      </p>
+      <p>
+        In order for us to determine what type of organization we have or want, and how our leaders should operate, let's
+        take a loop at some leadership styles. We have to decide what organization we want before we have a shanty town.
+        Who set’s the goal and the vision and what are we here to achieve? 
+      </p>
+      <p>
+        Across all these styles, a strong leader not only is setting a long term vision on how life is going to be 
+        in 5, 10, 20 years from now, but makes sure that the employees are well-aware of the goals and empowers them to 
+        get there. Setting goals is an expectation for leaders but it's equally important to understant how do a 
+        leader handle disagreement and intolerance. Is the plan to prison the person who made a mistake or cast them out?
+        If everyone is agreeable then leadership is easy. What what if there’s diversity? What’s someone’s prospective 
+        of someone else’s view point? What happens to diversity of values?
+      </p>
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/company_culture.jpg" />
