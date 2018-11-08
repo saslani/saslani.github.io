@@ -613,12 +613,13 @@ Warning: this article is not for those who believe in Young Earth creationism, d
       Leaders who "lead" from side, fail to trust their followers. It's easier for them to do the job rather than 
       empower and trust others to do it. 
       <br />
-      From my experience, those who are new to leadership often fall in danger of falling into this category if they didn't 
-      have enough training or intuition. It takes time and practice to let go! You can detect this style of leadership when 
-      you see a leader, for example, works extra hours to make sure things are "ok" while he/she is on a break, if they take 
-      any! They tend to be nervouse about leaving and often they are right, because, work will get piled up. The second the 
-      leader is back they have to work much harder to pike up the pile off the floor, because the followers didn't know what 
-      to do while their leader was gone. Team is hurting from lack of communication or understanding of the vision.
+      From my experience, ego is high in this style and those who are new to leadership often fall in danger of falling 
+      into this category if they didn't have enough training or intuition. It takes time and practice to let go! You can 
+      detect this style of leadership when you see a leader, for example, works extra hours to make sure things are "ok" 
+      while he/she is on a break, if they take any! They tend to be nervouse about leaving and often they are right, because, 
+      work will get piled up. The second the leader is back they have to work much harder to pike up the pile off the floor, 
+      because the followers didn't know what to do while their leader was gone. Team is hurting from lack of communication 
+      or understanding of the vision.
       <br />
       The Leaders are often burn out and tired, because they consider themselves as bullet proof. 
     </div>
@@ -648,8 +649,9 @@ Warning: this article is not for those who believe in Young Earth creationism, d
       micromanaging everything that has to be done in the way they have envisioned. The goal is to build a team that 
       can innovate!
       <br />
-      One important key here is, leading from behind doesn't mean to leave people to whatever they want! Followers must
-      have a creat vision of the goals. The expected result is known, the means to get there can be let up to the followers.
+      One important key here is, leading from behind doesn't mean to leave people to whatever they want! Freedom is not 
+      absoloute. Followers must have a clear vision of the goals and timeline. The expected result is known, the means 
+      to get there can be let up to the followers.
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/leadership_behind.jpg" />
@@ -661,7 +663,16 @@ Warning: this article is not for those who believe in Young Earth creationism, d
       Visionary Leadership
     </div>
     <div class="left text">
-      blah
+      Visionary leadership is cruicial in having a successfull organization. A visionary leader is hard to replace. 
+      It's important for the visionary leader to documet their principals who that their succeeders can leave up to 
+      explanations and are able to learn and improve what made the organization successfull at some time. Otherwise, the 
+      organization will go through a difficult time, if they ever manage to survive. Therefore, one of the skills 
+      of a visionary leader is great communication!
+      <br />
+      These leaders are not only creative and are able to be very direct and clear about their vision and thougths 
+      but they are also great listeners. They understand that even though they are in a position to make the final
+      decision, they may not always have the best or the most accurate idea. They actively listen to those around them
+      and welcome, in fact encourage, their opinion with an open mind. 
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/leadership_visionary.jpg" />
@@ -672,7 +683,6 @@ Warning: this article is not for those who believe in Young Earth creationism, d
     <div class="subsection_title evolutionary_teal">
     </div>
     <div class="left text">
-      https://www.inc.com/brent-gleeson/7-ways-to-lead-by-example.html
       Micromanagement signs:
       Resist delegation
       Being a bottleneck and demand approval and communication in every step
@@ -704,6 +714,8 @@ Warning: this article is not for those who believe in Young Earth creationism, d
       https://en.wikipedia.org/wiki/Cynefin_framework
       
       https://aboutleaders.com/leading-the-way-or-leadership-from-behind/#gs.6yTnnE0
+      
+      https://www.inc.com/brent-gleeson/7-ways-to-lead-by-example.html
 
       Cynefin_framework_by_Edwin_Stoop.jpg
     </div>
