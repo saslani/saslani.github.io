@@ -11,6 +11,8 @@ Warning: this article is not for those who believe in Young Earth creationism, d
 - Observed great leadership that the leader enables employees to do what's right to do, and steps in only if help is needed
 - Observed questionable leadership that's more "boss like"
 - Why am I interested in this topic
+- Our parents were commited to 1 company, if our generation sticks around for more than 2-3 years we celebrate. Loyalty is chaning
+- The contract between companies and employees are changing.
 
 <section>
   <title>Organization History</title>
@@ -531,7 +533,7 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   <title>Leadership</title>
   <div class="container">
     <div class="left text">
-      organization, as we know today cannot succeed without strong leadership.
+      Organization, as we know today cannot succeed without strong leadership.
       Leadership is the ability to set visions and influence followers, providing support and guidance, to achieve a goal.
       In some organizations, Leaders are also managers.
     </div>
@@ -543,26 +545,11 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   <div class="container">
     <div class="left text">
       But Leaders and Management need different set of skills even though the names are often used interchangeably.
-
-      They both:
-      Accomplish a goal
-      Mobilize resources
-      Explain vision
-
-      Leaders:
-      Set visions and foster ideas
-      Focus on Goals
-      Sell it
-      Take risks
-      Break the rules
-
-      Managers:
-      Focus on tasks
-      Tell it
-      Go with the flow
-      Approve
-      Follow rules
-      Assign tasks
+      The key difference here is not evert manger is necessarily a strong leader! Eevn though the two have 
+      some responsibilities and expectations in common, leader is the visionary who focuses on the long term goal and 
+      should not be bothered by smaller tasks. Leader's job is to sell that vision to clients, employees and managers.
+      Managers, on the other hand, have more freedom when it comes to communicating that vision to employees and assign 
+      tasks to help the employees and the company reach it's goal.
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/leadership_vs_management.jpg" />
@@ -571,9 +558,13 @@ Warning: this article is not for those who believe in Young Earth creationism, d
 
   <div class="container">
     <div class="left text">
-      Before we talk about leadership types
-      What leadership is not?
-      if no one is following, you are not leading (you might think you are leading, but you are not!)
+      <p>
+        Before we dive deeper in leadership styles, it's important to understand <b>What leadership is not?</b><br />
+        Simply, if no one is following, you are not leading (you might think you are leading, but you are not)!
+      </p>
+      <p>
+        Now, let's look at some leadership styles
+      </p>
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/lonely_leader.jpg" />
@@ -581,9 +572,32 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   </div>
 
   <div class="container">
-    <div class="left text">
+    <div class="subsection_title">
       Leading from front
-      https://aboutleaders.com/leading-the-way-or-leadership-from-behind/#gs.6yTnnE0
+    </div>
+    <div class="left text">
+      <p>
+        In this style of leadership, leaders are steps ahead than their followers to make sure the task is doable 
+        before they ask others do them. You can detect this style in organizations when you see the leaders who are 
+        fully engaged and thier also need to approve before any one takes a different approach to problem solving.
+        <br />
+        This style of leadership is inspired by military. Orders are given, everyone agrees and follows the leader. 
+        Eventhough leading form front is well-suited for military or in time or crises, it's very limiting in
+        organizations who are priding themselve in creativity. Leading from front, doesn't leave much room for
+        creativity as followers are often told what to do. 
+      </p>
+      <blockquote>
+        ....<br />
+        Instead of writing them a "manual," as he'd originally planned, he sent an email that said, simply, 
+        "Don't ask me for permission. Do what you think is right." The unbearable stream of emails from the reps 
+        to Ferriss dried up overnight; meanwhile, customer service at the company improved dramatically. 
+        "It's amazing," he says, "how someone's IQ seems to double as soon as you give them responsibility and 
+        indicate that you trust them." And, as far too many can attest, how it halves when you take that responsibility 
+        and trust away. <br />
+        ....
+        <br />
+        <footer>--The Most Humans Human by Brian Christian</footer>
+      </blockquote>
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/leadership_front.jpg" />
@@ -591,8 +605,22 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   </div>
 
   <div class="container">
-    <div class="left text">
+    <div class="subsection_title">
       Sitting on the sideline
+    </div>
+    <div class="left text">
+      Successfull managers know how to and must delegate, sideline leadership happens when they fail to do so. 
+      Leaders who "lead" from side, fail to trust their followers. It's easier for them to do the job rather than 
+      empower and trust others to do it. 
+      <br />
+      From my experience, those who are new to leadership often fall in danger of falling into this category if they didn't 
+      have enough training or intuition. It takes time and practice to let go! You can detect this style of leadership when 
+      you see a leader, for example, works extra hours to make sure things are "ok" while he/she is on a break, if they take 
+      any! They tend to be nervouse about leaving and often they are right, because, work will get piled up. The second the 
+      leader is back they have to work much harder to pike up the pile off the floor, because the followers didn't know what 
+      to do while their leader was gone. Team is hurting from lack of communication or understanding of the vision.
+      <br />
+      The Leaders are often burn out and tired, because they consider themselves as bullet proof. 
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/leadership_sideline.jpg" />
@@ -600,8 +628,28 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   </div>
 
   <div class="container">
-    <div class="left text">
+    <div class="subsection_title">
       Leading from behind
+    </div>
+    <div class="left text">
+      Leading from behind is hard and a bit confusing for many people. It requires trust, flexibility, and some tolorance 
+      for failure. Leaders who lead from back, might be mistaken with those who are not engaging or not doing the work. 
+      When utalized properly, leading from behind is very empowering. Leaders are expecged to provide a safety net for 
+      their followers to be creative and allow them to explore, do mistakes (in a safe environment) and grow. 
+      They are, however, always available to consult or take charge when needed.
+      <br />
+      This style of leadership is great for organizations who are big on creativity and pride themselves in growing 
+      future leaders. This also shifts the micromanagement style to followes holding themselves to high standards, 
+      because they are given authority, trust, and means to do the job.
+      <br />
+      When leader observs followers from back, he or she also gets to see individual's strengths and weaknesses and can
+      help them improve or assgining them tasks that best fits their strengths. The leader then has time to building a 
+      successfull and strong team which is self-organizing and can operate when they are left alone instead of 
+      micromanaging everything that has to be done in the way they have envisioned. The goal is to build a team that 
+      can innovate!
+      <br />
+      One important key here is, leading from behind doesn't mean to leave people to whatever they want! Followers must
+      have a creat vision of the goals. The expected result is known, the means to get there can be let up to the followers.
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/leadership_behind.jpg" />
@@ -609,8 +657,11 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   </div>
 
   <div class="container">
-    <div class="left text">
+    <div class="subsection_title">
       Visionary Leadership
+    </div>
+    <div class="left text">
+      blah
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/leadership_visionary.jpg" />
@@ -618,7 +669,10 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   </div>
 
   <div class="container">
+    <div class="subsection_title evolutionary_teal">
+    </div>
     <div class="left text">
+      https://www.inc.com/brent-gleeson/7-ways-to-lead-by-example.html
       Micromanagement signs:
       Resist delegation
       Being a bottleneck and demand approval and communication in every step
@@ -648,6 +702,8 @@ Warning: this article is not for those who believe in Young Earth creationism, d
       Weather we are a leader at a company, in the group of friends or home, all of can benefit from practicing leadership skills and know when we need to change our style.
 
       https://en.wikipedia.org/wiki/Cynefin_framework
+      
+      https://aboutleaders.com/leading-the-way-or-leadership-from-behind/#gs.6yTnnE0
 
       Cynefin_framework_by_Edwin_Stoop.jpg
     </div>
