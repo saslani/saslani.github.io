@@ -5,12 +5,12 @@ date:   2018-11-07 16:15:15
 categories: Management Skills
 ---
 
-Warning: this article is not for those who believe in Young Earth creationism, dinasaur bones are real!
+Warning: this article is not for those who believe in Young Earth creationism, dinosaur bones are real!
 
 - There has been a lot of talk about leadership around me..
 - Observed great leadership that the leader enables employees to do what's right to do, and steps in only if help is needed
 - Observed questionable leadership that's more "boss like"
-- Why am I interested in this toppic
+- Why am I interested in this topic
 
 <section>
   <title>Organization History</title>
@@ -35,7 +35,7 @@ Warning: this article is not for those who believe in Young Earth creationism, d
       <p>
         There are several hypothesis as why sapiens succeeded but not neanderthals even though neanderthals were physically stronger and faster
         in short distance run. Some of those hypothesis include: violence from modern human, deseases, competitive exclusion, inbreading,
-        climate change or a combiation of these and more...
+        climate change or a combination of these and more...
       </p>
       <p>
         One hypothesis that relates to this article is <b>the brain power</b>.
@@ -160,12 +160,26 @@ Warning: this article is not for those who believe in Young Earth creationism, d
 <section>
   <title>Organization Structure</title>
 
-
   <div class="container">
     <div class="left text">
-      Going back and looking at the history, we see that we have evolved from small groups of family to survive to build today’s mega city and civilization.
-
-      In short, the book “reinventing organization” groups the organizations evolvement as the following:
+      <p>
+        By looking at history and evolution, we see that we have evolved from small groups of family to survive to build today’s mega city and civilization. 
+        We went form staying together in group of dozens to have our species survive and pass our genes. To understanding biology and manipulating our genes! But, we couldn't have came so far if we had stayed in our small family circle or tribes. Forming bigger groups and organizations allowed us to shift our attention from just survival to understanding the world around us.
+      </p>  
+      <p>
+        The book “reinventing organization” groups the organizations evolvement as the following:
+      </p>
+      <p>
+        <ul>
+          <li style="background: linear-gradient(to right, #8f448a, #ff0000, #f1db4a, #6ba959, #466ba1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; ">Reactive Infrared - 100,000 to 50,000 BC: Small Family</li>
+          <li style="color: #8f448a">Magic-Magenta - 15,000 years ago: Tribes</li>
+          <li style="color: #ff0000">Impulsive Red - 10,000 BC</li>
+          <li style="color: #de8f33">Conformist Amber - 4,000 BC</li>
+          <li style="color: #f08533">Achievement Orange</li>
+          <li style="color: #008000">Pluralistic Green</li>
+          <li style="color: #008080">Evolutionary Teal</li>
+        </ul>
+      </p>
     </div>
     <!-- <div class="right image">
       <img src="/assets/images/leadership/.jpg" />

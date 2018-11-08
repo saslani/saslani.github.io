@@ -16,7 +16,7 @@ github_username:  saslani
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+# highlighter: pygments
 sass:
     style: :compressed
 
