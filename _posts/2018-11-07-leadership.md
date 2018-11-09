@@ -680,21 +680,20 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   </div>
 
   <div class="container">
-    <div class="subsection_title evolutionary_teal">
+    <div class="subsection_title">
+      Micromanagemers
     </div>
     <div class="left text">
-      Micromanagement signs:
-      Resist delegation
-      Being a bottleneck and demand approval and communication in every step
-      Get involved in other’s work without consulting them
-      Give too many direction
-      Don’t setup or tolerate failure (Force people to heavens!)
-      Looking at details instead of the overall picture
-      Push aside the experience and knowledge of colleagues
-      Demotivated team
-
-      There are many types of leadership and each could be suitable in different scenarios. For example in military during war type, there should be no democracy or leading from behind otherwise the consequences are irreversible.
-      But in our day-to-day life, personal or professional most of the time we can benefit more from trust and experiment. Some of us might have experienced micromanagement at some point or other.
+      That there alaways those who just CANNOT LET GO, the Micromanagemers!
+      <br />
+      Micromanagers not only have a hard time letting go but they actively resist delegation. They are often the becoming 
+      a bottleneck and demand approval and communication in every step. They get involved in other’s work without consulting 
+      them and provide too many direction. They do not setup or tolerate failure, they want to "force people to enter heavens!"
+      Micromanagers, looking at the details of how a job gets done instead of the overall picture. They require constant 
+      detail reporting and attend every meetings to ensure no decision is made without their input. They push aside the 
+      experience and knowledge of colleagues and are often lead a demotivated team. Those who are highly skilled and creative
+      will get pushed away and eventually leave the the team. 
+      <br />
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/micromanagement.jpg" />
