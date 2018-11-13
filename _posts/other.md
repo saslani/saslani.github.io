@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Leadership - Talk to me!"
-date:   2018-11-07 16:15:15
+title:  "Leadership other"
+date:   2018-11-13 16:15:15
 categories: Management Skills
 ---
 
@@ -716,13 +716,13 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   <div class="container">
     <div class="left text">
       <p>
-        As we talked about different organizations and leadership styles, it's important to point out some technics that helps 
-        leaders categorize their problems and how they are going to respond. David Snowden created a "sencemaking model", 
+        As we talked about different organizations and leadership styles, it's important to point out some technics that helps
+        leaders categorize their problems and how they are going to respond. David Snowden created a "sencemaking model",
         as apposed to categorizing model, aka. Cynefin model, in 1999, while he was working at IBM Global Services.
       </p>
       <p>
-        Cynefin (/ˈkʌnɪvɪn/ KUN-iv-in), which means "place of your multiple belonging" in Welsh, describes five decision making 
-        domains: Obvious (Simple), Complicated, Complex, Chaotic, and Disorder. Leaders can use this model to make sense of 
+        Cynefin (/ˈkʌnɪvɪn/ KUN-iv-in), which means "place of your multiple belonging" in Welsh, describes five decision making
+        domains: Obvious (Simple), Complicated, Complex, Chaotic, and Disorder. Leaders can use this model to make sense of
         their situation, either project or people behaviour related.  Here is a breakdown each each domain:
       </p>
     </div>
@@ -736,11 +736,11 @@ Warning: this article is not for those who believe in Young Earth creationism, d
     </div>
     <div class="text">
       <p>
-        The obvious state is the <b>Know Kowns</b> state. Meaning that the rules are in place, cause and effects are 
+        The obvious state is the <b>Know Kowns</b> state. Meaning that the rules are in place, cause and effects are
         known or predictable and situation is stable. Here, we apply the best practices.
       </p>
       <p>
-        Examples of Obvious Sence is Loan Payment Processing: "Never lend to a client whose monthly payments exceed 
+        Examples of Obvious Sence is Loan Payment Processing: "Never lend to a client whose monthly payments exceed
         35 percent of gross income."
       </p>
     </div>
@@ -772,11 +772,11 @@ Warning: this article is not for those who believe in Young Earth creationism, d
     </div>
     <div class="text">
       Shit hit the fan!
-      enter deliberately => enovation 
+      enter deliberately => enovation
       enter accidently => we have to stabalize immediately
       act -> sense -> response
       any practice is nobel
-      
+
     </div>
   </div>
   <div class="container">
@@ -788,11 +788,11 @@ Warning: this article is not for those who believe in Young Earth creationism, d
       we inetrprate according to our intepration
     </div>
 
-      boundry between sumple and chaotic is different. => fall over the adge in crises 
-      
-      
-      
-      
+      boundry between sumple and chaotic is different. => fall over the adge in crises
+
+
+
+
 
       Cynefin = Habitat, haunt, acquainted, familiar
       1999 - Dave Snowden
