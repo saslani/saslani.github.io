@@ -715,48 +715,84 @@ Warning: this article is not for those who believe in Young Earth creationism, d
   <title>Closing Thoughts</title>
   <div class="container">
     <div class="left text">
-      As we talked about different organizations and leadership styles, it's important to point out some technics that helps leaders categorize their problems and how they are going to respond.
-      David Snowden created a "sencemaking device", aka. Cynefin model, in 1999, while he was working at IBM Global Services.
-      <br />
-      Cynefin, which means habitat in Welsh, describes five decision making domains: Obvious (Simple), Complicated, Complex, Chaotic, and Disorder. Leaders can use this model to make sense of their situation,
-      either project or people behaviour related.  Here is a breakdown each each domain:
-      <div class="subsection_title">
-        Obvious / Simple:
-      </div>
-      <div class="text">
-        The obvious state is the <b>Know Kowns</b> state. Meaning that the rules are in place, cause and effects are knows and situation is stable.
-      </div>
+      <p>
+        As we talked about different organizations and leadership styles, it's important to point out some technics that helps 
+        leaders categorize their problems and how they are going to respond. David Snowden created a "sencemaking model", 
+        as apposed to categorizing model, aka. Cynefin model, in 1999, while he was working at IBM Global Services.
+      </p>
+      <p>
+        Cynefin (/ˈkʌnɪvɪn/ KUN-iv-in), which means "place of your multiple belonging" in Welsh, describes five decision making 
+        domains: Obvious (Simple), Complicated, Complex, Chaotic, and Disorder. Leaders can use this model to make sense of 
+        their situation, either project or people behaviour related.  Here is a breakdown each each domain:
+      </p>
+    </div>
+    <div class="right image">
+      <img src="/assets/images/leadership/cynefin_framework_by_Edwin_Stoop.jpg" />
+    </div>
+  </div>
+  <div class="container">
+    <div class="subsection_title">
+      Obvious / Simple:
+    </div>
+    <div class="text">
+      <p>
+        The obvious state is the <b>Know Kowns</b> state. Meaning that the rules are in place, cause and effects are 
+        known or predictable and situation is stable. Here, we apply the best practices.
+      </p>
+      <p>
+        Examples of Obvious Sence is Loan Payment Processing: "Never lend to a client whose monthly payments exceed 
+        35 percent of gross income."
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="subsection_title">
+      Complicated        
+    </div>
+    <div class="text">
+      Known unknows
+      analyze the response - apply good practice
+      There are several ways of doing things if you have several experties. You apply good practice based on the experties
+    </div>
+  </div>
+  <div class="container">
+    <div class="subsection_title">
+      Complex
+    </div>
+    <div class="text">
+      Unknown unknows
+      system without cauzality - safe fail experience
+      Successful => applify
+      Fail => dump it
+    </div>
+  </div>
+  <div class="container">
+    <div class="subsection_title">
+      Chaotic
+    </div>
+    <div class="text">
+      Shit hit the fan!
+      enter deliberately => enovation 
+      enter accidently => we have to stabalize immediately
+      act -> sense -> response
+      any practice is nobel
+      
+    </div>
+  </div>
+  <div class="container">
+    <div class="subsection_title">
+      Disorder
+    </div>
+    <div class="text">
+      Don't know where you are
+      we inetrprate according to our intepration
+    </div>
 
-      <div class="subsection_title">
-        Complicated
-      </div>
-      <div class="text">
-        Known unknows
-      </div>
-
-      <div class="subsection_title">
-        Complex
-      </div>
-      <div class="text">
-        Unknown unknows
-      </div>
-
-      <div class="subsection_title">
-        Chaotic
-      </div>
-      <div class="text">
-        Shit hit the fan!
-      </div>
-
-      <div class="subsection_title">
-        Disorder
-      </div>
-      <div class="text">
-        Complete consusion.
-      </div>
-
-      Clockwise
-      Counter clockwise
+      boundry between sumple and chaotic is different. => fall over the adge in crises 
+      
+      
+      
+      
 
       Cynefin = Habitat, haunt, acquainted, familiar
       1999 - Dave Snowden
@@ -771,9 +807,10 @@ Warning: this article is not for those who believe in Young Earth creationism, d
 
       Cynefin_framework_by_Edwin_Stoop.jpg
     </div>
-    <div class="right image">
-      <img src="/assets/images/leadership/cynefin_framework_by_Edwin_Stoop.jpg" />
-    </div>
+  </div>
+  <br />
+  <div class="center image">
+    <img src="/assets/images/leadership/leaders_framework_for_policing_protest.jpg" />
   </div>
 </section>
 
