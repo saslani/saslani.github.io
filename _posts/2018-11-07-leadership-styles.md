@@ -246,51 +246,62 @@ For the rest of this article, here are some questions to keep in mind while read
 ## Closing Thoughts
 
 We talked about different organizations and leadership styles, it's also important to point out some technics that helps
-leaders categorize the situation at hand and how they are going to respond. David Snowden created a "sencemaking model",
+leaders categorize the situation at hand and how they are going to respond. David Snowden created a "sensemaking model",
 as apposed to categorizing model, aka. Cynefin model, in 1999, while he was working at IBM Global Services.
 
 Cynefin (/ˈkʌnɪvɪn/ KUN-iv-in), which means "place of your multiple belonging" in Welsh, describes five decision making
 domains: Obvious (Simple), Complicated, Complex, Chaotic, and Disorder. Leaders can use this model to make sense of
 their situation, either project or people behaviour related.  Here is a short breakdown each each domain:
 
-![alt text](/assets/images/leadership_styles/cynefin_framework_by_Edwin_Stoop.jpg "Logo Title Text 1")
+![](/assets/images/leadership_styles/cynefin_framework_by_Edwin_Stoop.jpg)
 
-<!-- ### Obvious / Simple:
-  The obvious state is the **Know Kowns** state. Meaning that the rules are in place, cause and effects are
-  known or predictable and situation is stable. Here, we apply the best practices. Examples of Obvious Sense 
-  is Loan Payment Processing: "Never lend to a client whose monthly payments exceed 35 percent of gross income."
-  Or, when you buy a product you pay the price that's set by the seller (in some cases you need to pay the tax on top of 
-  that price as well).
+### Obvious / Simple:
+The obvious state is the **Know Kowns** state. Meaning that the rules are in place, cause and effects are
+known or predictable and situation is stable. Here, we apply the **best** practices or **sense-categorise-respond**. 
+Examples of Obvious Sense is Loan Payment Processing: "Never lend to a client whose monthly payments exceed 35 
+percent of gross income." Or, when you buy a product you pay the price that's set by the seller (in some cases 
+you need to pay the tax on top of that price as well). This state has an exception that we will discuss at the end.
 
 ### Complicated
-  Known unknows
-  analyze the response - apply good practice
-  There are several ways of doing things if you have several experties. You apply good practice based on the experties
+This is the state of **Known Unknows**. There are multiple ways of doing things. The approach is not easy and needs experties. 
+The relationship between cause and effect are known even though not everyone can see it. The rule here to **sense-analyze-respond** 
+and then apply a **good** practice based on the experties. This the category which engineers, surgents, and lawyers fall into. 
+
+Strong leadership is a key here. The experts have spent time developing knowledge around a certain skills. A leader needs to 
+make sure to balance everyone's ideas and understand the intention behind the experts suggestions. The complicated state
+may take a long time. If done right, the team can move clockwise to the obvious state otherwise they may fall back into 
+the complex state.
+
 
 ### Complex
-  Unknown unknows
-  system without cauzality - safe fail experience
-  Successful => applify
-  Fail => dump it
+Cynefiv complex is the **Unknown Unknows** state. In this stage pattern don't exist, they should be built. The 
+relationships, cause and effects need to be discovered. You won't even though the right questions to ask, this is where 
+you just dump everything on the floor to start making sense out it. Some examples are hard insurance cases or the market. 
+In this domain the approach is **probe-sense-respond**. Gather knowledge, make sence out of it, analyze and determine the 
+next step.
 
 ### Chaotic
-  Shit hit the fan!
-  enter deliberately => enovation
-  enter accidently => we have to stabalize immediately
-  act -> sense -> response
-  any practice is nobel
+This is the **unknowable unknowns** domain, aka, Shit hit the fan! We have entered here accidentally and need to stabalize it 
+immediately. Something has fallen of the rails and needs immediate
+attention. There's no time experiment or make patterns, the approach is to stop building or **act-sense-resond**. 
+Example of a chaotic situation is the 9/11 catastrophe. This domain needs a strong leadership who can bring everyone together
+and find an immediate solution to make the situation better. However, the leader should specially careful not to form ego and
+take credit if they are able to successfully control the catastrophe.
 
 ### Disorder
-  Don't know where you are
-  we inetrprate according to our intepration
-  boundry between sumple and chaotic is different. => fall over the adge in crises
+Last but not the least is the Disorder or **Not Determind** domain. This is when you don't know where you are. The priority 
+here is to gether as much information as you can in order to determine which of the 4 domains you fall into. 
 
-  Cynefin = Habitat, haunt, acquainted, familiar
-  1999 - Dave Snowden
 
-  Weather we are a leader at a company, in the group of friends or home, all of can benefit from practicing leadership skills and know when we need to change our style.
+Pay attention to the Cynefin model again. You notice there's a thin border between the domains. Geberally, when moving clockwise
+things are improving and vice versa. Pay close attention to the button domains. The borde between obvious and chaotic is just
+as thin. When leaders in obvious domain become errogant, stop paying attention to changes or details, and stop discovering
+there will be a sudden and catastrophic shift into chaotic domain.
 
-  https://en.wikipedia.org/wiki/Cynefin_framework
+
+Below is an example of Leader's framework for policing protest, using Cynefin model:
+
+![](/assets/images/leadership_styles/leaders_framework_for_policing_protest.jpg)
 
   
 #### Look out for the next article: why we need organizations and leadership  
@@ -301,4 +312,4 @@ their situation, either project or people behaviour related.  Here is a short br
 * The Most Human Human by Brian Christian
 * The Phoenix Project by Gene Kim, George Spafford, and Kevin Behr
 * Wikipedia
-* Various management articles online! -->
+* Various management articles online!
