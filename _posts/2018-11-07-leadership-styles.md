@@ -12,34 +12,46 @@ categories: Management Skills
     </div>
     <div class="right text">
       <p>
-        Organization, as we know today cannot succeed without strong leadership. Leadership is the ability to set visions and 
-        influence followers, providing support and guidance, to achieve a goal. In other context, leadership involves 
-        connecting the value consumers to the value producers. In some organizations, leaders are also managers.
+        Organization, as we know today cannot succeed without strong leadership. Leadership is the ability to set visions and
+        influence followers, providing support and guidance, to achieve a goal. In business world, leadership also involves
+        connecting the value consumers to the value producers. A true leader, has followers who are inspired by that leader and
+        therefore want to follow him. Sometimes, we use leaders and managers synonymously. One big different betweena leader and a
+        manager is that leaders have followers and managers have direct reports. Not every manager is a leader but in some organizations,
+        leaders are also managers.
       </p>
       <p>
-        For the purpose of this article let's look at Exploration and exploitation and evaluate the type of leaderships. 
-        There are leaders who are explorers, innovators who lead people to find new places or ideas. Examples: 
-        <ul>
-          <li>Lewis & Clark (Google ‘lewis and clark expedition…it’s an amazing story’.</li>
-          <li>Apple under Steve Jobs</li>
-        </ul>
-        There are leaders who are exploit what others have already discovered. Example: 
-        <ul>
-          <li>Microsoft under Bill Gates.</li>
-          <li>Donald Trump, in context of business.</li>
-        </ul>
+        In this article, I am going to discus come management styles I have seen (not all styles of course) throughout my career.
+        We will also touch base on exploration vs exploitation. There are leaders who are explorers are innovators who lead people
+        to find new places or ideas. Lewis and Clark Expedition and Apple under Steve Jobs are exaples of innovation
+        <b>lead</b> by an explorer(s).
       </p>
     </div>
   </div>
 </div>
 
+In 1803, shortly after the Louisiana Purchase, president Thomas Jefferson started the mission to **explore** and to map the new territory
+and a path to west. Lewis and Clark Expedition lead by Captain Meriwether Lewis and Second Lieutenant William Clark was the first American
+expedition to cross the wester portion of the United States. Meriwether Lewis and William Clark are examples of front leadership style
+that well suited for their mission. In presiden Thomas Jefferson's words:
+<blockquote cite="https://en.wikipedia.org/wiki/Lewis_and_Clark_Expedition">
+  It was impossible to find a character who to a complete science in botany, natural history, mineralogy & astronomy, joined the
+  firmness of constitution & character, prudence, habits adapted to the woods & a familiarity with the Indian manners and character,
+  requisite for this undertaking. All the latter qualifications Capt. Lewis has.
+</blockquote>
+
+Another example of a visionary leader is Steve Jobs. Whether you like Apple products or not, we cannot deny the fact that Apple as we know it
+today would not exist if it wasn't for Job's leadership.
+
+> Management is about persuading people to do things they do not want to do, while leadership is about inspiring people to do things
+they never thought they could
+
+
 <div class="container">
   <div class="left text">
-    But Leaders and Management need different set of skills even though the names are often used interchangeably. 
-    The key difference here is not evert manger is necessarily a strong leader! Even though the two have some 
-    responsibilities and expectations in common, leader is the visionary who focuses on the long term goal and 
-    should not be bothered by smaller tasks. Leader's job is to sell that vision to clients, employees and managers. 
-    Managers, on the other hand, have more freedom when it comes to communicating that vision to employees and assign 
+    As we discused a little earlier, Leaders and Management need different set of skills even though the names are often used
+    interchangeably. Even though the two have some responsibilities and expectations in common, leader is the visionary who focuses
+    on the long term goal and should not be bothered by smaller tasks. Leader's job is to sell that vision to clients, employees
+    and managers. Managers, on the other hand, have more freedom when it comes to communicating that vision to employees and assign
     tasks to help the employees and the company reach its goal.
   </div>
   <div class="right image">
@@ -49,8 +61,10 @@ categories: Management Skills
 
 <div class="container">
   <div class="left text">
-    Before we dive deeper in leadership styles, it's important to understand <b>What leadership is not?</b>
-    Simply, if no one is following, you are not leading (you might think you are leading, but you are not)!
+    Before we dive deeper in leadership styles, it's important to understand <b>What leadership is not?</b> Simply, if no one is following,
+    you are not leading. One might think they are leaders, may even have the title but if they no not inspire and no one cares, then
+    leading an army of one is not leadership! Leadership started when there are personal relationships, when leadership skills are required
+    to guide the followers towards a goal.
   </div>
   <div class="right image">
     <img src="/assets/images/leadership_styles/lonely_leader.jpg" />
@@ -76,12 +90,12 @@ Here are some questions to keep in mind while reading this article:
     <blockquote>
       ....
       <br />
-      Instead of writing them a "manual," as he'd originally planned, he sent an email that said, simply, "Don't ask me 
-      for permission. Do what you think is right." The unbearable stream of emails from the reps to Ferriss dried up 
-      overnight; meanwhile, customer service at the company improved dramatically. "It's amazing," he says, 
-      "how someone's IQ seems to double as soon as you give them responsibility and indicate that you trust them." 
-      And, as far too many can attest, how it halves when you take that responsibility and trust away. 
-      <br />        
+      Instead of writing them a "manual," as he'd originally planned, he sent an email that said, simply, "Don't ask me
+      for permission. Do what you think is right." The unbearable stream of emails from the reps to Ferriss dried up
+      overnight; meanwhile, customer service at the company improved dramatically. "It's amazing," he says,
+      "how someone's IQ seems to double as soon as you give them responsibility and indicate that you trust them."
+      And, as far too many can attest, how it halves when you take that responsibility and trust away.
+      <br />
       ....
       <br />
       <footer>--The Most Humans Human by Brian Christian</footer>
@@ -108,8 +122,8 @@ Here are some questions to keep in mind while reading this article:
   </div>
   <div class="right text">
     <p>
-      Successful managers know how to and must delegate, sideline leadership happens when they fail to do so. 
-      Leaders who "lead" from side, fail to trust their followers. It's easier for them to do the job rather than empower 
+      Successful managers know how to and must delegate, sideline leadership happens when they fail to do so.
+      Leaders who "lead" from side, fail to trust their followers. It's easier for them to do the job rather than empower
       and trust others to do it.
     </p>
     <p>
