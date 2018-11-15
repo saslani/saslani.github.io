@@ -245,22 +245,22 @@ For the rest of this article, here are some questions to keep in mind while read
 
 ## Closing Thoughts
 
-  As we talked about different organizations and leadership styles, it's important to point out some technics that helps
-  leaders categorize their problems and how they are going to respond. David Snowden created a "sencemaking model",
-  as apposed to categorizing model, aka. Cynefin model, in 1999, while he was working at IBM Global Services.
+We talked about different organizations and leadership styles, it's also important to point out some technics that helps
+leaders categorize the situation at hand and how they are going to respond. David Snowden created a "sencemaking model",
+as apposed to categorizing model, aka. Cynefin model, in 1999, while he was working at IBM Global Services.
 
-  Cynefin (/ˈkʌnɪvɪn/ KUN-iv-in), which means "place of your multiple belonging" in Welsh, describes five decision making
-  domains: Obvious (Simple), Complicated, Complex, Chaotic, and Disorder. Leaders can use this model to make sense of
-  their situation, either project or people behaviour related.  Here is a breakdown each each domain:
+Cynefin (/ˈkʌnɪvɪn/ KUN-iv-in), which means "place of your multiple belonging" in Welsh, describes five decision making
+domains: Obvious (Simple), Complicated, Complex, Chaotic, and Disorder. Leaders can use this model to make sense of
+their situation, either project or people behaviour related.  Here is a short breakdown each each domain:
 
-  ![alt text](/assets/images/leadership_styles/cynefin_framework_by_Edwin_Stoop.jpg "Logo Title Text 1")
+![alt text](/assets/images/leadership_styles/cynefin_framework_by_Edwin_Stoop.jpg "Logo Title Text 1")
 
-### Obvious / Simple:
+<!-- ### Obvious / Simple:
   The obvious state is the **Know Kowns** state. Meaning that the rules are in place, cause and effects are
-  known or predictable and situation is stable. Here, we apply the best practices.
-
-  Examples of Obvious Sense is Loan Payment Processing: "Never lend to a client whose monthly payments exceed
-  35 percent of gross income."
+  known or predictable and situation is stable. Here, we apply the best practices. Examples of Obvious Sense 
+  is Loan Payment Processing: "Never lend to a client whose monthly payments exceed 35 percent of gross income."
+  Or, when you buy a product you pay the price that's set by the seller (in some cases you need to pay the tax on top of 
+  that price as well).
 
 ### Complicated
   Known unknows
@@ -292,19 +292,13 @@ For the rest of this article, here are some questions to keep in mind while read
 
   https://en.wikipedia.org/wiki/Cynefin_framework
 
-  https://aboutleaders.com/leading-the-way-or-leadership-from-behind/#gs.6yTnnE0
-
-  https://www.inc.com/brent-gleeson/7-ways-to-lead-by-example.html
-
-  Cynefin_framework_by_Edwin_Stoop.jpg
-  ![alt text](/assets/images/leadership_styles/leaders_framework_for_policing_protest.jpg "Logo Title Text 1")
-  
   
 #### Look out for the next article: why we need organizations and leadership  
 
 
-## References
+## References and Inspirations
 * Principles by Ray Dalio
-* Skin in the Game: Hidden Asymmetries in Daily Life by Nassim Nicholas Taleb
+* The Most Human Human by Brian Christian
+* The Phoenix Project by Gene Kim, George Spafford, and Kevin Behr
 * Wikipedia
-* Various management articles online!
+* Various management articles online! -->
