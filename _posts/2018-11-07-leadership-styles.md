@@ -11,6 +11,9 @@ categories: Management Skills
       <img src="/assets/images/leadership_styles/styles.jpg" />
     </div>
     <div class="right text">
+      <blockquote cite="http://">
+        If your actions inspire others to dream more, learn more, do more and become more, you are a leader. <i>– John Quincy Adams</i>
+      </blockquote>
       <p>
         Organization, as we know today cannot succeed without strong leadership. Leadership is the ability to set visions and
         influence followers, providing support and guidance, to achieve a goal. In business world, leadership also involves
@@ -36,7 +39,7 @@ that well suited for their mission. In presiden Thomas Jefferson's words:
 <blockquote cite="https://en.wikipedia.org/wiki/Lewis_and_Clark_Expedition">
   It was impossible to find a character who to a complete science in botany, natural history, mineralogy & astronomy, joined the
   firmness of constitution & character, prudence, habits adapted to the woods & a familiarity with the Indian manners and character,
-  requisite for this undertaking. All the latter qualifications Capt. Lewis has.
+  requisite for this undertaking. All the latter qualifications Capt. Lewis has. <i> – Thomas Jefferson</i>
 </blockquote>
 
 Another example of a visionary leader is Steve Jobs. Whether you like Apple products or not, we cannot deny the fact that Apple as we know it
@@ -82,17 +85,73 @@ clients, employees and managers. He created a market and demand for his product.
 
 For the rest of this article, here are some questions to keep in mind while reading this article:
 
-* What are the attributes of leaders who are Explorers from the Front, Side, and Back?
-* What about attributes of leaders who are Exploiters from the Front, Side, and Back?
 * What about the transition of a company or line of business in a company founded by an Explorer that is taken over by an Exploiter?
-* **Is either one inherently good or evil?**
-
 
 ## Leading from front
 
 <div class="container">
   <div class="left image">
     <img src="/assets/images/leadership_styles/leadership_front.jpg">
+  </div>
+  <div class="right text">
+    <p>
+      In this style of leadership, leaders are steps ahead than their followers to make sure the task is doable
+      before they ask others do them. You can detect this style in organizations when you see the leaders who are
+      fully engaged and their also need to approve before any one takes a different approach to problem solving. 
+      Lewis and Clark where explorers and front leaders as we discussed earlier. 
+    </p>
+    <p>
+      This style of leadership is inspired by military. Orders are given, everyone agrees and follows the leader.
+      Even though leading from front is well-suited for military or in time or crises, it's very limiting in
+      organizations who are priding themselves in creativity. Leading from front, doesn't leave much room for
+      creativity as followers are often told what to do.
+    </p>
+    <p>
+      In tihs style of leadership, even thought the leaders need approval before any action is take they need to make sure to 
+      appreciate follower's work and trust their intuition. Active listening is specially important in effective front leadership.
+      An impactful front leader, opens the door, not only listen but encourage new ideas, acklowledge them, then makes the best
+      decision with the information they have. A true leader also gives credit to those participated. If a leader fails to do
+      so, then he/she will be perceived as malicious and will loos trust and help of cretive people.
+    </p>
+  </div>
+</div>
+
+## Sitting on the sideline
+
+<div class="container">
+  <div class="left image">
+    <img src = "/assets/images/leadership_styles/leadership_sideline.jpg">
+  </div>
+  <div class="right text">
+    <p>
+      Successful leaders know how to and must delegate, sideline leadership happens when they fail to do so.
+      Leaders who "lead" from side, fail to trust their followers. It's easier for them to do the job rather than empower
+      and trust others to do it.
+    </p>
+    <p>
+      From my experience, ego is high in this style and those who are new to leadership must watch out not to fall
+      into this category specially if they didn't have enough training or intuition. It takes time and practice to let go! You can
+      detect this style of leadership when you see a leader, for example, works extra hours to make sure things are "ok"
+      while he/she is on a break, if they take any! They tend to be nervous about leaving and often they are right, because,
+      work will get piled up. The second the leader is back they have to work much harder to pick up the pile off the floor,
+      because the followers didn't know what to do while their leader was gone. Team is hurting from lack of communication
+      or understanding of the vision. The Leaders are often burn out and tired. They consider themselves as bullet proof, things
+      well get done even if they have to be up all night every night. 
+    </p>
+    <p>
+      This style is leadeship is very dangerous and ineffective. The team will feel disconnected. Even if the project suceeds the 
+      won't feel the win. Follower's may have low job satisfaction because they may feel they didn't do their job. The other risk is
+      the leader holds most of the knowledge and therefore will be hard for the employer to fire him or her. When the leader decides to 
+      leave the company, however, the project or the company will feel the pain. 
+    </p>
+  </div>
+</div>
+
+## Leading from behind
+
+<div class="container">
+  <div class="left image">
+    <img src="/assets/images/leadership_styles/leadership_behind.jpg">
   </div>
   <div class="right text">
     <blockquote>
@@ -109,54 +168,6 @@ For the rest of this article, here are some questions to keep in mind while read
       <footer>--The Most Humans Human by Brian Christian</footer>
     </blockquote>
     <p>
-      In this style of leadership, leaders are steps ahead than their followers to make sure the task is doable
-      before they ask others do them. You can detect this style in organizations when you see the leaders who are
-      fully engaged and their also need to approve before any one takes a different approach to problem solving.
-    </p>
-    <p>
-      This style of leadership is inspired by military. Orders are given, everyone agrees and follows the leader.
-      Even though leading from front is well-suited for military or in time or crises, it's very limiting in
-      organizations who are priding themselves in creativity. Leading from front, doesn't leave much room for
-      creativity as followers are often told what to do.
-    </p>
-  </div>
-</div>
-
-## Sitting on the sideline
-
-<div class="container">
-  <div class="left image">
-    <img src = "/assets/images/leadership_styles/leadership_sideline.jpg">
-  </div>
-  <div class="right text">
-    <p>
-      Successful managers know how to and must delegate, sideline leadership happens when they fail to do so.
-      Leaders who "lead" from side, fail to trust their followers. It's easier for them to do the job rather than empower
-      and trust others to do it.
-    </p>
-    <p>
-      From my experience, ego is high in this style and those who are new to leadership often fall in danger of falling
-      into this category if they didn't have enough training or intuition. It takes time and practice to let go! You can
-      detect this style of leadership when you see a leader, for example, works extra hours to make sure things are "ok"
-      while he/she is on a break, if they take any! They tend to be nervous about leaving and often they are right, because,
-      work will get piled up. The second the leader is back they have to work much harder to pike up the pile off the floor,
-      because the followers didn't know what to do while their leader was gone. Team is hurting from lack of communication
-      or understanding of the vision.
-    </p>
-    <p>
-      The Leaders are often burn out and tired, because they consider themselves as bullet proof.
-    </p>
-  </div>
-</div>
-
-## Leading from behind
-
-<div class="container">
-  <div class="left image">
-    <img src="/assets/images/leadership_styles/leadership_behind.jpg">
-  </div>
-  <div class="right text">
-    <p>
       Leading from behind is hard and a bit confusing for many people. It requires trust, flexibility, and some tolerance
       for failure. Leaders who lead from back, might be mistaken with those who are not engaging or not doing the work.
       When utilized properly, leading from behind is very empowering. Leaders are expected to provide a safety net for
@@ -164,14 +175,14 @@ For the rest of this article, here are some questions to keep in mind while read
       They are, however, always available to consult or take charge when needed.
     </p>
     <p>
-      This style of leadership is great for organizations who are big on creativity and pride themselves in growing
-      future leaders. This also shifts the micromanagement style to followers holding themselves to high standards,
-      because they are given authority, trust, and means to do the job.
+      This style of leadership has become my favorite when circumstances are right. It is great for organizations who are 
+      big on creativity and pride themselves in growing future leaders. This style also shifts the micromanagement to 
+      followers holding themselves to high standards, because they are given authority, trust, and means to do the job "right".
     </p>
     <p>
-      When leader observer followers from back, he or she also gets to see individual's strengths and weaknesses and can
+      When leader observers followers from back, he or she also gets to see individual's strengths and weaknesses and can
       help them improve or assigning them tasks that best fits their strengths. The leader then has time to building a
-      Successful and strong team which is self-organizing and can operate when they are left alone instead of
+      successful and strong team which is self-organizing and can operate when they are left alone instead of
       micromanaging everything that has to be done in the way they have envisioned. The goal is to build a team that
       can innovate!
     </p>
@@ -191,14 +202,15 @@ For the rest of this article, here are some questions to keep in mind while read
   </div>
   <div class="right text">
     <p>
-      Visionary leadership is crucial in having a Successful organization. A visionary leader is hard to replace.
-      It's important for the visionary leader to document their principals who that their succeeders can leave up to
-      explanations and are able to learn and improve what made the organization Successful at some time. Otherwise, the
-      organization will go through a difficult time, if they ever manage to survive. Therefore, one of the skills
-      of a visionary leader is great communication!
+      Visionary leadership is crucial in having a successful organization. A visionary leader is an innovator and is 
+      hard to replace. It's important for the visionary leader to document their principals so that their successors can 
+      follow. In an event that the visonary successfull steps down or in Steve Job passes away, the successor and the 
+      followers need to refer to the principals to help the organization survive. Otherwise, the organization will go 
+      through a difficult time, if they ever manage to survive. Therefore, one of the skills of a visionary leader is 
+      great communication!
     </p>
     <p>
-      These leaders are not only creative and are able to be very direct and clear about their vision and thoughts
+      Visionary leaders are not only creative and are able to be very direct and clear about their vision and thoughts
       but they are also great listeners. They understand that even though they are in a position to make the final
       decision, they may not always have the best or the most accurate idea. They actively listen to those around them
       and welcome, in fact encourage, their opinion with an open mind.
@@ -214,16 +226,19 @@ For the rest of this article, here are some questions to keep in mind while read
   </div>
   <div class="right text">
     <p>
-      That there always those who just CANNOT LET GO, the Micromanagers!
+      And... there always those who just CANNOT LET GO, the Micromanagers!
     </p>
     <p>
-      Micromanagers not only have a hard time letting go but they actively resist delegation. They are often the becoming
+      Micromanagers not only have a hard time letting go but they actively resist delegation. They often become
       a bottleneck and demand approval and communication in every step. They get involved in other’s work without consulting
       them and provide too many direction. They do not setup or tolerate failure, they want to "force people to enter heavens!"
       Micromanagers, looking at the details of how a job gets done instead of the overall picture. They require constant
-      detail reporting and attend every meetings to ensure no decision is made without their input. They push aside the
+      detail reporting and attend every meeting to ensure no decision is made without their input. They push aside the
       experience and knowledge of colleagues and are often lead a demotivated team. Those who are highly skilled and creative
       will get pushed away and eventually leave the the team.
+      <br />
+      This by far is my least style of <b>management</b>. In fact, I don't consider micromanagers leader or managers, they are the 
+      bottleneck!
     </p>
   </div>
 </div>
@@ -283,6 +298,9 @@ For the rest of this article, here are some questions to keep in mind while read
 
   Cynefin_framework_by_Edwin_Stoop.jpg
   ![alt text](/assets/images/leadership_styles/leaders_framework_for_policing_protest.jpg "Logo Title Text 1")
+  
+  
+#### Look out for the next article: why we need organizations and leadership  
 
 
 ## References
