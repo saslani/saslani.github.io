@@ -22,8 +22,8 @@ categories: Management Skills
       <p>
         In this article, I am going to discus come management styles I have seen (not all styles of course) throughout my career.
         We will also touch base on exploration vs exploitation. There are leaders who are explorers are innovators who lead people
-        to find new places or ideas. Lewis and Clark Expedition and Apple under Steve Jobs are exaples of innovation
-        <b>lead</b> by an explorer(s).
+        to find new places or ideas. Innovation is done by explorers. Operations is done by Exploiters. Lewis and Clark Expedition 
+        and Apple under Steve Jobs are examples of innovation <b>lead</b> by an explorer(s).
       </p>
     </div>
   </div>
@@ -40,19 +40,28 @@ that well suited for their mission. In presiden Thomas Jefferson's words:
 </blockquote>
 
 Another example of a visionary leader is Steve Jobs. Whether you like Apple products or not, we cannot deny the fact that Apple as we know it
-today would not exist if it wasn't for Job's leadership.
+today would not exist if it wasn't for Job's leadership. Steve Job's innovation was changing the way we use our phones! Many phone today, 
+iPhone or other brands, are not just used for phone calls or sending text massages. We use our phone to stablish a video call across the earth. 
+We pay our bills, read books, accept payments and much more.
 
 > Management is about persuading people to do things they do not want to do, while leadership is about inspiring people to do things
 they never thought they could
+> -- <cite>Steve Jobs</cite>
+
+But every innovation needs a great business person to create market and demand for the product. On the other hand side, Bill Gate  was an 
+exploiter. Bill Gate took other's ideas and innovation and turned in to a product. Gate's job as a leader was to sell that vision to 
+clients, employees and managers. He created a market and demand for his product. 
+
+> If your business is not on the internet, then your business will be out of business.
+> -- <cite>Bill Gate</cite>
 
 
 <div class="container">
   <div class="left text">
     As we discused a little earlier, Leaders and Management need different set of skills even though the names are often used
     interchangeably. Even though the two have some responsibilities and expectations in common, leader is the visionary who focuses
-    on the long term goal and should not be bothered by smaller tasks. Leader's job is to sell that vision to clients, employees
-    and managers. Managers, on the other hand, have more freedom when it comes to communicating that vision to employees and assign
-    tasks to help the employees and the company reach its goal.
+    on the long term goal and should not be bothered by smaller tasks. Managers, on the other hand, have more freedom when it comes to 
+    communicating that vision to employees and assign tasks to help the employees and the company reach its goal.
   </div>
   <div class="right image">
     <img src="/assets/images/leadership_styles/leadership_vs_management.jpg" />
@@ -62,22 +71,21 @@ they never thought they could
 <div class="container">
   <div class="left text">
     Before we dive deeper in leadership styles, it's important to understand <b>What leadership is not?</b> Simply, if no one is following,
-    you are not leading. One might think they are leaders, may even have the title but if they no not inspire and no one cares, then
-    leading an army of one is not leadership! Leadership started when there are personal relationships, when leadership skills are required
-    to guide the followers towards a goal.
+    you are not leading. One might think they are leaders, they may even have the title but if they do not inspire and no one cares, then
+    leading an army of one is not leadership! Leadership started when there are personal relationships, that's when leadership skills 
+    are required to guide the followers towards a goal.
   </div>
   <div class="right image">
     <img src="/assets/images/leadership_styles/lonely_leader.jpg" />
   </div>
 </div>
 
-Here are some questions to keep in mind while reading this article:
+For the rest of this article, here are some questions to keep in mind while reading this article:
 
 * What are the attributes of leaders who are Explorers from the Front, Side, and Back?
 * What about attributes of leaders who are Exploiters from the Front, Side, and Back?
 * What about the transition of a company or line of business in a company founded by an Explorer that is taken over by an Exploiter?
-* Innovation is done by explorers. Operations is done by Exploiters.
-**Is either one inherently good or evil?**
+* **Is either one inherently good or evil?**
 
 
 ## Leading from front
