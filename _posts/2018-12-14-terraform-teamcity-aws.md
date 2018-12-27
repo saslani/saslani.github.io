@@ -899,7 +899,7 @@ resource "aws_route_table" "vpc_private" {
   vpc_id = "${aws_vpc.vpc.id}"
 
   tags {
-    Name = "Teamcity Private Subnet Route Table"
+    Name = "Teamcity private subnet's route table"
   }
 }
 
@@ -950,7 +950,7 @@ resource "aws_instance" "teamcity_server" {
   ami                         = "${var.ami}"
   instance_type               = "m3.medium"
   key_name                    = "${var.key_name}"
-  vpc_security_group_ids      = ["${var.web_security_groups_id}"]
+  vpc_security_group_ids      = ["${var.server_security_groups_id}"]
   subnet_id                   = "${var.private_subnet_id}"
   associate_public_ip_address = false
 
@@ -976,6 +976,11 @@ variable "public_subnet_id" {
 variable "private_subnet_id" {
   default = "default value"
 }
+
+variable "server_security_groups_id" {
+  default     = "default value"
+}
+
 ```
 
 **ec2 > outputs.tf**
@@ -1002,9 +1007,9 @@ pass in the private subnet id and rename the subnet_id to public_subnet_id
 module "ec2" {
   .
   .
-
   public_subnet_id   = "${module.vpc.public_subnet}"
   private_subnet_id  = "${module.vpc.private_subnet}"
+  server_security_groups_id = "${module.sg.server_security_groups_id}"
   .
   .
 }
@@ -1055,6 +1060,8 @@ So far we have created a VPC, a public and private subnets and 2 EC2 instances, 
 
 So far, this is now our infrastructure document looks like
 ### TBC
+
+### Time to create an RDS!
 
 
 
