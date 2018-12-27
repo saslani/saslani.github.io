@@ -432,8 +432,8 @@ Inside the sg > main.tf, we are going to create an aws_security_group (teamcity_
 **vpc > main.tf**
 ```terraform
 resource "aws_security_group" "teamcity_web_sg" {
-  name        = "Teamcity_ssh_sg"
-  description = "Allow Teamcity SSH inbound connection"
+  name        = "Teamcity_sg"
+  description = "Allow Teamcity SSH and HTTP inbound connection"
   vpc_id      = "${var.vpc_id}"
 
   # Allow SSH
@@ -460,7 +460,7 @@ resource "aws_security_group" "teamcity_web_sg" {
   }
 
   tags {
-    Name = "Teamcity SSH Security Group"
+    Name = "Teamcity Web Security Group"
   }
 }
 ```
@@ -803,7 +803,53 @@ You can use the Teamcity [docs](https://confluence.jetbrains.com/display/TCD18/C
 
 ## Add a Private Subnet and EC2 Instance to contain the Database for Teamcity
 
-First, let's create a NET-eded subnet, using [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource (private)
+First, let's create another security group for the server:
+
+**sg > main.tf**
+```terraform
+.
+.
+
+resource "aws_security_group" "teamcity_server_sg" {
+  name        = "Teamcity_server_ssh_sg"
+  description = "Allow Teamcity SSH inbound connection"
+  vpc_id      = "${var.vpc_id}"
+
+  # Allow SSH
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = "0"
+    to_port     = "0"
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name = "Teamcity SSH Security Group"
+  }
+}
+```
+
+Add an output for the newly created security group id:
+
+**sg > outputs.tf**
+```terraform
+.
+.
+
+output "server_security_groups_id" {
+  value = "${aws_security_group.teamcity_server_sg.id}"
+}
+
+```
+
+Now, let's create a NET-eded subnet, using [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource (private)
 
 **vpc > subnets.tf**
 ```terraform
@@ -876,6 +922,8 @@ $ terraform apply
 ```
 
 Verify the changes in AWS console: 
+- VPC > Security Groups
+- VPC > Network ACLs
 - VPC > Subnets
 - VPC > Route Tables
 - VPC > Elastic IPs
@@ -1006,7 +1054,7 @@ So far we have created a VPC, a public and private subnets and 2 EC2 instances, 
 **Commit the changes, if you haven't done yet.**
 
 So far, this is now our infrastructure document looks like
-### TBD
+### TBC
 
 
 
