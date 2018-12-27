@@ -216,7 +216,7 @@ Great!!!! Now if you navigate to VPC on your AWS account (AWS > Services > VPC).
 
 Now that we have the VPC created, let's add a single public subnet. But before we do so, let's a small refactoring. Some of you may think, it's not need yet, you may go ahead and use a single file. Personally, I like to add a little structure to my projects, knowing this is going to grow.
 
-In terraform, modules, are similar to classes in OO programing. I want to move the job of creating VPC, subnets, and routing to it's own module. 
+In terraform, modules, are similar to classes in OO programing. I want to move the job of creating [VPC](https://www.terraform.io/docs/providers/aws/d/vpc.html), [subnets](https://www.terraform.io/docs/providers/aws/d/subnet.html), and [routing](https://www.terraform.io/docs/providers/aws/d/route_table.html) to it's own module. 
 
 ```bash
 $ mkdir vpc
@@ -308,7 +308,7 @@ $ git add
 $ git commit "initial checking: Create VPC in AWS"
 ```
 
-Now we're ready to add a single subnet. Navigate to **vpc > subnets.tf** inside the vpc folder. We want to add an aws_subnet resource and name it public. I am passing a variable __availability_zone__ since I don't have a preference. If you do, you can hardcode this to be "us-east-1a" for example. 
+Now we're ready to add a single subnet. Navigate to **vpc > subnets.tf** inside the vpc folder. We want to add an [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource and name it public. I am passing a variable __availability_zone__ since I don't have a preference. If you do, you can hardcode this to be "us-east-1a" for example. 
 
 ```terraform
 .
@@ -427,18 +427,27 @@ $ touch sg/main.tf
 $ touch sg/variable.tf
 ```
 
-Inside the sg > main.tf, we are going to create an aws_security_group (allow_ssh) and add ingress (right to enter a property) and egress (right to exit a property) rules:
+Inside the sg > main.tf, we are going to create an aws_security_group (teamcity_web_sg) and add ingress (right to enter a property) and egress (right to exit a property) rules:
 
 **vpc > main.tf**
 ```terraform
-resource "aws_security_group" "allow_ssh" {
+resource "aws_security_group" "teamcity_web_sg" {
   name        = "Teamcity_ssh_sg"
   description = "Allow Teamcity SSH inbound connection"
   vpc_id      = "${var.vpc_id}"
 
+  # Allow SSH
   ingress {
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Allow HTTP for teamcity on port 8111
+  ingress {
+    from_port   = 8111
+    to_port     = 8111
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -526,16 +535,14 @@ $ touch ec2/main.tf
 $ touch ec2/variables.tf
 ```
 
-Inside the main.tf, we need to add an aws_instance (teamcity) resource. For the ami, I am using a verified debian image that I trust, you may wish to use ubuntu. We need to pass in the security group and the public subnet id that we created. I am also adding a lifecycle to create an instance before destroying it, this is to make sure I have an instance running. For the purpose of this simple tutorial, we will not be using ELBs, you may wish to do so if you want a highly available instance.
+Inside the main.tf, we need to add an [aws_instance](https://www.terraform.io/docs/providers/aws/d/instance.html) (teamcity) resource. For the ami, I am using a verified debian image that I trust, you may wish to use ubuntu. We need to pass in the security group and the public subnet id that we created. I am also adding a lifecycle to create an instance before destroying it, this is to make sure I have an instance running. For the purpose of this simple tutorial, we will not be using ELBs, you may wish to do so if you want a highly available instance.
 
-**ec2 >main.tf**
+**ec2 > main.tf**
 ```terraform
 resource "aws_instance" "teamcity" {
-  ami           = "${var.ami}"
-  instance_type = "m3.medium"
-
-  # key_name                    = "${var.key_name}"
-  vpc_security_group_ids      = ["${var.security_groups_id}"]
+  ami                         = "${var.ami}"
+  instance_type               = "m3.medium"
+  vpc_security_group_ids      = ["${var.web_security_groups_id}"]
   subnet_id                   = "${var.subnet_id}"
   associate_public_ip_address = true
 
@@ -560,7 +567,7 @@ variable "subnet_id" {
   default = "default value"
 }
 
-variable "security_groups_id" {
+variable "web_security_groups_id" {
   default = "default value"
 }
 ```
@@ -573,7 +580,7 @@ From the root **main.tf** call the ec2 module:
 module "ec2" {
   source = "ec2"
   ami    = "${var.debian_ami}"
-  security_groups_id = "${module.sg.security_groups_id}"
+  web_security_groups_id = "${module.sg.web_security_groups_id}"
   subnet_id          = "${module.vpc.public_subnet}"
 }
 ````
@@ -596,8 +603,8 @@ $ touch sg/outputs.tf
 
 **sg > outputs.tf**
 ```terraform
-output "security_groups_id" {
-  value = "${aws_security_group.allow_ssh.id}"
+output "web_security_groups_id" {
+  value = "${aws_security_group.teamcity_web_sg.id}"
 }
 ```
 
@@ -710,7 +717,6 @@ output "teamcity_public_ip" {
 }
 ```
 
-
  You can find your IP from AWS console, however, the point is to not having constantly use the console: Navigate to AWS > console > EC2 > Instances.
 - Choose the instance (Teamcity) and copy the "Public DNS".
 - You may also right click on the instance and select "connect". In the modal, you will find the example of how to can ssh into the container. 
@@ -740,20 +746,64 @@ $ terraform refresh
 # teamcity_ssh_command = ssh -i ~/.ssh/teamcity_ul admin@ec2-x-y-z-d.compute-1.amazonaws.com
 ```
 
+Since we used Debian, we need to install apache2 in order to access our server via browser. Let's get started by ssh-ing to the machine:
+
+```bash
+$ ssh -i ~/.ssh/teamcity_ul admin@ec2-x-y-z-d.compute-1.amazonaws.com
+$ sudo apt-get update
+$ sudo apt-get install yum
+$ sudo apt-get install apache2 
+$ sudo service apache2 restart 
+```
+
+Give it a minute, now use your browser to access the machine: `https://x-y-z-d:443`
+
+
+## Host Teamcity with bash using the built-in HSQL db.
+
+Run the following to see the teamcity_ssh_command, then ssh into the machine:
+```bash
+$ terraform output teamcity_ssh_command
+$ ssh -i ~/.ssh/teamcity_ul admin@ec2-x-y-z-d.compute-1.amazonaws.com
+```
+
+We can install Teamcity manually or write an ansible for it. If you prefer to set up manually, ssh into the machine and follow the steps bellow. Otherwise, skip this section and continue on **Add a Private Subnet and EC2 Instance to contain the Database for Teamcity** to build a private subnet, add an EC2 instance, create RDS and then use ansible to provision teamcity:
+
+```bash
+# Install docker:
+$ sudo apt-get install apt-transport-https dirmngr
+
+#Add Docker package depository to your /etc/apt/sources.list sources list:
+$ echo 'deb https://apt.dockerproject.org/repo debian-stretch main' | sudo tee --append /etc/apt/sources.list
+
+#Obtain docker's repository signature and updated package index:
+$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys F76221572C52609D
+$ sudo apt-get update
+
+#Install docker
+$ sudo apt-get install docker-engine
+
+### Install teamcity
+$ sudo docker system prune -a
+$ sudo docker pull jetbrains/teamcity-server
+
+$ sudo docker run -it --name teamcity-server-instance \
+-v /home/teamcity:/data/teamcity_server/datadir \
+-v /var/log/teamcity:/opt/teamcity/logs \
+-p 8111:8111 \
+jetbrains/teamcity-server
+```
+
+Very teamcity is up: `http://x.y.z.d:8111`
+Follow the instruction to install teamcity, using the buildin HSQL (this could take a while)
+You can use the Teamcity [docs](https://confluence.jetbrains.com/display/TCD18/Configure+and+Run+Your+First+Build) to configure an agent
+
+
+
+
 ## Add a Private Subnet and EC2 Instance to contain the Database for Teamcity
 
-First, let's create a neted subnet, using aws_subnet resource (private)
-
-
-
-
-
-
-
-
---------------
-Please let me know what you think about this tutorial, if I have missed any steps :)
-
+First, let's create a NET-eded subnet, using [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource (private)
 
 **vpc > subnets.tf**
 ```terraform
@@ -852,7 +902,7 @@ resource "aws_instance" "teamcity_server" {
   ami                         = "${var.ami}"
   instance_type               = "m3.medium"
   key_name                    = "${var.key_name}"
-  vpc_security_group_ids      = ["${var.security_groups_id}"]
+  vpc_security_group_ids      = ["${var.web_security_groups_id}"]
   subnet_id                   = "${var.private_subnet_id}"
   associate_public_ip_address = false
 
@@ -926,5 +976,61 @@ SSH into the new instance
 $ terraform refresh
 # server_ssh_command = ssh -i ~/.ssh/teamcity_ul admin@x.y.z.d
 ```
+
+Summary:
+So far we have created a VPC, a public and private subnets and 2 EC2 instances, one to host the Teamcity web and one that would contain the database. At this point, my folder structure looks like
+```bash
+.
+├── ec2
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── main.tf
+├── outputs.tf
+├── sg
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── terraform.tfstate
+├── terraform.tfstate.backup
+├── terraform.tfvars
+├── variables.tf
+└── vpc
+    ├── nat.tf
+    ├── outputs.tf
+    ├── routing.tf
+    ├── subnets.tf
+    └── variables.tf
+```
+
+**Commit the changes, if you haven't done yet.**
+
 So far, this is now our infrastructure document looks like
 ### TBD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------
+Please let me know what you think about this tutorial, if I have missed any steps :)
