@@ -1117,100 +1117,15 @@ $ terraform apply
 ```
 
 Looks good!
-Last but not the list, for this section, let's modify our EC2 container to act as a TeamCity server and check to make sure we can ssh into our RDS/
-
-_ec2 > main.tf_
-```terraform
-.
-.
-
-resource "aws_instance" "teamcity" {
-  .
-  .
-
-  user_data                   = "${data.template_file.teamcity_userdata.rendered}"
-  .
-  .
-}
-
-data "template_file" "teamcity_userdata" {
-  template = "${file("${path.module}/scripts/db_setup.sh")}"
-
-  vars {
-    pg_url      = "${var.db_url}"
-    pg_port     = "${var.db_port}"
-    pg_database = "${var.db_name}"
-    pg_username = "${var.db_username}"
-    pg_password = "${var.db_password}"
-  }
-}
-```
-
-Now we have to create the _ec2 > db_setup.sh_
-
-```bash
-$ mkdir ec2/scripts
-$ touch db_setup.sh
-```
-
-_ec2 > db_setup.sh
-```sh
-#!/bin/bash
-export TEAMCITY_DATA_PATH=/opt/TeamCityData
-sudo tee /opt/TeamCityData/config/database.properties >/dev/null <<EOF
-connectionUrl=jdbc:postgresql://${pg_url}:${pg_port}/${pg_database}
-connectionProperties.user=${pg_username}
-connectionProperties.password=${pg_password}
-EOF
-sudo /opt/TeamCity/bin/teamcity-server.sh start
-```
-
-_main.tf_
-```terraform
-.
-.
-
-module "ec2" {
-  .
-  .
-
-  db_username            = "${var.db_username}"
-  db_password            = "${var.db_password}"
-  db_name                = "${var.db_name}"
-  db_port                = "${module.rds.db_port}"
-  db_url                 = "${module.rds.database_address}"
-}
-```
-
-Apply the changes. Because we added the script you have to run the init again.
-
-```bash
-$ terraform init
-$ terraform plan
-$ terraform apply
-```
-
-The output should look something like this:
-
-```
-teamcity_bastion_ssh_command = ssh -i ~/.ssh/teamcity admin@ec2-x.y.z.d.compute-1.amazonaws.com
-teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity admin@ec2-a.b.c.d.compute-1.amazonaws.com
-```
-
-Ensure you can SSH to both machines.
-
-
 
 **Summary:**
-So far we have created a VPC, a public and private subnets and 2 EC2 instances, one to host the TeamCity web and one that would serve as a bastion to connect to our database. We have a running RDS and S3 bucket for the backup. At this point, my folder structure looks like this:
+So far we have created a VPC, a public subnet and an EC2 instance to host TeamCity. We build 2 private subnets and created an RDS in the subnet. In addition, an S3 bucket for the backup. At this point, my folder structure looks like this:
 
 ```bash
 .
 ├── ec2
 │   ├── main.tf
 │   ├── outputs.tf
-│   ├── scripts
-│   │   └── db_setup.sh
 │   └── variables.tf
 ├── main.tf
 ├── outputs.tf
@@ -1245,6 +1160,15 @@ So far, this is now our infrastructure document looks like
 
 
 ## Provisioning
+
+Now let's write some ansible to do some heavy lifting and configure teamcity for us on the instance we just built
+
+
+```bash
+```
+
+
+............MANUAL STEPS
 We can install Teamcity manually or write an ansible for it. If you prefer to set up manually, ssh into the machine and follow the steps bellow. Otherwise, skip this section and continue on **Add a Private Subnet and EC2 Instance to contain the Database for Teamcity** to build a private subnet, add an EC2 instance, create RDS and then use ansible to provision teamcity:
 
 ```bash
