@@ -651,27 +651,41 @@ $ terraform init
 $ terraform apply
 ```
 
-Congrats! You just used terraform to create your first instance! Now let's ssh into it. I have created a key_pair to use when I ssh into the instance. You may wish to use your id_rsa or create a new one (teamcity_ul) and add it to ssh-agent
+Congrats! You just used terraform to create your first instance! Now let's ssh into it. I have created a key_pair to use when I ssh into the instance. You may wish to use your id_rsa or create a new one (teamcity) and add it to ssh-agent. You can create your key or generate one from AWS. Here are both ways:
 
+1. Manually create one yourself:
 ```bash 
-$ ssh-keygen -t rsa -C "teamcity_ul" -P '' -f ~/.ssh/teamcity_ul; chmod 400 ~/.ssh/teamcity_ul.
+$ ssh-keygen -t rsa -C "teamcity" -P '' -f ~/.ssh/teamcity; chmod 400 ~/.ssh/teamcity.
 
 #start the agent in the background
 $ eval "$(ssh-agent -s)"
 Agent pid 59566
 
-#Add teamcity_ul private key to the ssh-agent and passphrase in the keychain
-$ ssh-add -K ~/.ssh/teamcity_ul
+#Add teamcity private key to the ssh-agent and passphrase in the keychain
+$ ssh-add -K ~/.ssh/teamcity
 ```
 
 Use pbcopy to copy your "PUBLIC" key and add it to aws. You can also copy the public key to your desktop and use the import feature from AWS > EC2 > key Pairs
 
 ```bash
-$ pbcopy < ~/.ssh/teamcity_ul.pub
+$ pbcopy < ~/.ssh/teamcity.pub
 ```
 Navigate to AWS > EC2 > Key Pair. Select "Import Key Pair" and import or paste your key.
 
 Now let's attach that key pair to our instance.
+
+
+2. Go to AWS console > EC2 > Key Pairs
+  2.1. Click on create and give it a name (teamcity), this is going to download the .pem (in your Download folder, perhaps)
+  2.2. Copy the .pem in your .ssh, if you wish.
+  3.3. chmod 400 ~/.ssh/teamcity.pem
+
+
+
+Continue....
+
+
+
 
 Pass in the key name to the ec2 module. You can hard-code the key name or pass it as a variable:
 
@@ -690,7 +704,7 @@ _variable.tf_
 .
 
 variable "key_name" {
-  default = "teamcity_ul"
+  default = "teamcity"
 }
 ```
 
@@ -753,7 +767,7 @@ output "teamcity_public_ip" {
 
 Copy the Public DNS and try ssh'ing onto your instance:
 ```bash
-ssh -i ~/.ssh/teamcity_ul admin@ec2-18-208-217-36.compute-1.amazonaws.com
+ssh -i ~/.ssh/teamcity admin@ec2-18-208-217-36.compute-1.amazonaws.com
 ```
 
 While we're at it, I added an outputs.tf to the root directory to show the teamcity_web_ssh_command, because I am lazy.
@@ -761,7 +775,7 @@ While we're at it, I added an outputs.tf to the root directory to show the teamc
 _outputs.tf_
 ```terraform
 output "teamcity_web_ssh_command" {
-  value = "${format("ssh -i ~/.ssh/teamcity_ul admin@ec2-%s.compute-1.amazonaws.com", "${replace("${module.ec2.teamcity_public_ip}", ".", "-")}")}"
+  value = "${format("ssh -i ~/.ssh/teamcity admin@ec2-%s.compute-1.amazonaws.com", "${replace("${module.ec2.teamcity_public_ip}", ".", "-")}")}"
 }
 ```
 
@@ -769,7 +783,7 @@ Use terraform refresh to see the teamcity_web_ssh_command output you just create
 ```bash
 $ terraform refresh
 
-# teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity_ul admin@ec2-x-y-z-d.compute-1.amazonaws.com
+# teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity admin@ec2-x-y-z-d.compute-1.amazonaws.com
 ```
 
 Since we used Debian, we need to install apache2 in order to access our server via browser. But let's skip this since we're going to host TeamCity.
@@ -777,7 +791,7 @@ Since we used Debian, we need to install apache2 in order to access our server v
 Run the following to see the teamcity_web_ssh_command, then ssh into the machine:
 ```bash
 $ terraform output teamcity_web_ssh_command
-$ ssh -i ~/.ssh/teamcity_ul admin@ec2-x-y-z-d.compute-1.amazonaws.com
+$ ssh -i ~/.ssh/teamcity admin@ec2-x-y-z-d.compute-1.amazonaws.com
 ```
 
 
@@ -1005,7 +1019,7 @@ module "rds" {
   db_username            = "${var.db_username}"
   db_subnet_group_name   = "${module.vpc.db_subnet_group_name}"
   dns_name               = "pg"
-  instance_identifier    = "teamcity-rds"
+  instance_identifier    = "${var.db_name}"
   vpc_id                 = "${module.vpc.vpc_id}"
   private_subnet_id      = ["${module.vpc.private_subnet}"]
   service_name           = "TeamCity"
@@ -1016,7 +1030,7 @@ module "rds" {
 _variables.tf_
 ```terraform
 variable "db_name" {
-  default = "dTeamCity"
+  default = "teamcity-rds"
 }
 
 variable "db_password" {
@@ -1103,29 +1117,20 @@ $ terraform apply
 ```
 
 Looks good!
-Last but not the list, for this section, let's create a bastion instance in the public subnet that connects to the RDS. For this instance, we want to create user data with the database information.
+Last but not the list, for this section, let's modify our EC2 container to act as a TeamCity server and check to make sure we can ssh into our RDS/
 
 _ec2 > main.tf_
 ```terraform
 .
 .
 
-resource "aws_instance" "teamcity_server_bastion" {
-  ami                         = "${var.ami}"
-  instance_type               = "m3.medium"
-  key_name                    = "${var.key_name}"
-  subnet_id                   = "${var.public_subnet_id}"
+resource "aws_instance" "teamcity" {
+  .
+  .
+
   user_data                   = "${data.template_file.teamcity_userdata.rendered}"
-  vpc_security_group_ids      = ["${var.vpc_security_group_ids}"]
-  associate_public_ip_address = true
-
-  tags = {
-    Name = "TeamCity server bastion"
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
+  .
+  .
 }
 
 data "template_file" "teamcity_userdata" {
@@ -1177,13 +1182,6 @@ module "ec2" {
 }
 ```
 
-_outputs.tf_
-```terraform
-output "teamcity_bastion_ssh_command" {
-  value = "${format("ssh -i ~/.ssh/teamcity_ul admin@ec2-%s.compute-1.amazonaws.com", "${replace("${module.ec2.teamcity_bastion_ip}", ".", "-")}")}"
-}
-```
-
 Apply the changes. Because we added the script you have to run the init again.
 
 ```bash
@@ -1195,8 +1193,8 @@ $ terraform apply
 The output should look something like this:
 
 ```
-teamcity_bastion_ssh_command = ssh -i ~/.ssh/teamcity_ul admin@ec2-x.y.z.d.compute-1.amazonaws.com
-teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity_ul admin@ec2-a.b.c.d.compute-1.amazonaws.com
+teamcity_bastion_ssh_command = ssh -i ~/.ssh/teamcity admin@ec2-x.y.z.d.compute-1.amazonaws.com
+teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity admin@ec2-a.b.c.d.compute-1.amazonaws.com
 ```
 
 Ensure you can SSH to both machines.
@@ -1252,20 +1250,27 @@ We can install Teamcity manually or write an ansible for it. If you prefer to se
 ```bash
 # Install docker:
 $ sudo apt-get install apt-transport-https dirmngr
+# answer Y
 
 #Add Docker package depository to your /etc/apt/sources.list sources list:
 $ echo 'deb https://apt.dockerproject.org/repo debian-stretch main' | sudo tee --append /etc/apt/sources.list
 
-#Obtain docker's repository signature and updated package index:
+# Obtain docker's repository signature and updated package index:
 $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys F76221572C52609D
 $ sudo apt-get update
 
 #Install docker
 $ sudo apt-get install docker-engine
+# answer Y
 
 ### Install teamcity
 $ sudo docker system prune -a
+# answer y
+
 $ sudo docker pull jetbrains/teamcity-server
+
+$ sudo mkdir /home/teamcity
+$ sudo mkdir /var/log/teamcity
 
 $ sudo docker run -it --name teamcity-server-instance \
 -v /home/teamcity:/data/teamcity_server/datadir \
@@ -1275,7 +1280,7 @@ jetbrains/teamcity-server
 ```
 
 ## Tie it all together
-Very teamcity is up: `http://x.y.z.d:8111`
+Very teamcity is up: `http://ec2-x.y.z.d.compute-1.amazonaws.com:8111`
 Follow the instruction to install teamcity, using the buildin HSQL (this could take a while)
 You can use the Teamcity [docs](https://confluence.jetbrains.com/display/TCD18/Configure+and+Run+Your+First+Build) to configure an agent
 
