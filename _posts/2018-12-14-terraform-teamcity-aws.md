@@ -5,14 +5,14 @@ date:   2018-12-26 16:15:15
 categories: Infrastructure as Code
 ---
 
-I chose terraform as a provider because:
+I see infrastructure as engineering and not just operations. We made changes, add or delete modules, and not just maintaining them or keeping things running. Hence, I am pro Infrastructure as Code. Terraform is a great tool for Infrastructure engineering. Moreover,
 - I like programing rather than click though UI!
 - I want to minimize my work if I have to change the host (i.e. move from AWS to Azure, etc)
 - I see the graph dependencies
 - I want to encourage my team members who are not keen on "DevOpsy" work, to see how easy it is to use Infrastructure as Code
 
 
-In this tutorial, we'll build a very basic infrastructure to host TeamCity on AWS, using terraform. Some familiarity with AWS, TeamCity and programing knowledge is required, this is not an AWS tutorial.
+In this tutorial, we'll build a very basic infrastructure to host TeamCity on AWS, using terraform. Some familiarity with AWS, TeamCity and programing knowledge is required, this is not an AWS tutorial. This tutorial provides a very basic hosting, if you need a more sophisticated setup, this is a good starting point for you, then you can add your specific infrastructure requirements. ELBs, high availability, zero downtime, disaster recovery, IP range limitation etc, are out of scope for this tutorial.
 
 #### Prerequisites:
 - Good understanding of AWS: We won't be focusing on AWS UI and how to set things up via click-through. Although, I will show you how to navigate AWS to visually see your changes.
@@ -21,7 +21,7 @@ In this tutorial, we'll build a very basic infrastructure to host TeamCity on AW
 - We won't go deep into learning terraform, you can refer to the HashiCorp documents if you want to learn more
 
 #### Getting started:
-- [TeamCity](https://www.jetbrains.com/teamcity/download/#section=aws) 2017.2+ has a free account with 3 build agents for 100 build configurations. So you can start there and purchase the license if you need to.
+- [TeamCity](https://www.jetbrains.com/teamcity/download/) 2017.2+ has a free account with 3 build agents for 100 build configurations. So you can start there and purchase the license if you need to.
 - [Install terraform](https://learn.hashicorp.com/terraform/getting-started/install.html)
   + brew install terraform
 - Get an aws account (if you just want to use Azure, then read the next article)
@@ -37,35 +37,39 @@ In this tutorial, we'll build a very basic infrastructure to host TeamCity on AW
     * AmazonRoute53FullAccess
 
 **NOTE:** 
-- Small AWS charge. To keep the charge minimum run **terraform destroy at the end of the tutorial, if you wish.
-- I am using main.tf, variables.tf, and outputs.tf throught this project, you may wish to change the names, or just develop in one single file. All tf files in a directory will be compiled together. So separating them, is my personal preference.
+- Small AWS charge. To keep the charge minimum run **terraform destroy** at the end of the tutorial, if you wish.
+- I am using _main.tf_, _variables.tf_, and _outputs.tf_ consistently throughout this project, you may wish to change the names, or just develop in one single file. All tf files in a directory will be compiled together. So separating them, is my personal preference.
 - I am using MAC OS Majave, so change the bash commands appropriately, if you are using any other OS
 
 
 #### What are we building?
 
-- Launch a single public instance
-  + Create a VPC
-  + Single public subnet
-  + Routing
-  + Create a security group
-  + Launch a public EC2 instance to host the TeamCity app
-- Launch a private instance to host our DB
-  + Add new security group for the server instance
+- Create a VPC
+- Building a private subnet for RDS
+  + Create a public subnet for NAT
   + Add NAT
-  + Add a private subnet
-  + Modify routing
-  + Launch a private EC2 instance to host the database
-- Add Database and backup
-  - Create database (RDS)
-  - Create S3 bucket for database backup
-- Provisioning
-  + Use ansible to provision the public EC2
-- Tie it all together
+  + Create a public subnet
+  + Create routing
+  + Create a security group for the public Subnet
+  + Create a security group for the private Subnet
+  + Create private subnets
+  + Create routing 
+- Add RDS
+  + Create the database
+  + Create S3 backup
+- Single public subnet for a public EC2 to host the TeamCity
+  + Create a public subnet
+  + Create security group
+  + Modify the routing
+- Launch a public EC2 instance to host the TeamCity (using docker image) and connect to RDS PostgreSQL
+- Create a single agent and a pipeline to make sure everything works
   + Create an agent and run a build!
 
 
-## Create a VPC with a Single Subnet and EC2 instance to host the TeamCity web
+Let's get started!!
+
+## Create a VPC
+If you have created your amazon account within the past couple of years, it's likely that it comes with a default VPC. We are going to create an isolated Virtual Private Cloud and subnets and use them to host TeamCity.
 
 Once you installed terraform, create an empty folder where you want to write your code, and cd into it:
 
@@ -74,9 +78,7 @@ $ mkdir teamcity
 $ cd teamcity
 ```
 
-If you have created your amazon account within the past couple of years, it's likely that it comes with a default VPC. We are going to create an isolated Virtual Private Cloud and subnets and use them to launch EC2 instances.
-
-In the root directory, create the main.tf. **tf** is Terraform convention. We will use this main.tf as a driver that contains other modules to build pieces we need.
+In the root directory, create the main.tf. **tf** is terraform convention. We will use this _main.tf_ as a driver that contains other modules to build pieces we need.
 
 ```bash
 $ touch main.tf
@@ -84,7 +86,7 @@ $ touch main.tf
 
 Now let's write some terraform code. The biggest advantage of infrastructure as code, as we discussed earlier is that it's scalable and easy to change provider. In this tutorial we're going to use AWS, thus, our provider is aws. 
 
-My account is in **us-east-1**. Check yours to pick the right region. 
+I am going to use **us-east-1**. You can use any region you like.
 
 _main.tf_
 ```terraform
@@ -95,7 +97,7 @@ provider "aws" {
 
 Next, we want to add [**aws_vpc**](https://www.terraform.io/docs/providers/aws/r/vpc.html) resource to create our VPC. We call it **vpc**. This is like naming a variable so you can access it later throughout your project.
 
-For [cidr_block](https://whatismyipaddress.com/cidr), we're using the **10.0.0.0** as opposed to **192.168* because it's more common, 192.168 is mainly associated with your personal IP. 
+For [cidr_block](https://whatismyipaddress.com/cidr), we're using the **10.0.0.0** as opposed to **192.168** because it's more common, 192.168 is mainly associated with your personal IP. 
 
 enable_dns_hostnames by default is false. We want to enable DNS hostnames in the VPC, so set it to true.
 
@@ -103,7 +105,7 @@ Add tags, Name, to see the name in the VPC list, specially if you have more than
 
 _main.tf_
 ```terraform
-recource "aws_vpc" "vpc" {
+resource "aws_vpc" "vpc" {
   cidr_block            = "10.0.0.0/16"
   enable_dns_hostnames  = true
 
@@ -139,7 +141,7 @@ Error: Error refreshing state: 1 error(s) occurred:
 
 You can do this in couple different ways. You can export the credentials as environment variables into the terminal shell and you won't be prompted as long as you use that shell. Or you can save them into a ***.tfvars** file and add it to the provider.
 
-**Export into the shell**
+**Export into the shell** (if you choose this skip to ****)
 ```bash
 $ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
 $ export AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY"
@@ -157,7 +159,23 @@ aws_access_key = "YOUR_ACCESS_KEY"
 aws_secret_key = "YOUR_SECRET_KEY"
 ```
 
-Run ```$ terraform refresh``` and you see the following error:
+_main.tf_
+```terraform
+provider "aws" {
+  .
+
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
+}
+```
+
+Run 
+
+```bash 
+$ terraform plan
+``` 
+
+Now you see a different error: :/
 
 ```bash
 Error: provider config 'aws': unknown variable referenced: 'aws_access_key'; define it with a 'variable' block
@@ -183,7 +201,12 @@ variable "aws_secret_key" {
 }
 ```
 
-Now run ```$ terraform refresh``` all should be good! Next, use ```$ terraform plan``` to see the plan that's going to be executed and verify that's what your want to do. In our case, we want to **create** a **vpc**:
+Try again:
+```bash
+$ terraform plan
+``` 
+
+to see the plan that's going to be executed and verify that's what your want to do. In our case, we want to **create** a **vpc**:
 
 ```bash
 data.aws_availability_zones.zones: Refreshing state...
@@ -223,24 +246,32 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 ------------------------------------------------------------------------
 ```
 
-Looks great, run ```$ terrafrom apply``` to execute the plan. You will be prompted to verify if that's what you want to do, enter **yes**.
+Looks great, run the following command to execute the plan. You will be prompted to verify if that's what you want to do, enter **yes**.
+```bash
+$ terraform apply
+``` 
+
 
 Great!!!! Now if you navigate to VPC on your AWS account (AWS > Services > VPC). You see that the VPC is created! This is step 1 in your architecture diagram:
 
 ![](/assets/images/infrastructure_as_code/terraform_teamcity_aws/create_vpc.png "Teamcity VPC")
 
 
-Now that we have the VPC created, let's add a single public subnet. But before we do so, let's a small refactoring. Some of you may think, it's not need yet, you may go ahead and use a single file. Personally, I like to add a little structure to my projects, knowing this is going to grow.
+## Building a private subnet for RDS
 
-In terraform, modules, are similar to classes in OO programing. I want to move the job of creating [VPC](https://www.terraform.io/docs/providers/aws/d/vpc.html), [subnets](https://www.terraform.io/docs/providers/aws/d/subnet.html), and [routing](https://www.terraform.io/docs/providers/aws/d/route_table.html) to it's own module. 
+
+In this section we're going to add more code to our terraform project. Before we do so, let's do a small refactoring to keep things organized going forward. Some of you may think, it's not need yet unless I call the same block of code 3 times..., you may go ahead and use a single file. Personally, I like to add a little structure to my projects, knowing this is going to grow.
+
+In terraform, modules, are similar to classes in OO programing. I want to move the job of creating [VPC](https://www.terraform.io/docs/providers/aws/d/vpc.html), [subnets](https://www.terraform.io/docs/providers/aws/d/subnet.html), [NAT](https://www.terraform.io/docs/providers/aws/d/nat_gateway.html), and [routing](https://www.terraform.io/docs/providers/aws/d/route_table.html) to it's own module. 
 
 ```bash
 $ mkdir vpc
-$ cd vpc
-$ touch subnets.tf
+$ touch vpc/main.tf
 ```
 
-_vpc > subnets.tf_
+Now let's move the "aws_vpc" from _main.tf_ to _vpc/main.tf_
+
+_vpc/main.tf_
 ```terraform
 resource "aws_vpc" "vpc" {
   cidr_block           = "10.0.0.0/16"
@@ -252,50 +283,268 @@ resource "aws_vpc" "vpc" {
 }
 ```
 
-In the root directory change the _main.tf_ to look like:
+Now change the _main.tf_ to call module vpc. The source's value is the path to the vpc module. You can also include a git url, if a different team is in charge of that module.
+
+_main.tf_
 ```terraform
-provider "aws" {
-  access_key = "${var.aws_access_key}"
-  secret_key = "${var.aws_secret_key}"
-  region     = "${var.region}"
-}
+.
+.
 
 module "vpc" {
   source = "vpc"
 }
 ```
 
-Notice that I have but the region in a variable so I can use it later. If you wish to do so, add the region to the _variable.tf_ in the root directory, where you added aws secret key and access key:
+Because we just added a folder (module vpc), we need to run terraform init to let terraform know about this change:
 ```bash
-.
-.
+$ terraform init
+```
 
-variable "region" {
-  default = "us-east-1" #replace with your region
+Moving forward...
+
+RDS needs multiple zones and at least 2 private subnets. Before we add a private subnet, however, we need to create a NAT. NAT needs an Elastic IP to work. NAT, needs to live in the public subnet :D  ...
+
+So first, let's go ahead and make those changes. We will be using [aws_eip](https://www.terraform.io/docs/providers/aws/r/eip.html), [aws_nat_gateway](https://www.terraform.io/docs/providers/aws/d/nat_gateway.html)
+
+```bash
+$ touch vpc/nat.tf
+```
+
+_vpc/nat.tf_
+```terraform
+resource "aws_eip" "nat_gw_eip" {
+  vpc = true
+
+  tags {
+    Name = "TeamCity NAT"
+  }
+}
+
+resource "aws_nat_gateway" "gw" {
+  allocation_id = "${aws_eip.nat_gw_eip.id}"
+  subnet_id     = "${aws_subnet.public.id}"
+
+  tags {
+    Name = "TeamCity NAT Gateway"
+  }
 }
 ```
 
-Now your teamcity folder structure should look something like this:
+Now we're ready to add a single public subnet. 
 
 ```bash
-├── main.tf
-├── terraform.tfstate
-├── terraform.tfstate.backup
-├── terraform.tfvars
-├── variables.tf
-└── vpc
-    ├── subnets.tf
+$ touch vpc/subnets.tf
 ```
 
-Before we go father, let's go ahead and add this to git. Add the following **.gitignore** to the root directory:
+Navigate to _vpc/subnets.tf_ inside the vpc folder. We want to add an [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource and name it public. I am passing a variable _availability_zone_ since I don't have a preference. If you do, you can hard-code this to be "us-east-1a" for example. 
 
-**Important: make sure you add the tfvars that's holding your AWS credentials to the gitignore file**
+```terraform
+.
+.
+
+resource "aws_subnet" "public" {
+  availability_zone = "${element(var.availability_zones, count.index)}"
+  cidr_block        = "${var.public_cidr_block}"
+  vpc_id            = "${aws_vpc.vpc.id}"
+
+  tags {
+    Name = "Public TeamCity Subnet"
+  }
+}
+```
+
+Now we're ready to create a route table and association for the NAT.
 
 ```bash
-$ touch .gitignore
+$ touch vpc/routing.tf
 ```
 
+In this file, we need to create an [aws_internet_gateway](https://www.terraform.io/docs/providers/aws/d/internet_gateway.html) (we name it vpc_igw). Then create an [aws_route_table](https://www.terraform.io/docs/providers/aws/d/route_table.html) (vpc_public). Last but not the least, an association resource, [aws_route_table_association](https://www.terraform.io/docs/providers/aws/r/route_table_association.html) (vpc_public).
+
+_vpc/routing.tf_
+```terraform
+resource "aws_internet_gateway" "vpc_igw" {
+  vpc_id = "${aws_vpc.vpc.id}"
+
+  tags {
+    Name = "TeamCity Gateway"
+  }
+}
+
+resource "aws_route_table" "vpc_public" {
+  vpc_id = "${aws_vpc.vpc.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.vpc_igw.id}"
+  }
+
+  tags {
+    Name = "TeamCity Public Subnet Route Table"
+  }
+}
+
+resource "aws_route_table_association" "vpc_public" {
+  subnet_id      = "${aws_subnet.public.id}"
+  route_table_id = "${aws_route_table.vpc_public.id}"
+}
 ```
+
+Everything looks good, since we are already calling th vpc module from main.tf, let's go ahead and see the plan so far:
+
+```bash
+$ terraform plan
+```
+
+Looks like we need to pass in some variables
+
+```bash
+Error: resource 'aws_subnet.public' config: unknown variable referenced: 'availability_zones'; define it with a 'variable' block
+Error: resource 'aws_subnet.public' config: unknown variable referenced: 'public_cidr_block'; define it with a 'variable' block
+```
+
+```bash
+$ touch vpc/variables.tf
+```
+
+Let's create a default cidr_block inside the _vpc/variables.tf_ but pass in the availability_zones from _main.tf_.
+
+_vpc/variables.tf_
+```terraform
+variable "availability_zones" {
+  description = "List of availability zones over which to distribute subnets"
+  type        = "list"
+}
+
+variable "public_cidr_block" {
+  default = "10.0.0.0/24"
+}
+```
+
+and change the _main.tf_, where we call the vpc module:
+```terraform
+.
+.
+
+data "aws_availability_zones" "zones" {}
+
+module "vpc" {
+  .
+  availability_zones = ["${data.aws_availability_zones.zones.names}"]
+}
+```
+
+Before we apply our changes, let's create a security group for this public VPC as well:
+```bash
+$ mkdir sg && touch sg/main.tf
+```
+
+Inside the sg/main.tf, we are going to create an [aws_security_group](https://www.terraform.io/docs/providers/aws/d/internet_gateway.html) (teamcity_web_sg) and add ingress (right to enter a property) and egress (right to exit a property) rules:
+
+_sp/main.tf_
+```terraform
+resource "aws_security_group" "teamcity_web_sg" {
+  name        = "TeamCity_sg"
+  description = "Allow TeamCity SSH & HTTP inbound connection"
+  vpc_id      = "${var.vpc_id}"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8111
+    to_port     = 8111
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = "0"
+    to_port     = "0"
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name = "TeamCity Web Security Group"
+  }
+}
+```
+
+We are using the vpc_id to create the routing, let's go ahead and pass that:
+
+```bash
+$ touch sg/variables.tf
+```
+
+_sg/variables.tf_
+```terraform
+```
+
+Last, but not the least, we need to call this module from _main.tf_
+```terraform
+.
+.
+
+module "sg" {
+  source = "sg"
+  vpc_id = "${module.vpc.vpc_id}"
+}
+```
+
+Looks like we have a solid code to build our public subnet. Since we added sg module, we need to init again:
+```bash
+$ terraform init
+```
+
+And there's error:
+```bash
+Initializing modules...
+- module.vpc
+- module.sg
+  Getting source "sg"
+
+Error: module 'sg': "vpc_id" is not a valid output for module "vpc"
+```
+
+This is because we're passing vpc_id, but we never defined it anywhere:
+```bash
+$ touch vpc/outputs.tf
+```
+
+_vpc/outputs.tf_
+```terraform
+output "vpc_id" {
+  value = "${aws_vpc.vpc.id}"
+}
+```
+
+Let's try again:
+```bash
+$ terraform init
+$ terraform plan
+# Notice all the new resources that are in green
+# Plan: 7 to add, 0 to change, 0 to destroy.
+
+$ terraform apply
+```
+
+If you want to see all the changes you made, navigate to:
+- AWS > VPCs
+- Subnets
+- Route Tables
+- Internet Gateways
+- Elastic IPs
+- Nat Gateways
+- Network ACLs
+- Security Groups
+
+That's a lot of changes! This is a good place to commit our changes to git, if you haven't done it yet. This is my _.ignore_ file:
+```bash
 # Local .terraform directories
 **/.terraform/*
 
@@ -317,515 +566,40 @@ override.tf.json
 *_override.tf.json
 ```
 
+Now, we're ready to create our private subnet and security group for the RDS:
 
-```bash
-$ git init
-$ git add
-$ git commit "initial checking: Create VPC in AWS"
-```
-
-Now we're ready to add a single subnet. Navigate to _vpc > subnets.tf_ inside the vpc folder. We want to add an [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource and name it public. I am passing a variable _availability_zone_ since I don't have a preference. If you do, you can hardcode this to be "us-east-1a" for example. 
-
+_vpc/subnets.tf_
 ```terraform
 .
 .
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "private" {
   availability_zone = "${element(var.availability_zones, count.index)}"
-  cidr_block        = "${var.public_cidr_block}"
+  cidr_block        = "${element(var.private_cidr_block, count.index)}"
+  count             = "${length(var.private_cidr_block)}"
   vpc_id            = "${aws_vpc.vpc.id}"
 
   tags {
-    Name = "Public Teamcity Subnet"
+    Name = "${format("TeamCity Private Subnet %d", count.index + 1)}"
   }
 }
-```
 
-_vpc > variables.tf_
-```terraform
-.
-.
-
-variable "public_cidr_block" {
-  default = "10.0.0.0/24"
-}
-```
-
-Change the _main.tf_
-```terraform
-.
-.
-
-data "aws_availability_zones" "zones" {}
-
-module "vpc" {
-  source             = "vpc"
-  availability_zones = ["${data.aws_availability_zones.zones.names}"]
-}
-```
-
-Now we need to add _vpc > variables.tf_ for the vpc module to declare what parameters we are going to send. If you hard coded the availability zone(s), skip this section.
-```bash
-$ touch vpc/variables.tf
-```
-
-```terraform
-variable "availability_zones" {
-  description = "List of availability zones over which to distribute subnets"
-  type        = "list"
-}
-```
-
-Looks good... 
-
- ```bash 
- #Since we just added a module, we need to run init first
- $ terraform init 
- .
- .
- # verify the changes: + create and + module.vpc.aws_subnet.public
- $ terraform plan
- .
- .
- # yes to the changes
- $ terraform apply
- ```
-
- Log into AWS again or refresh your VPC page. From the left sub-menu navigate to subnets. You will see a new subnet created: "Public Teamcity Subnet". Select the newly created subnet to see the details. i.e. your availability zone and IP.
- CLick on the Route Table tab, you will see one row: 
-
- Destination: 10.0.0.0/16  \|  Target: local
-
- Let's add a router to our VPC. Create a routing.tf in the vpc folder:
-
- ```bash
- $ touch vpc/routing.tf
- ```
-
- In this file, we need to create an aws_internet_gateway (we name it vpc_igw). Then create an [aws_route_table](https://www.terraform.io/docs/providers/aws/d/route_table.html) (vpc_public). Last but not the least, an association resource, [aws_route_table_association](https://www.terraform.io/docs/providers/aws/r/route_table_association.html) (vpc_public).
-
-_vpc > routing.tf_
-```terraform
-resource "aws_internet_gateway" "vpc_igw" {
-  vpc_id = "${aws_vpc.vpc.id}"
+resource "aws_db_subnet_group" "rds" {
+  name        = "teamcity-subnet-group"
+  description = "TeamCity RDS Subnet Group"
+  subnet_ids  = ["${aws_subnet.private.*.id}"]
 
   tags {
-    Name = "Teamcity Gateway"
-  }
-}
-
-resource "aws_route_table" "vpc_public" {
-  vpc_id = "${aws_vpc.vpc.id}"
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.vpc_igw.id}"
-  }
-
-  tags {
-    Name = "Teamcity Public Subnet Route Table"
-  }
-}
-
-resource "aws_route_table_association" "vpc_public" {
-  subnet_id      = "${aws_subnet.public.id}"
-  route_table_id = "${aws_route_table.vpc_public.id}"
-}
-```
-
-Let's apply our changes:
-
-```bash
-$ terraform apply
-```
-
-From the AWS console, navigate to VPC > Subnets, or just refresh the page. Select the subnet you had created earlier and click on Route Table. Notice the new 0.0.0.0/0 igw-xyz has been created. 0.0.0.0 is to accept request form any IP.
-
-Now our diagram looks more like:
-
-![](/assets/images/infrastructure_as_code/terraform_teamcity_aws/vpc_subnet_routing_table.png "Teamcity VPC, Subnet, Custom Route Table")
-
-So far, so good. Next we need to add a security group, to increase security of our VPC. In the root directory, create a folder sg and inside it main.tf and variable.tf:
-
-```bash
-$ mkdir sg
-$ touch sg/main.tf
-$ touch sg/variable.tf
-```
-
-Inside the sg > main.tf, we are going to create an aws_security_group (teamcity_web_sg) and add ingress (right to enter a property) and egress (right to exit a property) rules:
-
-_vpc > main.tf_
-```terraform
-resource "aws_security_group" "teamcity_web_sg" {
-  name        = "Teamcity_sg"
-  description = "Allow Teamcity SSH and HTTP inbound connection"
-  vpc_id      = "${var.vpc_id}"
-
-  # Allow SSH
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  # Allow HTTP for teamcity on port 8111
-  ingress {
-    from_port   = 8111
-    to_port     = 8111
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = "0"
-    to_port     = "0"
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags {
-    Name = "Teamcity Web Security Group"
+    Name = "TeamCity RDS Subnet Group"
   }
 }
 ```
 
-_vpc > variables.tf_
-```terraform
-variable "vpc_id" {
-  type        = "string"
-  description = "VPC ID in which to deploy RDS"
-}
-```
-
-Call sg module from the _main.tf_ in the root directory to call the newly create module:
-
+_vpc/routing.tf_
 ```terraform
 .
 .
 
-module "sg" {
-  source = "sg"
-  vpc_id = "${module.vpc.vpc_id}"
-}
-```
-
-Note: _source_ refers to the location of the module, you may wish a git repo (for example if a different team owns that module) instead of creating your own.
-
-Since we created a new module we need to initialize again:
-
-```bash
-$ terraform init
-```
-
-You will see an error where vpc_id is unknown.:
-
-```bash
-[13:07:03][teamcity_setup]$ terraform init
-Initializing modules...
-- module.vpc
-- module.sg
-
-Error: module 'sg': "vpc_id" is not a valid output for module "vpc"
-```
-
-To fix this error, add _vpc > outputs.tf_ for the vpc module, to output the vpc id that we created:
-
-```bash
-$ touch vpc/outputs.tf
-```
-
-_vpc > outputs.tf_
-```terraform
-output "vpc_id" {
-  value = "${aws_vpc.vpc.id}"
-}
-```
-
-Now run the init again and execute the plan (verify the plan, if you wish, before executing it):
-
-```terraform
-$ terraform init
-$ terraform apply
-```
-
-Form your AWS console, navigate to VPC > Internet Gateways. You will see the new gateway that you have created (Teamcity Gateway). Click on the gateway, notice the Attached VPC ID is the one VPC id that you created earlier in the tutorial. To see the security group, click on the Security Group from the left nav.
-
-Now that we have the VPC and security group created. Let's go ahead and build our first EC2 instance, that's a public instance to, later, host the teamcity web.
-
-Let's create en **ec2** module, with two files: _main.tf_ and _variables.tf_
-```bash
-$ mkdir ec2
-$ touch ec2/main.tf
-$ touch ec2/variables.tf
-```
-
-Inside the main.tf, we need to add an [aws_instance](https://www.terraform.io/docs/providers/aws/d/instance.html) (teamcity) resource. For the ami, I am using a verified debian image that I trust, you may wish to use ubuntu. We need to pass in the security group and the public subnet id that we created. I am also adding a lifecycle to create an instance before destroying it, this is to make sure I have an instance running. For the purpose of this simple tutorial, we will not be using ELBs, you may wish to do so if you want a highly available instance.
-
-_ec2 > main.tf_
-```terraform
-resource "aws_instance" "teamcity" {
-  ami                         = "${var.ami}"
-  instance_type               = "m3.medium"
-  vpc_security_group_ids      = ["${var.web_security_groups_id}"]
-  subnet_id                   = "${var.subnet_id}"
-  associate_public_ip_address = true
-
-  tags = {
-    Name = "Teamcity"
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-```
-
-_ec2 > variable.tf_
-```terraform
-variable "ami" {
-  description = "trusted debian ami"
-  default     = "default value"
-}
-
-variable "subnet_id" {
-  default = "default value"
-}
-
-variable "web_security_groups_id" {
-  default = "default value"
-}
-```
-
-From the root _main.tf_ call the ec2 module:
-```terraform
-.
-.
-
-module "ec2" {
-  source = "ec2"
-  ami    = "${var.debian_ami}"
-  web_security_groups_id = "${module.sg.web_security_groups_id}"
-  subnet_id          = "${module.vpc.public_subnet}"
-}
-````
-
-Notice that we need the security group id that we created in the sg module and the public subnet id that we created in the vpc module. So let's go ahead and output those so that we can access them when calling the ec2 module.
-
-_vpc > outputs.tf_
-```terraform
-.
-.
-
-output "public_subnet" {
-  value = "${aws_subnet.public.id}"
-}
-```
-
-```bash
-$ touch sg/outputs.tf
-```
-
-_sg > outputs.tf_
-```terraform
-output "web_security_groups_id" {
-  value = "${aws_security_group.teamcity_web_sg.id}"
-}
-```
-
-I am passing the debiam_ami as a variable, so I need to add that to the _variables.tf_ in the root directory. Skip the following if you are hard-coding the ami image name.
-
-_variables.tf_
-```
-.
-.
-variable "debian_ami" {
-  default = "ami-0bd9223868b4778d7"
-}
-```
-
-Now let's apply our changes:
-```bash
-$ terraform init
-$ terraform apply
-```
-
-Congrats! You just used terraform to create your first instance! Now let's ssh into it. I have created a key_pair to use when I ssh into the instance. You may wish to use your id_rsa or create a new one (teamcity) and add it to ssh-agent. You can create your key or generate one from AWS. Here are both ways:
-
-1. Manually create one yourself:
-```bash 
-$ ssh-keygen -t rsa -C "teamcity" -P '' -f ~/.ssh/teamcity; chmod 400 ~/.ssh/teamcity.
-
-#start the agent in the background
-$ eval "$(ssh-agent -s)"
-Agent pid 59566
-
-#Add teamcity private key to the ssh-agent and passphrase in the keychain
-$ ssh-add -K ~/.ssh/teamcity
-```
-
-Use pbcopy to copy your "PUBLIC" key and add it to aws. You can also copy the public key to your desktop and use the import feature from AWS > EC2 > key Pairs
-
-```bash
-$ pbcopy < ~/.ssh/teamcity.pub
-```
-Navigate to AWS > EC2 > Key Pair. Select "Import Key Pair" and import or paste your key.
-
-Now let's attach that key pair to our instance.
-
-
-2. Go to AWS console > EC2 > Key Pairs
-  2.1. Click on create and give it a name (teamcity), this is going to download the .pem (in your Download folder, perhaps)
-  2.2. Copy the .pem in your .ssh, if you wish.
-  3.3. chmod 400 ~/.ssh/teamcity.pem
-
-
-
-Continue....
-
-
-
-
-Pass in the key name to the ec2 module. You can hard-code the key name or pass it as a variable:
-
-_main.tf_
-```terraform
-module "ec2" {
-  .
-  .
-  key_name = "${var.key_name}"
-}
-```
-
-_variable.tf_
-```terraform
-.
-.
-
-variable "key_name" {
-  default = "teamcity"
-}
-```
-
-_ec2 > main.tf_
-```terraform
-resource "aws_instance" "teamcity" {
-  .
-  .
-
-  key_name = "${var.key_name}"
-  .
-  .
-}
-```
-
-_ec2 > variables.tf_
-```terraform
-.
-.
-
-variable "key_name" {
-  default = "default value"
-}
-```
-
-Apply the changes:
-
-```bash
-$ terraform apply
-
-# Notice the following:
-# -/+ destroy and then create replacement
-# -/+ module.ec2.aws_instance.teamcity (new resource required)
-```
-
-Note: If you look at the AWS console > EC2 > Instances, you will notice that the new instance is being initialized and the old one is terminated. Don't worry about removing the terminated instance as AWS will take care of, automatically, it later.
-
-Wait till the instance is up and healthy before ssh into it. 
-
-Next, in the ec2 module, I have created an output variable called "teamcity_public_ip" so I can easily see the public IP of the instance I want to ssh into.
-
-```bash 
-$ touch ec2/outputs.tf
-```
-
-_ec2 < outputs.tf_
-```terraform
-output "teamcity_public_ip" {
-  value = "${aws_instance.teamcity.public_ip}"
-}
-```
-
- You can find your IP from AWS console, however, the point is to not having constantly use the console: Navigate to AWS > console > EC2 > Instances.
-- Choose the instance (Teamcity) and copy the "Public DNS".
-- You may also right click on the instance and select "connect". In the modal, you will find the example of how to can ssh into the container. 
-
-**Notes**
-- example uses .pem, you don't have to.
-- I used debian, so I can ssh into the instance using admin@
-
-Copy the Public DNS and try ssh'ing onto your instance:
-```bash
-ssh -i ~/.ssh/teamcity admin@ec2-18-208-217-36.compute-1.amazonaws.com
-```
-
-While we're at it, I added an outputs.tf to the root directory to show the teamcity_web_ssh_command, because I am lazy.
-
-_outputs.tf_
-```terraform
-output "teamcity_web_ssh_command" {
-  value = "${format("ssh -i ~/.ssh/teamcity admin@ec2-%s.compute-1.amazonaws.com", "${replace("${module.ec2.teamcity_public_ip}", ".", "-")}")}"
-}
-```
-
-Use terraform refresh to see the teamcity_web_ssh_command output you just created:
-```bash
-$ terraform refresh
-
-# teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity admin@ec2-x-y-z-d.compute-1.amazonaws.com
-```
-
-Since we used Debian, we need to install apache2 in order to access our server via browser. But let's skip this since we're going to host TeamCity.
-
-Run the following to see the teamcity_web_ssh_command, then ssh into the machine:
-```bash
-$ terraform output teamcity_web_ssh_command
-$ ssh -i ~/.ssh/teamcity admin@ec2-x-y-z-d.compute-1.amazonaws.com
-```
-
-
-## Add a Database (RDS)
-RDS needs multiple zones and at least 2 private subnets. Before we add a private subnet, however, we need to create a NAT. NAT needs an Elastic IP to work. So first, let's go ahead and make those changes. We will be using [aws_eip](https://www.terraform.io/docs/providers/aws/r/eip.html), [aws_nat_gateway](https://www.terraform.io/docs/providers/aws/d/nat_gateway.html), ....
-
-```bash
-$ touch vpc > nat.tf
-```
-
-_vpc > nat.tf_
-```terraform
-resource "aws_eip" "nat_gw_eip" {
-  vpc = true
-
-  tags {
-    Name = "Teamcity NAT"
-  }
-}
-
-resource "aws_nat_gateway" "gw" {
-  allocation_id = "${aws_eip.nat_gw_eip.id}"
-  subnet_id     = "${aws_subnet.public.id}"
-
-  tags {
-    Name = "Teamcity NAT Gateway"
-  }
-}
-```
-
-Now we're reading to create a route table and association for the NAT.
-
-_vpc > routing.tf_
-```terraform
 resource "aws_route_table" "vpc_private" {
   vpc_id = "${aws_vpc.vpc.id}"
 
@@ -846,22 +620,7 @@ resource "aws_route_table_association" "vpc_private" {
 }
 ```
 
-Now we're ready to create our private subnet
-_vpc > subnets.tf_
-```terraform
-resource "aws_subnet" "private" {
-  availability_zone = "${element(var.availability_zones, count.index)}"
-  cidr_block        = "${element(var.private_cidr_block, count.index)}"
-  count             = "${length(var.private_cidr_block)}"
-  vpc_id            = "${aws_vpc.vpc.id}"
-
-  tags {
-    Name = "${format("TeamCity Private Subnet %d", count.index + 1)}"
-  }
-}
-```
-
-_vpc > variables.tf_
+_vpc/variables.tf_
 ```terraform
 .
 .
@@ -876,41 +635,8 @@ variable "private_cidr_block" {
 }
 ```
 
-_vpc > outputs.tf_
+and the RDS security group:
 ```terraform
-.
-.
-
-output "private_subnet" {
-  value = ["${aws_subnet.private.*.id}"]
-}
-```
-
-_main.tf_
-```terraform
-.
-.
-
-module "vpc" {
-  .
-  .
-  length = 2
-}
-```
-
-Note: If you get an error for a duplicate IP, run the **terraform destroy** and the apply the changes again.
-Apply the changes
-```bash
-$ terraform apply
-```
-
-Now that we have the private subnets, let's create our RDS. Let's start with adding a security group for RDS.
-
-_sg > main.tf_
-```terraform
-.
-.
-
 resource "aws_security_group" "rds_sg" {
   name        = "TeamCity_rds_sg"
   description = "TeamCity RDS Security Group"
@@ -944,22 +670,45 @@ resource "aws_security_group" "rds_sg" {
 }
 ```
 
-_sg > variables.tf_
+Apply the changes:
 ```terraform
-output "rds_security_groups_id" {
-  value = "${aws_security_group.rds_sg.id}"
-}
+$ terraform apply
 ```
 
+Congrats! You have everything you need to build your RDS now! Don't forget to commit your changes often!
+So far, this is how my folder structure looks like:
 ```bash
-$ mkdir rds
-$ touch rds/main.tf
-$ touch rds/variables.tf
-$ touch rds/outputs.tf
+.
+├── main.tf
+├── sg
+│   ├── main.tf
+│   └── variables.tf
+├── terraform.tfstate
+├── terraform.tfstate.backup
+├── terraform.tfvars
+├── variables.tf
+└── vpc
+    ├── main.tf
+    ├── nat.tf
+    ├── outputs.tf
+    ├── routing.tf
+    ├── subnets.tf
+    └── variables.tf
+```
+
+and this is our infrastructure document:
+
+### TBC: Infrastructure Diagram
+
+## Add RDS
+
+Let's add our rds module first:
+```bash
+$ mkdir rds && touch rds/main.tf && touch rds/variables.tf
 ```
 
 We will be using [aws_db_instance](https://www.terraform.io/docs/providers/aws/d/db_instance.html) resource.
-_rds > main.tf_
+_rds/main.tf_
 ```terraform
 resource "aws_db_instance" "database" {
   identifier                = "${var.instance_identifier}"
@@ -987,27 +736,50 @@ resource "aws_db_instance" "database" {
 }
 ```
 
-_rds > variables.tf_
+_rds/variables.tf_
 ```terraform
+variable "db_password" {
+  default = "default value"
+}
+
+variable "db_subnet_group_name" {
+  default = "default value"
+}
+
+variable "db_name" {
+  default = "default value"
+}
+
+variable "db_username" {
+  default = "default value"
+}
+
+variable "dns_name" {
+  default = "default value"
+}
+
+variable "instance_identifier" {
+  default = "default value"
+}
+
+variable "private_subnet_id" {
+  default = "default value"
+}
+
+variable "service_name" {
+  default = "default value"
+}
+
 variable "vpc_id" {
-  type        = "string"
-  description = "VPC ID in which to deploy RDS"
+  default = "default value"
+}
+
+variable "vpc_security_group_ids" {
+  default = "default value"
 }
 ```
 
-_rds > outputs.tf_
-```terraform
-output "web_security_groups_id" {
-  value = "${aws_security_group.teamcity_web_sg.id}"
-}
-
-output "rds_security_groups_id" {
-  value = "${aws_security_group.rds_sg.id}"
-}
-```
-
-And now let's call the module
-_main.tf_
+Call the rds module form _main.tf_
 ```terraform
 .
 .
@@ -1027,10 +799,20 @@ module "rds" {
 }
 ```
 
+If you run the init, you will see that we're missing a few variables. Let's go ahead and get rid of those errors. First is db_password. We are going to add the password to the terraform.tfvars. This file is not getting checked and it's a safe place to store our secrets.
+
+_terraform.tfvars_
+```
+db_password = "YOUR_DB_PASSWORD"
+```
+
 _variables.tf_
-```terraform
+``` terraform
+.
+.
+
 variable "db_name" {
-  default = "teamcity-rds"
+  default = "teamcity"
 }
 
 variable "db_password" {
@@ -1042,32 +824,50 @@ variable "db_username" {
 }
 ```
 
-_terraform.tfvars_
-```terraform
-db_password = "terraform123"
+We also need to add a few outputs:
+```bash
+$ touch sg/outputs.tf
 ```
 
+_sg/outputs.tf_
+```terraform
+output "rds_security_groups_id" {
+  value = "${aws_security_group.rds_sg.id}"
+}
+```
 
-This would take a while, so go ahead for coffee and stretching!
-```bash
-$ terraform init
-$ terraform plan
+_vpc/outputs/tf_
+```terraform
+output "private_subnet" {
+  value = ["${aws_subnet.private.*.id}"]
+}
+
+output "db_subnet_group_name" {
+  value = "${aws_db_subnet_group.rds.name}"
+}
+```
+
+Now we're ready:
+```terraform
+$ terraform refresh
 $ terraform apply
 ```
 
-To see your RDS, choose RDS from AWS console :)
+This is going to take a while... so go head for a coffee break and stretching. See you in about 15-20 min!
+.
+.
+.
+
+Nice! Navigate to AWS > RDS to see your newly created RDS!
 
 While we're at it, let's create an S3 bucket for the backup
 This is going to be very short and sweet!
 
 ```bash
-$ mkdir s3
-$ touch s3/main.tf
-$ touch s3/variables.tf
-$ touch s3/outputs.tf
+$ mkdir s3 && touch s3/main.tf && touch s3/variables.tf && touch s3/outputs.tf
 ```
 
-_s3 > main.tf_
+_s3/main.tf_
 ```terraform
 resource "aws_s3_bucket" "backup_bucket" {
   bucket = "${var.name}"
@@ -1079,7 +879,7 @@ resource "aws_s3_bucket" "backup_bucket" {
 }
 ```
 
-_s3 > variables.tf_
+_s3/variables.tf_
 ```terraform
 variable "name" {
   description = "Name of the S3 Bucket"
@@ -1090,7 +890,7 @@ variable "description" {
 }
 ```
 
-_s3 > outputs.tf_
+_s3/outputs.tf_
 ```terraform
 output "arn" {
   value = "${aws_s3_bucket.backup_bucket.arn}"
@@ -1119,13 +919,314 @@ $ terraform apply
 Looks good!
 
 **Summary:**
-So far we have created a VPC, a public subnet and an EC2 instance to host TeamCity. We build 2 private subnets and created an RDS in the subnet. In addition, an S3 bucket for the backup. At this point, my folder structure looks like this:
+So far we have created a VPC, a public subnet, NAT, 2 private subnets, public, private and rds security groups, last but not the least, we created an RDS in the private subnet and an S3 bucket for the backup. At this point, my folder structure looks like this:
+
+```bash
+.
+├── main.tf
+├── rds
+│   ├── main.tf
+│   └── variables.tf
+├── s3
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── sg
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── terraform.tfstate
+├── terraform.tfstate.backup
+├── terraform.tfvars
+├── variables.tf
+└── vpc
+    ├── main.tf
+    ├── nat.tf
+    ├── outputs.tf
+    ├── routing.tf
+    ├── subnets.tf
+    └── variables.tf
+
+4 directories, 19 files
+```
+
+And this is our infrastructure diagram:
+### TBC: Infrastructure Diagram
+
+
+
+## Launch a public EC2 instance to host the TeamCity
+Now we're ready to build our EC2 instance. We are going to launch this in the public subnet. Next we're going to use TeamCity Docker image and run it in our instance and configure it to use the RDS we just build. 
+
+I am going to use a debian trusted image that I have used before, you may choose a debian, ubuntu, etc. Just keep in mind that they might have different username to use for ssh. For example, debian uses admin.
+
+But before we create the ec2 module, AWS requires a Key Pair to create an instance. We can do this in two ways:
+
+1. If you want to use your existing key, then you can just add it to AWS > EC2 > Key Pairs > Import Key Pair.
+2. Navigate to AWS > EC2 > Key Pairs, then select "Create Key Pair". Give it a name (teamcity) and create. This is going to save a .pem key in your default download location. Move the key to a secure location (.ssh for example).
+
+
+```bash
+$ mkdir ec2 && touch ec2/main.tf && touch ec2/variables.tf
+```
+
+_ec2/main.tf_
+```terraform
+resource "aws_instance" "teamcity" {
+  ami                         = "${var.ami}"
+  instance_type               = "m3.medium"
+  key_name                    = "${var.key_name}"
+  subnet_id                   = "${var.public_subnet_id}"
+  user_data                   = "${data.template_file.teamcity_userdata.rendered}"
+  vpc_security_group_ids      = ["${var.vpc_security_group_ids}"]
+  associate_public_ip_address = true
+
+  tags = {
+    Name = "TeamCity"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+```
+
+I want to use the user_data to configure the instance immediately using a template, using resource. Do add this to _ec2/main.tf_
+
+
+```terraform
+.
+.
+
+data "template_file" "teamcity_userdata" {
+  template = "${file("${path.module}/scripts/setup.sh")}"
+
+  vars {
+    db_url      = "${var.db_url}"
+    db_port     = "${var.db_port}"
+    db_name     = "${var.db_name}"
+    db_username = "${var.db_username}"
+    db_password = "${var.db_password}"
+  }
+}
+```
+
+_db_setup.sh_ will contain all the steps that I want to run in order to configure my instance. You can also ssh into the machine and run these manually. More oever, I am installing "tree" and "touch" because I use them often, you can customize it however you want.
+
+```bash
+$ mkdir ec2/scripts && touch ec2/scripts/setup.sh
+```
+
+_ec2/scripts/setup.sh_
+```sh
+#!/bin/bash
+sudo apt-get update
+sudo apt-get install tree
+sudo apt-get install touch
+sudo mkdir -p /opt/teamcity
+sudo mkdir -p /opt/teamcity/var/logs
+sudo mkdir -p /opt/teamcity/lib/jdbc
+sudo mkdir -p /opt/teamcity/config
+sudo apt-get install -y apt-transport-https dirmngr
+echo 'deb https://apt.dockerproject.org/repo debian-stretch main' | sudo tee --append /etc/apt/sources.list
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys F76221572C52609D
+sudo apt-get update
+sudo apt-get install -y docker-engine --allow-unauthenticated
+sudo docker system prune -af
+sudo docker rm $(docker ps -aq)
+sudo docker pull jetbrains/teamcity-server
+DEBIAN_FRONTEND=noninteractive sudo apt-get update -y
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y wget
+wget https://jdbc.postgresql.org/download/postgresql-9.4.1209.jre6.jar 
+sudo mv postgresql-9.4.1209.jre6.jar /opt/teamcity/lib/jdbc/
+sudo tee /opt/teamcity/config/database.properties <<EOF
+connectionUrl=jdbc:postgresql://${db_url}:${db_port}/${db_name}
+connectionProperties.user=${db_username}
+connectionProperties.password=${db_password}
+EOF
+sudo sudo apt-get install -y postgresql
+sudo docker run --rm -d --name teamcity-server-instance -v /opt/teamcity:/data/teamcity_server/datadir -v /opt/teamcity/var/logs:/opt/teamcity/logs -p 8111:8111 jetbrains/teamcity-server
+```
+
+Let's go ahead and create our variables.
+
+_ec2/variables.tf_
+```terraform
+variable "ami" {
+  description = "trusted debian ami"
+  default     = "default value"
+}
+
+variable "db_url" {
+  default = "default value"
+}
+
+variable "db_username" {
+  default = "default value"
+}
+
+variable "db_password" {
+  default = "default value"
+}
+
+variable "db_port" {
+  default = "default value"
+}
+
+variable "db_name" {
+  default = "default value"
+}
+
+variable "key_name" {
+  default = "default value"
+}
+
+variable "public_subnet_id" {
+  default = "default value"
+}
+
+variable "vpc_security_group_ids" {
+  default = "default value"
+}
+```
+
+It's time to call out ec2 module.
+
+_main.tf_
+```terraform
+.
+.
+
+module "ec2" {
+  source                 = "ec2"
+  ami                    = "${var.debian_ami}"
+  db_username            = "${var.db_username}"
+  db_password            = "${var.db_password}"
+  db_name                = "${var.db_name}"
+  db_port                = "${module.rds.db_port}"
+  db_url                 = "${module.rds.database_address}"
+  key_name               = "${var.key_name}"
+  public_subnet_id       = "${module.vpc.public_subnet}"
+  vpc_security_group_ids = "${module.sg.web_security_groups_id}"
+}
+```
+
+I kept my debian_ami in the _variables.tf_ because I am going to use that image in couple other places later, you can hard-code it if you want to.
+
+**Notice:** key_name should be the name of the key you added in AWS
+
+_variables.tf_
+```terraform
+.
+.
+
+variable "key_name" {
+  default = "teamcity"
+}
+
+variable "debian_ami" {
+  default = "ami-0bd9223868b4778d7"
+}
+```
+
+Let's add the rest of the variables and outputs we need.
+
+```bash
+$ touch rds/outputs.tf
+```
+
+_rds/outputs.tf_
+```terraform
+output "database_address" {
+  value = "${replace(aws_db_instance.database.endpoint, ":5432", "")}"
+}
+
+output "db_port" {
+  value = "5432"
+}
+```
+
+_vpc/outputs.tf_
+```terraform
+.
+.
+
+output "public_subnet" {
+  value = "${aws_subnet.public.id}"
+}
+```
+
+_sg/outouts.tf_
+```terraform
+output "web_security_groups_id" {
+  value = "${aws_security_group.teamcity_web_sg.id}"
+}
+```
+
+Last but not the least, let's output the ssh command so we can easily access our instance.
+
+```bash
+$ touch outputs.tf
+```
+
+_outputs.tf_
+```terraform
+output "teamcity_web_ssh_command" {
+  value = "${format("ssh -i ~/.ssh/teamcity.pem admin@ec2-%s.compute-1.amazonaws.com", "${replace("${module.ec2.teamcity_web_ip}", ".", "-")}")}"
+}
+```
+
+Now we need to add an output for ec2 to give us the teamcity_web_ip.
+
+```bash
+$ touch ec2/outputs.tf
+```
+
+_ec2/outputs.tf_
+```terraform
+output "teamcity_web_ip" {
+  value = "${aws_instance.teamcity.public_ip}"
+}
+```
+
+It's the moment of truth!!!
+
+```bash
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
+
+You should see a similar output to the following:
+```bash
+Apply complete! Resources: 1 added, 1 changed, 0 destroyed.
+
+Outputs:
+
+teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity.pem admin@ex.y.z.d.compute-1.amazonaws.com
+```
+
+# BEAUTIFUL!
+
+Navigate to AWS > EC2. You know have 1 running instance. Wait for the initialization to be done.
+When the status check is done and server is up you can access your TeamCity via browser: ex.y.z.d.compute-1.amazonaws.com:8111
+
+
+Congratulations!
+
+I hope this was helpful. Please let me know your thoughts. 
+You can find the code on github: https://github.com/saslani/terraform_teamcity_aws
+This is a very simple setup. If you would like to add features, please make a branch. We will keep all new features in the branch for those you need it.
+
+At this point, this is how my folder structure looks like:
 
 ```bash
 .
 ├── ec2
 │   ├── main.tf
 │   ├── outputs.tf
+│   ├── scripts
+│   │   └── setup.sh
 │   └── variables.tf
 ├── main.tf
 ├── outputs.tf
@@ -1146,83 +1247,17 @@ So far we have created a VPC, a public subnet and an EC2 instance to host TeamCi
 ├── terraform.tfvars
 ├── variables.tf
 └── vpc
+    ├── main.tf
     ├── nat.tf
     ├── outputs.tf
     ├── routing.tf
     ├── subnets.tf
     └── variables.tf
+
+6 directories, 25 files
 ```
 
-**Commit the changes, if you haven't done yet.**
+And this is our final infrastructure diagram
 
-So far, this is now our infrastructure document looks like
-### TBC: Architecture Diagram
-
-
-## Provisioning
-
-Now let's write some ansible to do some heavy lifting and configure teamcity for us on the instance we just built
-
-
-```bash
-```
-
-
-............MANUAL STEPS
-We can install Teamcity manually or write an ansible for it. If you prefer to set up manually, ssh into the machine and follow the steps bellow. Otherwise, skip this section and continue on **Add a Private Subnet and EC2 Instance to contain the Database for Teamcity** to build a private subnet, add an EC2 instance, create RDS and then use ansible to provision teamcity:
-
-```bash
-# Install docker:
-$ sudo apt-get install apt-transport-https dirmngr
-# answer Y
-
-#Add Docker package depository to your /etc/apt/sources.list sources list:
-$ echo 'deb https://apt.dockerproject.org/repo debian-stretch main' | sudo tee --append /etc/apt/sources.list
-
-# Obtain docker's repository signature and updated package index:
-$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys F76221572C52609D
-$ sudo apt-get update
-
-#Install docker
-$ sudo apt-get install docker-engine
-# answer Y
-
-### Install teamcity
-$ sudo docker system prune -a
-# answer y
-
-$ sudo docker pull jetbrains/teamcity-server
-
-$ sudo mkdir /home/teamcity
-$ sudo mkdir /var/log/teamcity
-
-$ sudo docker run -it --name teamcity-server-instance \
--v /home/teamcity:/data/teamcity_server/datadir \
--v /var/log/teamcity:/opt/teamcity/logs \
--p 8111:8111 \
-jetbrains/teamcity-server
-```
-
-## Tie it all together
-Very teamcity is up: `http://ec2-x.y.z.d.compute-1.amazonaws.com:8111`
-Follow the instruction to install teamcity, using the buildin HSQL (this could take a while)
-You can use the Teamcity [docs](https://confluence.jetbrains.com/display/TCD18/Configure+and+Run+Your+First+Build) to configure an agent
-
-
-
-
-
-
-
---------------
-Please let me know what you think about this tutorial, if I have missed any steps :)
-
-
-
-## References
-- https://confluence.jetbrains.com/display/TCD18/Running+TeamCity+Stack+in+AWS
-- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair
-- https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html
-- https://dev-ops-notes.com
-
+### TBC: Infrastructure Diagram
 
