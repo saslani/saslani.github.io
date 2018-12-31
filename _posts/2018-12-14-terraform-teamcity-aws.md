@@ -66,8 +66,6 @@ In this tutorial, we'll build a very basic infrastructure to host TeamCity on AW
   + Create security group
   + Modify the routing
 - Launch a public EC2 instance to host the TeamCity (using docker image) and connect to RDS PostgreSQL
-- Create a single agent and a pipeline to make sure everything works
-  + Create an agent and run a build!
 
 
 Let's get started!!
@@ -93,7 +91,7 @@ Now let's write some terraform code. The biggest advantage of infrastructure as 
 I am going to use **us-east-1**. You can use any region you like.
 
 _main.tf_
-```terraform
+```
 provider "aws" {
   region = "us-east-1"
 }
@@ -108,7 +106,7 @@ enable_dns_hostnames by default is false. We want to enable DNS hostnames in the
 Add tags, Name, to see the name in the VPC list, specially if you have more than 1 VPC, so that you can easily distinguish them.
 
 _main.tf_
-```terraform
+```
 resource "aws_vpc" "vpc" {
   cidr_block            = "10.0.0.0/16"
   enable_dns_hostnames  = true
@@ -158,13 +156,13 @@ $ touch terraform.tfvars
 ```
 
 _terraform.tfvars_
-```terraform
+```
 aws_access_key = "YOUR_ACCESS_KEY"
 aws_secret_key = "YOUR_SECRET_KEY"
 ```
 
 _main.tf_
-```terraform
+```
 provider "aws" {
   .
 
@@ -195,7 +193,7 @@ $ touch variables.tf
 Terraform variables are declared in a variable block. You can declare a type, by default it's string, description and a default value
 
 _variables.tf_
-```terraform
+```
 variable "aws_access_key" {
   description = "AWS access key"
 }
@@ -276,7 +274,7 @@ $ touch vpc/main.tf
 Now let's move the "aws_vpc" from _main.tf_ to _vpc/main.tf_
 
 _vpc/main.tf_
-```terraform
+```
 resource "aws_vpc" "vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -290,7 +288,7 @@ resource "aws_vpc" "vpc" {
 Now change the _main.tf_ to call module vpc. The source's value is the path to the vpc module. You can also include a git url, if a different team is in charge of that module.
 
 _main.tf_
-```terraform
+```
 .
 .
 
@@ -315,7 +313,7 @@ $ touch vpc/nat.tf
 ```
 
 _vpc/nat.tf_
-```terraform
+```
 resource "aws_eip" "nat_gw_eip" {
   vpc = true
 
@@ -342,7 +340,7 @@ $ touch vpc/subnets.tf
 
 Navigate to _vpc/subnets.tf_ inside the vpc folder. We want to add an [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource and name it public. I am passing a variable _availability_zone_ since I don't have a preference. If you do, you can hard-code this to be "us-east-1a" for example. 
 
-```terraform
+```
 .
 .
 
@@ -366,7 +364,7 @@ $ touch vpc/routing.tf
 In this file, we need to create an [aws_internet_gateway](https://www.terraform.io/docs/providers/aws/d/internet_gateway.html) (we name it vpc_igw). Then create an [aws_route_table](https://www.terraform.io/docs/providers/aws/d/route_table.html) (vpc_public). Last but not the least, an association resource, [aws_route_table_association](https://www.terraform.io/docs/providers/aws/r/route_table_association.html) (vpc_public).
 
 _vpc/routing.tf_
-```terraform
+```
 resource "aws_internet_gateway" "vpc_igw" {
   vpc_id = "${aws_vpc.vpc.id}"
 
@@ -414,7 +412,7 @@ $ touch vpc/variables.tf
 Let's create a default cidr_block inside the _vpc/variables.tf_ but pass in the availability_zones from _main.tf_.
 
 _vpc/variables.tf_
-```terraform
+```
 variable "availability_zones" {
   description = "List of availability zones over which to distribute subnets"
   type        = "list"
@@ -426,7 +424,7 @@ variable "public_cidr_block" {
 ```
 
 and change the _main.tf_, where we call the vpc module:
-```terraform
+```
 .
 .
 
@@ -446,7 +444,7 @@ $ mkdir sg && touch sg/main.tf
 Inside the sg/main.tf, we are going to create an [aws_security_group](https://www.terraform.io/docs/providers/aws/d/internet_gateway.html) (teamcity_web_sg) and add ingress (right to enter a property) and egress (right to exit a property) rules:
 
 _sp/main.tf_
-```terraform
+```
 resource "aws_security_group" "teamcity_web_sg" {
   name        = "TeamCity_sg"
   description = "Allow TeamCity SSH & HTTP inbound connection"
@@ -486,11 +484,11 @@ $ touch sg/variables.tf
 ```
 
 _sg/variables.tf_
-```terraform
+```
 ```
 
 Last, but not the least, we need to call this module from _main.tf_
-```terraform
+```
 .
 .
 
@@ -521,7 +519,7 @@ $ touch vpc/outputs.tf
 ```
 
 _vpc/outputs.tf_
-```terraform
+```
 output "vpc_id" {
   value = "${aws_vpc.vpc.id}"
 }
@@ -573,7 +571,7 @@ override.tf.json
 Now, we're ready to create our private subnet and security group for the RDS:
 
 _vpc/subnets.tf_
-```terraform
+```
 .
 .
 
@@ -600,7 +598,7 @@ resource "aws_db_subnet_group" "rds" {
 ```
 
 _vpc/routing.tf_
-```terraform
+```
 .
 .
 
@@ -625,7 +623,7 @@ resource "aws_route_table_association" "vpc_private" {
 ```
 
 _vpc/variables.tf_
-```terraform
+```
 .
 .
 
@@ -640,7 +638,7 @@ variable "private_cidr_block" {
 ```
 
 and the RDS security group:
-```terraform
+```
 resource "aws_security_group" "rds_sg" {
   name        = "TeamCity_rds_sg"
   description = "TeamCity RDS Security Group"
@@ -675,7 +673,7 @@ resource "aws_security_group" "rds_sg" {
 ```
 
 Apply the changes:
-```terraform
+```
 $ terraform apply
 ```
 
@@ -713,7 +711,7 @@ $ mkdir rds && touch rds/main.tf && touch rds/variables.tf
 
 We will be using [aws_db_instance](https://www.terraform.io/docs/providers/aws/d/db_instance.html) resource.
 _rds/main.tf_
-```terraform
+```
 resource "aws_db_instance" "database" {
   identifier                = "${var.instance_identifier}"
   final_snapshot_identifier = "${var.instance_identifier}"
@@ -741,7 +739,7 @@ resource "aws_db_instance" "database" {
 ```
 
 _rds/variables.tf_
-```terraform
+```
 variable "db_password" {
   default = "default value"
 }
@@ -784,7 +782,7 @@ variable "vpc_security_group_ids" {
 ```
 
 Call the rds module form _main.tf_
-```terraform
+```
 .
 .
 
@@ -834,14 +832,14 @@ $ touch sg/outputs.tf
 ```
 
 _sg/outputs.tf_
-```terraform
+```
 output "rds_security_groups_id" {
   value = "${aws_security_group.rds_sg.id}"
 }
 ```
 
 _vpc/outputs/tf_
-```terraform
+```
 output "private_subnet" {
   value = ["${aws_subnet.private.*.id}"]
 }
@@ -852,7 +850,7 @@ output "db_subnet_group_name" {
 ```
 
 Now we're ready:
-```terraform
+```
 $ terraform refresh
 $ terraform apply
 ```
@@ -872,7 +870,7 @@ $ mkdir s3 && touch s3/main.tf && touch s3/variables.tf && touch s3/outputs.tf
 ```
 
 _s3/main.tf_
-```terraform
+```
 resource "aws_s3_bucket" "backup_bucket" {
   bucket = "${var.name}"
   acl    = "private"
@@ -884,7 +882,7 @@ resource "aws_s3_bucket" "backup_bucket" {
 ```
 
 _s3/variables.tf_
-```terraform
+```
 variable "name" {
   description = "Name of the S3 Bucket"
 }
@@ -895,14 +893,14 @@ variable "description" {
 ```
 
 _s3/outputs.tf_
-```terraform
+```
 output "arn" {
   value = "${aws_s3_bucket.backup_bucket.arn}"
 }
 ```
 
 _main.tf_
-```terraform
+```
 .
 .
 
@@ -975,7 +973,7 @@ $ mkdir ec2 && touch ec2/main.tf && touch ec2/variables.tf
 ```
 
 _ec2/main.tf_
-```terraform
+```
 resource "aws_instance" "teamcity" {
   ami                         = "${var.ami}"
   instance_type               = "m3.medium"
@@ -998,7 +996,7 @@ resource "aws_instance" "teamcity" {
 I want to use the user_data to configure the instance immediately using a template, using resource. Do add this to _ec2/main.tf_
 
 
-```terraform
+```
 .
 .
 
@@ -1055,7 +1053,7 @@ sudo docker run --rm -d --name teamcity-server-instance -v /opt/teamcity:/data/t
 Let's go ahead and create our variables.
 
 _ec2/variables.tf_
-```terraform
+```
 variable "ami" {
   description = "trusted debian ami"
   default     = "default value"
@@ -1097,7 +1095,7 @@ variable "vpc_security_group_ids" {
 It's time to call out ec2 module.
 
 _main.tf_
-```terraform
+```
 .
 .
 
@@ -1120,7 +1118,7 @@ I kept my debian_ami in the _variables.tf_ because I am going to use that image 
 **Notice:** key_name should be the name of the key you added in AWS
 
 _variables.tf_
-```terraform
+```
 .
 .
 
@@ -1140,7 +1138,7 @@ $ touch rds/outputs.tf
 ```
 
 _rds/outputs.tf_
-```terraform
+```
 output "database_address" {
   value = "${replace(aws_db_instance.database.endpoint, ":5432", "")}"
 }
@@ -1151,7 +1149,7 @@ output "db_port" {
 ```
 
 _vpc/outputs.tf_
-```terraform
+```
 .
 .
 
@@ -1161,7 +1159,7 @@ output "public_subnet" {
 ```
 
 _sg/outouts.tf_
-```terraform
+```
 output "web_security_groups_id" {
   value = "${aws_security_group.teamcity_web_sg.id}"
 }
@@ -1174,7 +1172,7 @@ $ touch outputs.tf
 ```
 
 _outputs.tf_
-```terraform
+```
 output "teamcity_web_ssh_command" {
   value = "${format("ssh -i ~/.ssh/teamcity.pem admin@ec2-%s.compute-1.amazonaws.com", "${replace("${module.ec2.teamcity_web_ip}", ".", "-")}")}"
 }
@@ -1187,7 +1185,7 @@ $ touch ec2/outputs.tf
 ```
 
 _ec2/outputs.tf_
-```terraform
+```
 output "teamcity_web_ip" {
   value = "${aws_instance.teamcity.public_ip}"
 }
