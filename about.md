@@ -25,6 +25,7 @@ But to be lucky, you need to take chances and be ready to make incredible sacrif
 This is a story about a character. I flourished in spite of adversity through grit, zest, optimism, and making the most of every opportunity that came my way. I hope my story will inspire you to see the opportunities around you, to say "yes" more often when you have the chance to pursue your dreams, and to never give in to despair even in the hardest of times.
 
 
+![](/assets/about_me/ch_1.jpeg)
 
 ## Chapter 1 - Iran
 
@@ -44,6 +45,8 @@ I started life surrounded by war and danger. That was my environment, but at hom
 
 Lessons learned: Endurance. Building a support network of close family and friends to help in times of need.
 
+
+![](/assets/about_me/ch_2.png)
 
 ## Chapter 2 - School
 
@@ -69,7 +72,7 @@ Lesson learned:
 Failure is just the end of one possible path to achieve a goal. Stay hopeful, and be open to other possibilities. Make new opportunities, don’t just sit and wait for something to happen to you.
 
 
-
+![](/assets/about_me/ch_3.png)
 
 ## Chapter 3 - America 
 
@@ -78,9 +81,6 @@ This chapter begins with my landing at Chicago’s O’Hare airport on a freezin
 The chapter ends with the upside: I lived in a dorm of international students and met people from all over the world. I was given an American host family, who welcomed me to their home and let me take part in their traditions. 
 
 Lesson learned: At some point in every life, we experience difficulty, loneliness and pain. You are not alone. You can choose: be defeated by your hardships or grow from them.
-
-
-
 
 
 ## Chapter 4 — Disaster 
@@ -95,6 +95,8 @@ The chapter ends with me sticking it out, deciding to stay and working hard. I e
 
 Lesson learned: Don’t give up easily. Be strong. Don’t lose sight of the goal.
 
+
+![](/assets/about_me/ch_5.jpg)
 
 ## Chapter 5 — Going Green
 
@@ -119,7 +121,7 @@ Despite the bittersweet reunion, I felt happy, lucky and blessed. I was ready to
 Lesson learned: The future can be better than the present, and you have the power to make it! Yes, there is some luck involved, but the work you do and the character you demonstrate as you do it gives you the best chance to succeed when opportunity presents itself.
 
 
-
+![](/assets/about_me/ch_6.jpg)
 
 ## Chapter 6 — Falling in Love
 
@@ -146,6 +148,8 @@ The chapter ends with Bobby and I getting engaged and traveling to Iran so that 
 Lesson learned: Try new things. Be open to adventure!
 
 
+![](/assets/about_me/ch_7.jpg)
+
 ## Chapter 7 — Here Come the Babies 
 
 
@@ -171,6 +175,8 @@ The chapter ends with Bobby moving to yet another startup, me consulting and run
 
 Lesson learned: Get up, make time meaningful, and find happiness in what you are doing. Know that hardship is temporary. Telling yourself something is hard makes it harder. Focus on the light at the end of the tunnel.
 
+
+![](/assets/about_me/ch_8.jpg)
 
 ## Chapter 8 — Transition
 
