@@ -25,9 +25,9 @@ But to be lucky, you need to take chances and be ready to make incredible sacrif
 This is a story about a character. I flourished in spite of adversity through grit, zest, optimism, and making the most of every opportunity that came my way. I hope my story will inspire you to see the opportunities around you, to say "yes" more often when you have the chance to pursue your dreams, and to never give in to despair even in the hardest of times.
 
 
-![](/assets/about_me/ch_1.jpeg)
-
 ## Chapter 1 - Iran
+
+![](/assets/images/about_me/ch_1.jpeg){:width="400x"}
 
 This chapter sets the stage for my journey from growing up in Iran, to coming alone as a young girl to the United States and becoming a thriving entrepreneur and consultant in America.
 
@@ -46,9 +46,9 @@ I started life surrounded by war and danger. That was my environment, but at hom
 Lessons learned: Endurance. Building a support network of close family and friends to help in times of need.
 
 
-![](/assets/about_me/ch_2.png)
-
 ## Chapter 2 - School
+
+![](/assets/images/about_me/ch_2.png){:width="400x"}
 
 This chapter traces my early childhood to my decision to immigrate alone to American at the age of 18.
 
@@ -72,9 +72,9 @@ Lesson learned:
 Failure is just the end of one possible path to achieve a goal. Stay hopeful, and be open to other possibilities. Make new opportunities, don’t just sit and wait for something to happen to you.
 
 
-![](/assets/about_me/ch_3.png)
-
 ## Chapter 3 - America 
+
+![](/assets/images/about_me/ch_3.png){:width="400x"}
 
 This chapter begins with my landing at Chicago’s O’Hare airport on a freezing December day in 2000. I arrived knowing that I could not return to my home country or my family for years because of the restrictions of the student visa I had. I spoke very little English. I knew no one other than my uncle and aunt. I felt older than my real age because of the things I faced that most other college students didn’t. I had to closely watch my money since I was borrowing from my uncle to pay for my education. I couldn’t even afford my own computer to do my schoolwork; I stayed at the school’s computer lab all day and into the night.
 
@@ -96,9 +96,9 @@ The chapter ends with me sticking it out, deciding to stay and working hard. I e
 Lesson learned: Don’t give up easily. Be strong. Don’t lose sight of the goal.
 
 
-![](/assets/about_me/ch_5.jpg)
-
 ## Chapter 5 — Going Green
+
+![](/assets/images/about_me/ch_5.jpg){:width="400x"}
 
 This chapter tells the story of how I found out about the Green Card lottery around the time I started graduate school. It includes this passage:
 
@@ -121,9 +121,9 @@ Despite the bittersweet reunion, I felt happy, lucky and blessed. I was ready to
 Lesson learned: The future can be better than the present, and you have the power to make it! Yes, there is some luck involved, but the work you do and the character you demonstrate as you do it gives you the best chance to succeed when opportunity presents itself.
 
 
-![](/assets/about_me/ch_6.jpg)
-
 ## Chapter 6 — Falling in Love
+
+![](/assets/images/about_me/ch_6.jpg){:height="400x"}
 
 This chapter begins in the happy period of time after getting my Green Card and takes me to one of the most important events in my story: meeting and marrying my husband and future business partner, Bobby. 
 
@@ -148,10 +148,9 @@ The chapter ends with Bobby and I getting engaged and traveling to Iran so that 
 Lesson learned: Try new things. Be open to adventure!
 
 
-![](/assets/about_me/ch_7.jpg)
-
 ## Chapter 7 — Here Come the Babies 
 
+| ![](/assets/images/about_me/ch_7_1.jpg){:width="400x"} | ![](/assets/images/about_me/ch_7_2.jpg){:width="400x"} |
 
 This chapter begins with Bobby and I getting married in 2010, at a wedding attended by my parents, who got their visas to come just in time.
 
@@ -176,9 +175,9 @@ The chapter ends with Bobby moving to yet another startup, me consulting and run
 Lesson learned: Get up, make time meaningful, and find happiness in what you are doing. Know that hardship is temporary. Telling yourself something is hard makes it harder. Focus on the light at the end of the tunnel.
 
 
-![](/assets/about_me/ch_8.jpg)
-
 ## Chapter 8 — Transition
+
+![](/assets/images/about_me/ch_8.jpg){:width="400x"}
 
 And did you get what you wanted from this life, even so?
 I did.
