@@ -152,7 +152,7 @@ Lesson learned: Try new things. Be open to adventure!
 
 ## Chapter 7 — Here Come the Babies 
 
-| ![](/assets/images/about_me/ch_7_1.jpg){:width="400x"} | ![](/assets/images/about_me/ch_7_2.jpg){:width="400x"} |
+| ![](/assets/images/about_me/ch_7_2.jpg){:width="400x"} | ![](/assets/images/about_me/ch_7_1.jpg){:width="400x"} |
 
 This chapter begins with Bobby and I getting married in 2010, at a wedding attended by my parents, who got their visas to come just in time.
 
