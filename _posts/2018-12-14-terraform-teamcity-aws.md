@@ -5,6 +5,10 @@ date:   2018-12-26 16:15:15
 categories: Infrastructure as Code
 ---
 
+## NOTE
+- This article is still **WIP** but I noticed some clones on my github already. So I am putting this up, in case anybody needs it sooner :)
+
+
 I see infrastructure as engineering and not just operations. We made changes, add or delete modules, and not just maintaining them or keeping things running. Hence, I am pro Infrastructure as Code. Terraform is a great tool for Infrastructure engineering. Moreover,
 - I like programing rather than click though UI!
 - I want to minimize my work if I have to change the host (i.e. move from AWS to Azure, etc)
