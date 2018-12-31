@@ -4,8 +4,10 @@ title: About
 permalink: /about/
 ---
 I don't have a twitter account, instagram, snapchat, etc.
+
 I am a complicated person, I need a lot more time to write this!
-I also started writing a memoir almost 2 years ago, and while I have written down pretty much everything I wanted to, it's been a stretch to finish it. I am actively, looking for a publisher to help me with this. For the time being, this is my book summary...
+
+However, I started writing a memoir almost 2 years ago, and while I have written down pretty much everything I wanted to, it's been a challenge to finish it. I am actively, looking for a publisher to help me with this. For the time being, this is my book summary...
 
 -----
 
