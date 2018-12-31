@@ -1213,6 +1213,7 @@ teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity.pem admin@ex.y.z.d.compute-1.a
 Navigate to AWS > EC2. You know have 1 running instance. Wait for the initialization to be done.
 When the status check is done and server is up you can access your TeamCity via browser: ex.y.z.d.compute-1.amazonaws.com:8111
 
+The first time you access TeamCity via browser, TeamCity might take a long time to initialize, depending on the image and instance_type you chose for EC2.
 
 Congratulations!
 
