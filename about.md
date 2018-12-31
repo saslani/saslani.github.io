@@ -98,7 +98,7 @@ Lesson learned: Don’t give up easily. Be strong. Don’t lose sight of the goa
 
 ## Chapter 5 — Going Green
 
-![](/assets/images/about_me/ch_5.jpg){:width="400x"}
+![](/assets/images/about_me/ch_5.JPG){:width="400x"}
 
 This chapter tells the story of how I found out about the Green Card lottery around the time I started graduate school. It includes this passage:
 
