@@ -23,6 +23,9 @@ In this tutorial, we'll build a very basic infrastructure to host TeamCity on AW
 - Fair understanding of TeamCity: We will not be going through TeamCity training. We will just confirm that it works properly
 - Familiarity with a programing language
 - We won't go deep into learning terraform, you can refer to the HashiCorp documents if you want to learn more
+- We will using make later in the tutorial. You need you install `brew install make --with-default-names` which depends on XCode. 
+  - If you use windows, improvise appropriately. 
+  - If you don't want to use make file, copy the ssh-key command from the makefile and run it manually in your terminal
 
 #### Getting started:
 - [TeamCity](https://www.jetbrains.com/teamcity/download/) 2017.2+ has a free account with 3 build agents for 100 build configurations. So you can start there and purchase the license if you need to.
@@ -41,6 +44,21 @@ In this tutorial, we'll build a very basic infrastructure to host TeamCity on AW
     * AmazonRoute53FullAccess
 
 **NOTE:** 
+- I am using resources available in us-east-2. If you prefer to use a different region or change instances you will need to change the following accordingly:
+  - region in _variables.tf_
+  - debian_ami in _variables.tf_
+  - instance_type in _ec2/main.tf_
+  - instance_class in _rds/main.tf_
+
+- This is a great source for aws instance price information and region availability: [ec2instances](https://ec2instances.info/?region=us-east-2&cost_duration=monthly)
+- To choose a different ami:
+  - Visit the [market place](https://aws.amazon.com/marketplace) and filter the results (i.e. All Infrastructure, Amazon Machine Image, Free, API, in the next window select your region ...)
+  - Pick your image and "Continue to Subscribe" > "Continue to configuration"
+  - Make a note of the Ami Id: ami-0bd9223868b4778d7
+  - **DO NOT CONTINUE TO LAUNCH** we want to do this in terraform!
+
+![](/assets/images/terraform_teamcity_aws/ami.png)
+
 - Small AWS charge. To keep the charge minimum run **terraform destroy** at the end of the tutorial, if you wish.
 - I am using _main.tf_, _variables.tf_, and _outputs.tf_ consistently throughout this project, you may wish to change the names, or just develop in one single file. All tf files in a directory will be compiled together. So separating them, is my personal preference.
 - I am using MAC OS Majave, so change the bash commands appropriately, if you are using any other OS
@@ -146,7 +164,7 @@ Error: Error refreshing state: 1 error(s) occurred:
 You can do this in couple different ways. I'm going to assume that you're familiar with AWS's [Best Practices for Managing AWS Access Keys](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html). As a brief primer, there are only a few [AWS tasks that require root](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html). You should, at a minimum, have created an IAM Admin User and Group. Use your IAM user's access keys, not one's attached to your root user. Setting this up is outside the scope of this tutorial, but refer to the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) if you need to do this step.
 
 
-You can export the credentials as environment variables into the terminal shell and you won't be prompted as long as you use that shell. Or you can save them into a ***.tfvars** file and add it to the provider (make sure to include this file in .gitignore).
+You can export the credentials as environment variables into the terminal shell and you won't be prompted as long as you use that shell. Or you can save them into a **.tfvars** file and add it to the provider (make sure to include this file in .gitignore).
 
 **Export into the shell** (if you choose this skip to ****)
 ```bash
@@ -925,7 +943,7 @@ _variables.tf_
 .
  
 variable "unique_s3_name" {
-  type = "string" 
+  default = "PICK_A_GLOBALLY_UNIQUE_NAME" 
 }
 
 ```
@@ -980,21 +998,45 @@ Now we're ready to build our EC2 instance. We are going to launch this in the pu
 
 I am going to use a debian trusted image that I have used before, you may choose a debian, ubuntu, etc. Just keep in mind that they might have different username to use for ssh. For example, debian uses admin.
 
-But before we create the ec2 module, AWS requires a Key Pair to create an instance. We can do this in two ways:
-
-1. If you want to use your existing key, then you can just add it to AWS > EC2 > Key Pairs > Import Key Pair.
-2. Navigate to AWS > EC2 > Key Pairs, then select "Create Key Pair". Give it a name (teamcity) and create. This is going to save a .pem key in your default download location. Move the key to a secure location (.ssh for example).
-
 
 ```bash
 $ mkdir ec2 && touch ec2/main.tf && touch ec2/variables.tf
 ```
 
+Before we create the ec2 module, AWS requires a Key Pair, for simplicity, we need to generat a key-pair and upload it to teamcity. I am using a makefile to generate the key and save it in `~/.ssh`, you can change the path if you wish. Let's call our key **teamcity**. Create **makefile** in the root.
+
+_makefile_
+```
+SHELL := /usr/bin/env bash
+ssh-key:
+  test ! -f ~/.ssh/teamcity.pub && ssh-keygen -t rsa -C 'teamcity' -P '' -f ~/.ssh/teamcity && chmod 400 ~/.ssh/teamcity.pub
+```
+
+Makefile is very fussy about spacing, so make sure you get it right!
+
+
+Then, we need to upload the public key to aws.
+
+
+_ec2/main.tf_
+
+```
+resource "aws_key_pair" "upload_key" {
+  key_name              = "${var.key_name}"
+  public_key            = "${file("${var.ssh_path}/${var.key_name}.pub")}"
+}
+```
+
+Now let's add the ec2 instance
+
 _ec2/main.tf_
 ```
+.
+.
+
 resource "aws_instance" "teamcity" {
   ami                         = "${var.ami}"
-  instance_type               = "m3.medium"
+  instance_type               = "t3.medium"
   key_name                    = "${var.key_name}"
   subnet_id                   = "${var.public_subnet_id}"
   user_data                   = "${data.template_file.teamcity_userdata.rendered}"
@@ -1105,6 +1147,10 @@ variable "public_subnet_id" {
   default = "default value"
 }
 
+variable "ssh_path" {
+  default = "default value"
+}
+
 variable "vpc_security_group_ids" {
   default = "default value"
 }
@@ -1127,13 +1173,14 @@ module "ec2" {
   db_url                 = "${module.rds.database_address}"
   key_name               = "${var.key_name}"
   public_subnet_id       = "${module.vpc.public_subnet}"
+  ssh_path               = "${var.ssh_path}"
   vpc_security_group_ids = "${module.sg.web_security_groups_id}"
 }
 ```
 
 I kept my debian_ami in the _variables.tf_ because I am going to use that image in couple other places later, you can hard-code it if you want to.
 
-**Notice:** key_name should be the name of the key you added in AWS
+**Notice:** key_name should be the name of the key you added in AWS. Also, I keep my keys is `~/.ssh`, modify this variable accordingly.
 
 _variables.tf_
 ```
@@ -1145,7 +1192,11 @@ variable "key_name" {
 }
 
 variable "debian_ami" {
-  default = "ami-0bd9223868b4778d7"
+  default = "ami-05829248ffee66250"
+}
+
+variable "ssh_path" {
+  default = "~/.ssh"
 }
 ```
 
@@ -1192,7 +1243,7 @@ $ touch outputs.tf
 _outputs.tf_
 ```
 output "teamcity_web_ssh_command" {
-  value = "${format("ssh -i ~/.ssh/teamcity.pem admin@ec2-%s.compute-1.amazonaws.com", "${replace("${module.ec2.teamcity_web_ip}", ".", "-")}")}"
+  value = "${format("ssh -i ~/.ssh/teamcity admin@%s", "${module.ec2.teamcity_web_ip}")}"
 }
 ```
 
@@ -1205,11 +1256,16 @@ $ touch ec2/outputs.tf
 _ec2/outputs.tf_
 ```
 output "teamcity_web_ip" {
-  value = "${aws_instance.teamcity.public_ip}"
+  value = "${aws_instance.teamcity.public_dns}"
 }
 ```
 
-It's the moment of truth!!!
+Let's create our key. Rmember that you need to have the bash installed (otherwise, reffer to **Prerequisites**)
+```bash
+  make ssh-key
+```
+
+NOW ... It's the moment of truth!!!
 
 ```bash
 $ terraform init
@@ -1223,7 +1279,7 @@ Apply complete! Resources: 1 added, 1 changed, 0 destroyed.
 
 Outputs:
 
-teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity.pem admin@ex.y.z.d.compute-1.amazonaws.com
+teamcity_web_ssh_command = ssh -i ~/.ssh/teamcity admin@ex.y.z.d.compute-1.amazonaws.com
 ```
 
 # BEAUTIFUL!
