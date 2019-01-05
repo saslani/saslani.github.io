@@ -88,13 +88,13 @@ $ touch main.tf
 
 Now let's write some terraform code. The biggest advantage of infrastructure as code, as we discussed earlier is that it's scalable and easy to change provider. In this tutorial we're going to use AWS, thus, our provider is aws. 
 
-I am going to use **us-east-1**. You can use any region you like. Also, To prevent automatic upgrades to new major versions that may contain breaking changes, it is recommended to add version = "..." constraints to the corresponding provider blocks in configuration, with the constraint strings suggested below. You can find the possible provider version constraints in the [Terraform documentation](https://www.terraform.io/docs/configuration/providers.html#provider-versions).
+I am going to use **us-east-2**. You can use any region you like. Also, To prevent automatic upgrades to new major versions that may contain breaking changes, it is recommended to add version = "..." constraints to the corresponding provider blocks in configuration, with the constraint strings suggested below. You can find the possible provider version constraints in the [Terraform documentation](https://www.terraform.io/docs/configuration/providers.html#provider-versions).
 
 
 _main.tf_
 ```
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
   version = "~> 1.54"
 }
 ```
@@ -345,7 +345,7 @@ Now we're ready to add a single public subnet.
 $ touch vpc/subnets.tf
 ```
 
-Navigate to _vpc/subnets.tf_ inside the vpc folder. We want to add an [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource and name it public. I am passing a variable _availability_zone_ since I don't have a preference. If you do, you can hard-code this to be "us-east-1a" for example. 
+Navigate to _vpc/subnets.tf_ inside the vpc folder. We want to add an [aws_subnet](https://www.terraform.io/docs/providers/aws/d/subnet.html) resource and name it public. I am passing a variable _availability_zone_ since I don't have a preference. If you do, you can hard-code this to be "us-east-2a" for example. 
 
 ```
 .
@@ -726,7 +726,7 @@ resource "aws_db_instance" "database" {
   allocated_storage         = "60"
   storage_type              = "gp2"
   engine                    = "postgres"
-  instance_class            = "db.m3.medium"
+  instance_class            = "db.t2.medium"
   name                      = "${var.db_name}"
   username                  = "${var.db_username}"
   password                  = "${var.db_password}"
@@ -914,9 +914,20 @@ _main.tf_
 #S3 bucket name has to be unique
 module "backup_bucket" {
   source      = "s3"
-  name        = "teamcity-backups-84121243"
+  name        = "${var.unique_s3_name}"
   description = "TeamCity Backups"
 }
+```
+
+_variables.tf_
+```
+.
+.
+ 
+variable "unique_s3_name" {
+  type = "string" 
+}
+
 ```
 
 Apply changes
