@@ -146,7 +146,7 @@ Error: Error refreshing state: 1 error(s) occurred:
 You can do this in couple different ways. I'm going to assume that you're familiar with AWS's [Best Practices for Managing AWS Access Keys](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html). As a brief primer, there are only a few [AWS tasks that require root](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html). You should, at a minimum, have created an IAM Admin User and Group. Use your IAM user's access keys, not one's attached to your root user. Setting this up is outside the scope of this tutorial, but refer to the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) if you need to do this step.
 
 
-You can export the credentials as environment variables into the terminal shell and you won't be prompted as long as you use that shell. Or you can save them into a ***.tfvars** file and add it to the provider.
+You can export the credentials as environment variables into the terminal shell and you won't be prompted as long as you use that shell. Or you can save them into a ***.tfvars** file and add it to the provider (make sure to include this file in .gitignore).
 
 **Export into the shell** (if you choose this skip to ****)
 ```bash
@@ -166,6 +166,8 @@ aws_access_key = "YOUR_ACCESS_KEY"
 aws_secret_key = "YOUR_SECRET_KEY"
 ```
 
+
+If you exported the values in the shell, skip the following and _variables.tf_ and run `terraform plan`
 _main.tf_
 ```
 provider "aws" {
