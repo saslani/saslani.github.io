@@ -7,7 +7,7 @@ categories: Infrastructure as Code
 
 As an engineer that designs and builds on EC2, I am pro Infrastructure as Code:
 
-- I like programing rather than tedious, error-prone clicking though a UI.
+- I like programming rather than tedious, error-prone clicking though a UI.
 - I want to minimize my work if I have to change cloud providers (e.g., move from AWS to Azure, or on-prem to AWS)
 - I want to generate a graph of dependencies among infrastructure components
 
