@@ -1,29 +1,20 @@
 ---
 layout: post
-title:  "History of Organizations"
+title:  "Learning from History to Design Your Style of Leadership"
 date:   2018-12-08 16:15:15
 categories: Management Skills
 ---
 
-Warning: This article is not for those who believe in Young Earth creationism; dinosaur bones are real!
-
-Why am I writing this article?
-
-As I mentioned in my [Leadership vs Management article])(http://localhost:4000/management/skills/2018/10/20/leadership-vs-management.html), I am exploring leadership and management styles. I want to know what makes strong leadership and why some managers are so hard to work with, even though they might be the best buddy's to grab a drink with!
+As I mentioned in my [Leadership vs Management article](http://localhost:4000/management/skills/2018/10/20/leadership-vs-management.html), I am exploring leadership and management styles. I want to know what makes for inspiring, effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be the best buddies to grab a drink with!
 
 This is part 2 of the essay and focuses on why we need organizations after all. In this article we'll take a look at:
 
-- First things first, what made our species survive
+- What made our species survive
 - What made us develop groups, tribes, and organizations
-- How did organizations evolve
-- Where are we at, in terms of organization evolution, now
+- How organizations evolved
+- Where we are now in terms of organization evolution
 
-<section>
-  - ~~Our parents were committed to 1 company, if our generation sticks around for more than 2-3 years we celebrate. Loyalty is changing~~
-  - ~~The contract between companies and employees are changing.~~
-  - ~~References of Skin in the game~~
-  - ~~Nasim Taleb - lone wolf~~
-</section>
+Warning: This article is not for those who believe in Young Earth creationism; dinosaur bones are real!
 
 <section>
   <title>History of Organization</title>
@@ -78,7 +69,7 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
     <p>
       One great example of human’s creative mind is religion. We are capable of believing in supernatural. Our creative mind
       allows us to believe in extraordinary things like God with unlimited power and so kind who is also tolerant of all the
-      suffering in the world and will punish you hardly in after life. We have communicated those belief and created a community around it. Hence, one of human’s biggest invention is region! Religion made us form tribes, worship Gods and work together to make Gods happy and satisfied. Religion made us believe in afterlife, Heaven and Hell. We do good things to enter the heavens and pray to be protected from the hell.
+      suffering in the world and would punish you hardly in after life. We have communicated those belief and created a community around it. Hence, one of human’s biggest invention is region! Religion made us form tribes, worship Gods and work together to make Gods happy and satisfied. Religion made us believe in afterlife, Heaven and Hell. We do good things to enter the heavens and pray to be protected from the hell.
     </p>
   </div>
 </section>
@@ -132,10 +123,10 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
   <div class="container">
     <div class="left text">
       <p>
-        Durban suggests that a number larger than this requires restrictions, laws and enforced norms to maintain a <b>stable</b> and <b>cohesive</b> group. In other words, our brain struggles to make meaningful and stable relationships when the number is greater than Durbin’s number. That’s why we cannot trust strangers and that’s why we form tribes, organization and governments. Now, we are entering the Complex Adaptive System subject (topic for another blog post, maybe). Which is a system in which a perfect understanding of the individual parts does not automatically convey a perfect understanding of the whole system's behavior.
+        Dunbar suggests that a number larger than this requires restrictions, laws, and enforced norms to maintain a <b>stable</b> and <b>cohesive</b> group. In other words, our brain struggles to make meaningful and stable relationships when the number is greater than Dunbar’s number. That’s why we cannot trust strangers and that’s why we form tribes, organizations, and governments. Now, we are entering the Complex Adaptive System subject (topic for another blog post, maybe). Which is a system in which a perfect understanding of the individual parts does not automatically convey a perfect understanding of the whole system's behavior.
       </p>
       <p>
-        Now that we now we <i>are</i> social animals and there's a limit in meaningful relationship our brain can handle, let's look at how organizations formed and where are we at now!
+        Now that we know we <i>are</i> social animals and there's a limit in how many meaningful relationships our brain can handle, let's look at how organizations formed and where are we at now!
       </p>
     </div>
     <div class="right image">
@@ -149,25 +140,23 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
   <title>Organization Structure</title>
 
   <div class="container">
-    <div class="left text">
-      <p>
-        Before we start talking about leadership styles and their effectiveness let's take a look at different organizations throughout the history. Considering evolution, we see that we have evolved from small groups of family to survive, to build today’s mega city and civilization. We went from staying together in group of dozens to have our species survive and pass our genes, to understanding biology and manipulating our genes! But, we couldn't have came so far if we had stayed in our small family circle or tribes. Forming bigger groups and organizations allowed us to shift our attention from just survival to understanding the world around us.
-      </p>
-      <p>
-        The book “reinventing organization” groups the organizations’ involvement as the following:
-      </p>
-      <p>
-        <ul>
-          <li class="infrared">Reactive Infrared - 100,000 to 50,000 BC: Small Family</li>
-          <li class="magic_magenta">Magic-Magenta - 15,000 years ago: Tribes</li>
-          <li class="impulsive_red">Impulsive Red - 10,000 BC</li>
-          <li class="confirmist_amber">Conformist Amber - 4,000 BC</li>
-          <li class="achievement_orange">Achievement Orange</li>
-          <li class="pluralistic_green">Pluralistic Green</li>
-          <li class="evolutionary_teal">Evolutionary Teal</li>
-        </ul>
-      </p>
-    </div>
+    <p>
+      Before we start talking about leadership styles and their effectiveness let's take a look at different organizations throughout history. Considering evolution, we see that we have evolved from small groups of family to survive, to build today’s mega city and civilization. We went from staying together in group of dozens to have our species survive and pass our genes, to understanding biology and manipulating our genes! But, we couldn't have came so far if we had stayed in our small family circle or tribes. Forming bigger groups and organizations allowed us to shift our attention from just survival to understanding the world around us.
+    </p>
+    <p>
+      The book “Reinventing Organizations” charts the evolution of organizations as the following:
+    </p>
+    <p>
+      <ul>
+        <li class="infrared">Reactive Infrared - 100,000 to 50,000 BC: Small Family</li>
+        <li class="magic_magenta">Magic-Magenta - 15,000 years ago: Tribes</li>
+        <li class="impulsive_red">Impulsive Red - 10,000 BC</li>
+        <li class="confirmist_amber">Conformist Amber - 4,000 BC</li>
+        <li class="achievement_orange">Achievement Orange</li>
+        <li class="pluralistic_green">Pluralistic Green</li>
+        <li class="evolutionary_teal">Evolutionary Teal</li>
+      </ul>
+    </p>
   </div>
 
   <div class="container">
@@ -203,15 +192,15 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
     </div>
     <div class="left text">
       <p>
-        Organizations don't exist at this stage, yet. However, tribes of few hundred started forming. Elders had special status (walking libraries) because of their experience and knowledge. Humanity shifted to stage of consciousness. This was a magical time because human started believing in magics. However, cause and effect are poorly understood. Some describe this ara as when our sensorimotor started developing. The behavior of human in magic magenta time is describe as for a 24-month old toddler: biting finger vs biting a toy
+        Organizations don't exist at this stage, yet. However, tribes of few hundred started forming. Elders had special status because of their experience and knowledge: In a time with no form of writing, elders served as walking libraries. Humanity shifted to a stage of consciousness, however, cause and effect were poorly understood. A rise in believe in magic happened to explain the unknown. Some describe this era as when our sensorimotor skills started developing. The behavior of humans in magic magenta time is described as for a 24-month old toddler: biting finger feels different than vs biting a toy.
       </p>
       <b>Example:</b> Tribes <br />
       <b>Group size:</b> Few hundreds <br />
-      <b>Leader:</b> Elderly <br />
+      <b>Leader:</b> Elders <br />
       <b>Characteristics:</b> <br />
       <ul>
         <li>Curiosity</li>
-        <li>Believe in magics</li>
+        <li>Believe in Magic</li>
       </ul>
     </div>
     <div class="right image">
@@ -230,9 +219,9 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
       Impulsive Red - 10,000 BC
     </div>
     <div class="left text">
-      Some time around 10,000 years ago leaders started ruling by force and fear. The group size was well above Dunbar’s number. The tribes realized that they have to use control to defend ourselves. Ego started to form, individuals had a sense of self that separates them from others. Tribes were subsisting on horticulture which was the start of civilization, and eventually institutions.
+      Some time around 10,000 years ago leaders started ruling by force and fear. The group size was well above Dunbar’s number. The tribes believed that they have to use control to defend themselves. Ego started to form, individuals had a sense of self that separated them from others. Tribes were subsisting on horticulture which was the start of civilizations.
       <br />
-      We still see examples of impulsive red in today's era. Wars, Prison, Gangs and Mafia, are all examples of impulsive red.
+      We still see examples of impulsive red in today's era in the form of wars, gangs, and the Mafia.
       <p></p>
       <b>Metaphor:</b> Wolf pack <br />
       <b>Example:</b> Gang <br />
@@ -284,8 +273,8 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
       <b>Leader:</b> Boss <br />
       <b>Principals/Strategies:</b>
       <ul>
-        <li>Role instead of absolute Power</li>
-        <li>Interpersonal Relationships</li>
+        <li>Role instead of absolute power</li>
+        <li>Interpersonal relationships</li>
         <li>Laws => punishment</li>
       </ul>
       <b>Strength:</b>
@@ -417,7 +406,7 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
         <span class="evolutionary_teal"><b>Teal:</b></span> Rightness, am I being true to myself, pursue life well lived<br />
       </p>
       <p>
-        As the name implies, teal organizations have an <b>evolutionary purpose</b>. Instead of looking at 5 years ahead and plan for the year, they look 20 years ahead and plan for tomorrow. In order to achieve their goal, creating smarter groups are essential. These group focus on increasing in emotional intelligence and therefore increasing performance. By giving people authority and trusting them creativity and innovation is unleashed and therefore employee satisfaction is improved.
+        As the name implies, teal organizations have an <b>evolutionary purpose</b>. Instead of looking at 5 years ahead and plan for the year, they look 20 years ahead and plan for tomorrow. In order to achieve their goal, creating smarter groups are essential. These group focus on increasing in emotional intelligence and therefore increasing performance. By giving people authority and trusting them, creativity and innovation is unleashed and therefore employee satisfaction is improved.
       </p>
       <b>Metaphor:</b> Living Organism <br />
       <b>Example:</b> Morning Star <br />
@@ -436,7 +425,6 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
       </ul>
       <b>Struggle:</b> ?<br />
       <b>Reward:</b> Life well-lived!
-
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/evolutionary_teal.jpg" />
@@ -448,20 +436,50 @@ This is part 2 of the essay and focuses on why we need organizations after all. 
   <div class="container">
     <div class="left text">
       <p>
-        So far, we looked into the history of groups and organizations. We understood why we're social and why forming teams was essential to our survival. Also, as Dunbar suggests as our teams and organizations got bigger the need for leaders grow. Not only just a leader, but also the leadership style. In a modern society a company who wants to run their organization like an impulsive red is not going to survive. Meanwhile, military cannot operate in pluralistic green or evolutionary teal, especially during war!
+        So far, we looked into the history of groups and organizations. We understood why we're social and why forming teams was essential to our survival. Also, as Dunbar suggests as our teams and organizations got bigger the need for leaders grow. Not only just a leader, but also the leadership style. In a modern society, a company who wants to run their organization like an impulsive red is not going to survive. Meanwhile, military cannot operate in pluralistic green or evolutionary teal, especially during war!
       </p>
       <p>
         In order for us to determine what type of organization we have or want, and how our leaders should operate, <a href="http://localhost:4000/management/skills/2018/10/20/leadership-vs-management.html">we need to take a look at some leadership styles</a>. We have to decide what organization we want before we have a shanty town. Who sets the goal and the vision and what are we here to achieve?
       </p>
       <p>
-        Across all these styles, a strong leader not only is setting a long term vision on how life is going to be in 5, 10, 20 years from now, they make sure that the employees are well-aware of the goals and empowers them to get there. Setting goals is an expectation for leaders but it's equally important to understand how do a leader handle disagreement and intolerance. Is the plan to prison the person who made a mistake or cast them out? If everyone is agreeable then leadership is easy. What if there’s diversity? What’s someone’s perspective of someone else’s viewpoint? What happens to diversity of values?
+        Across all these styles, a strong leader not only is setting a long term vision on how life is going to be in 5, 10, 20 years from now, they make sure that the employees are well-aware of the goals and empowers them to get there. Setting goals is an expectation for leaders but it's equally important to understand how do a leader handle disagreement and intolerance. 
       </p>
+      <ul>
+        <li> Is the plan to prison the person who made a mistake or cast them out? </li>
+        <li> If everyone is agreeable then leadership is easy. </li>
+        <li> What if there’s diversity? </li>
+        <li> What’s someone’s perspective of someone else’s viewpoint? </li>
+        <li> What happens to diversity of values?</li>
+      </ul>
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/company_culture.jpg" />
     </div>
   </div>
+
+  <strong>TODOs</strong>
+
+  Many of us have parents and grandparents who only worked for one company honorably, most of them changed jobs only if they had to. But this is changing rapidly for the new generation that's entering the workforce. I, for example, worked for 5 companies for the past 15 years that I started my profession. I co-founded Tested Minds with my husband in 2010 because I wanted to have time and space to think and be creative. I wanted to work on projects that interest me and allow me to flourish. I wanted have the freedom to pick the technology I work with, my client and most of all something that "worth" my time and life. After a few years of consulting, due to mutual agreement my husband and I decided to switch places. He spend most of his time growing our consulting while I worked for more established companies to ensure our financial are secured. One of those projects that truly made our hearts happy is an epilepsy project with to improve the life of people, specially young children to suffer epilepsy. We were introduced to a professor and John Hopkins university and surgeons from Cleavland clinic. Our team is working hard to achieve a higher goal in life. Our goal is to play a part in an amazing project that would save lives. Aside from my own company, barely over 3 years at State Farm Insurance Company is my record.
+
+  I truly believed in the mission, as I understood when I joined them, of all companies I joined. In some cases, those missions changed, in other cases my fast moving life made me leave. Nonetheless, I have never joined a company that I didn't trust their leadership or their goal. 
+
+  I always find myself looking for strong inspirational people I want to follow and learn from and group of youngsters that I can mentor. Throughout the past 15 years, I have seen several team formations, some better than the others. Often, I wish I had the authority, not just the responsibility, to change the team structure. My ideal team includes:
+  <ul> 
+    <li>A strong inspirational leader to knows how has a great vision and ability to form a group who moves towards that vision</li>
+    <li>A manager who I can refer to for typical company policy stuff, request PTO, attend conference, talk about my goals and improvements</li>
+    <li>Strong technical people who are ginounly happy to share knowledge and help building a stronger technical team. Those who want others around them to be as good or even better and are not holding knowledge so that they are the most senior (in a land of blinds a man with one eye is a leader)</li>
+    <li>A group of young and open-minded juniors who are ready to take the world and do not build a box around themselves</li>
+  </ul>
+
+  Recently, I attended an amazing conference in Anguilla which include couple dozen of leaders from around the glob and everybody shares knowledge. Cameron... was one of the presenters who talked about how he re-orged his company .... He nailed what I am hoping to see in more companies and very well articulated his talks in his [article](http://blah.com)
+
+  <ul>
+    <li>References of Skin in the game</li>
+    <li>Nasim Taleb - lone wolf</li>
+    <li>Cameron's talk about organization structure</li>
+  </ul>
 </section>
+
 <section>
   <title>References</title>
   <div class="container">
