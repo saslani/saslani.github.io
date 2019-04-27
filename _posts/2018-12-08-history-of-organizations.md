@@ -5,16 +5,14 @@ date:   2018-12-08 16:15:15
 categories: Management Skills
 ---
 
-As I mentioned in my [Leadership vs Management article](http://localhost:4000/management/skills/2018/10/20/leadership-vs-management.html), I am exploring leadership and management styles. I want to know what makes for inspiring, effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be the best buddies to grab a drink with!
+As I mentioned in my [Leadership vs Management article](./management/skills/2018/10/20/leadership-vs-management.html), I am exploring leadership and management styles. I want to know what makes for inspiring and effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be great to go out with for a drink!
 
 This is part 2 of the essay and focuses on why we need organizations after all. In this article we'll take a look at:
 
 - What made our species survive
 - What made us develop groups, tribes, and organizations
 - How organizations evolved
-- Where we are now in terms of organization evolution
-
-Warning: This article is not for those who believe in Young Earth creationism; dinosaur bones are real!
+- Where we are now in terms of organizational evolution
 
 <section>
   <title>History of Organization</title>
@@ -24,7 +22,10 @@ Warning: This article is not for those who believe in Young Earth creationism; d
         Before we jump into why we need organization and leadership let’s take a quick walk into where we came from and why our genus Homo Sapiens succeed.
       </p>
       <p>
-        The sapiens thought to have merged around 300,000 to 200,000 years ago. Roughly around 200,000 years ago homo sapiens became recognizable. They evolved in Africa around 90,000 years ago and successfully migrated to populate the rest of the world, including to Europe where Neanderthals had already been settled. However, it wasn't until about 50,000 years ago when homo sapiens developed capacity for language.
+        <strong>Warning:</strong> This article is not for those who believe in Young Earth creationism; dinosaur bones are real!
+      </p>
+      <p>
+        The sapiens species is thought to have merged around 300,000 to 200,000 years ago. Roughly around 200,000 years ago homo sapiens became recognizable. They evolved in Africa around 90,000 years ago and successfully migrated to populate the rest of the world, including to Europe where Neanderthals had already been settled. However, it wasn't until about 50,000 years ago when homo sapiens developed capacity for language. 
       </p>
     </div>
     <div class="right image">
@@ -35,17 +36,17 @@ Warning: This article is not for those who believe in Young Earth creationism; d
   <div class="container">
     <div class="left text">
       <p>
-        There are several hypothesis as why sapiens succeeded but not neanderthals even though neanderthals were physically stronger and faster in short distance run. Some of those hypothesis include: violence from modern human, diseases, competitive exclusion, inbreeding, climate change or a combination of these and more...
+        There are several hypothesis as why sapiens succeeded but not neanderthals even though neanderthals were physically stronger and faster in short distance running. Despite these advantages, Neanderthals didn't succeed as a species. Some of the hypotheses about why include: Violence from modern humans, diseases, competitive exclusion, inbreeding, climate change, or a combination of these...and more!
       </p>
       <p>
-        Nonetheless, the one hypothesis that relates to this article is <b>the brain power</b>. Neanderthals had brawn but humans advantage on brains. Sapiens brain were built to support more complex functions such as creativity, communication and imagination. In short, one explanation is that imaginations, ability to believe myth and fictions, and ability to mass communicate (storytelling) became our ancestors biggest advantage.
+        The one hypothesis that relates to this article is <b>brain power</b>. Neanderthals had brawn, but humans had the advantage in brains. Sapiens brains were built to support more complex functions such as creativity, communication and imagination. Imagination, the ability to believe myth and fiction, and the ability to pass along stories became our ancestors biggest advantage.
       </p>
     </div>
     <div class="right image">
       <figure>
         <img src="/assets/images/leadership/prehistoric_art.jpg" />
         <figcaption>
-          Cave lion drawings from Chauvet Cave, Ardèche, France (c. 35,000 to 30,000 years old)
+          Cave lion drawings from Chauvet Cave, Ardèche, France (c. 35,000 to 30,000 years old) - source wiki
         </figcaption>
       </figure>
     </div>
@@ -53,7 +54,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
 
   <div class="container">
     <div class="left center text">
-      And the lord stood upon Tiamat’s hinder parts,<br />
+      And the lord stood upon Tiamat's hinder parts,<br />
       And with his merciless club he smashed her skull.<br />
       He cut through the channels of her blood,<br />
       And he made the North wind bear it away into secret places.<br />
@@ -62,42 +63,42 @@ Warning: This article is not for those who believe in Young Earth creationism; d
       <figure>
         <img src="/assets/images/leadership/tiamat.jpg" />
         <figcaption>
-          Tiamat
+          Tiamat - source wiki
         </figcaption>
       </figure>
     </div>
     <p>
-      One great example of human’s creative mind is religion. We are capable of believing in supernatural. Our creative mind
-      allows us to believe in extraordinary things like God with unlimited power and so kind who is also tolerant of all the
-      suffering in the world and would punish you hardly in after life. We have communicated those belief and created a community around it. Hence, one of human’s biggest invention is region! Religion made us form tribes, worship Gods and work together to make Gods happy and satisfied. Religion made us believe in afterlife, Heaven and Hell. We do good things to enter the heavens and pray to be protected from the hell.
+      One great example of human’s creative mind is religion. We are capable of believing in the supernatural. Our creative mind
+      allows us to believe in extraordinary things like a God with unlimited power, kind enough to tolerate all the
+      suffering in the world, and ready to administer harsh punishment upon you for your sins in an eternal afterlife! Or so some stories go. We have communicated those beliefs and created a community around it. Hence, one of humans' biggest inventions is religion! Religion made us form tribes, worship Gods, and work together to make Gods happy and satisfied. Religion made us believe in an afterlife, a Heaven and Hell. We do good things to enter the heavens and pray to be protected from Hell.
     </p>
   </div>
 </section>
 
 <section>
-  <title>socialization</title>
+  <title>Socialization</title>
 
   <div class="container">
     <p>
-      Human are also social animals. But what is socialization and is there a limit to how much interactions we can handle?
+      Human are also social animals. But what is socialization? Is there a limit to how many interactions we can handle?
     </p>
     <p>
-      Without looking too much into biology, once again, evolution supports socialization (sorry introverts, including myself!). Look at it this way, if a father and a mother stayed around longer, children had a better chance of surviving. Larger families and tribes could also better defend themselves against intruders. They would help each other with their youngsters and share food and nests. That's how we formed teams and tribes.
+      Without looking too much into biology, once again, evolution supports socialization. Apologies to all of you  introverts, including myself! Look at it this way: If a father and a mother stayed around longer, children had a better chance of surviving. Larger families and tribes could also better defend themselves against intruders. They would help each other with their youngsters, share food, and build homes. That's how we formed teams and tribes.
     </p>
   </div>
   <div class="container">
     <div class="left text">
       <p>
-        What about those who want to stay alone? If one has to only answer to themselves and can do whatever they want, can we call it a team or an organization?
+        What about those who want to stay alone? If one has to only answer to themselves and can do whatever they want, we don't say they're in a team or an organization.
       </p>
       <p>
-        What happens when we add a second person to the team? Now we have links <b>n*(n-1)/2</b>. The moment we add a second person, we have a team dynamics, it’s a small team but it is at last a team.
+        What happens when we add a second person? Now we have a team because we have relationships (n*(n-1)/2). The moment we add a second person, we have a team dynamics. It's a small team, but it is at last a team.
       </p>
       <p>
-        Now that come a few hundred thousands forward, the questions is what team size is right?
+        Now let's come a few hundred thousand years forward to the present. The growth of our societies, families, companies, and teams raises the question, "What team size is the right size?"
       </p>
       <blockquote>
-        If you cannot feed a team with two pizzas, it’s too large
+        If you cannot feed a team with two pizzas, it's too large.
         <footer>-- Jeff Bezos</footer>
       </blockquote>
     </div>
@@ -113,7 +114,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
 
   <div class="container">
     <div class="left text">
-      In the following context, let's define relationship as knowing well who each person is and how are they related to others. Even though human are social, there’s limit to our social skills which we can have a meaningful, stable and cohesive relationship with others. The real number falls somewhere between 100 to 250, commonly <b>150</b>. The formula above was first proposed in 1990 by an anthropologist name Robin Dunbar as the Primate brain size and average of social group size.
+      In the following context, let's define relationship as knowing well who each person is and how are they related to others. Even though human are social, there's limit to our social skills which we can have a meaningful, stable and cohesive relationship with others. The real number falls somewhere between 100 to 250, commonly <b>150</b>. The formula above was first proposed in 1990 by an anthropologist name Robin Dunbar as the Primate brain size and average of social group size.
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/dunbarsnumber.jpg" />
@@ -123,7 +124,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
   <div class="container">
     <div class="left text">
       <p>
-        Dunbar suggests that a number larger than this requires restrictions, laws, and enforced norms to maintain a <b>stable</b> and <b>cohesive</b> group. In other words, our brain struggles to make meaningful and stable relationships when the number is greater than Dunbar’s number. That’s why we cannot trust strangers and that’s why we form tribes, organizations, and governments. Now, we are entering the Complex Adaptive System subject (topic for another blog post, maybe). Which is a system in which a perfect understanding of the individual parts does not automatically convey a perfect understanding of the whole system's behavior.
+        Dunbar suggests that a number larger than this requires restrictions, laws, and enforced norms to maintain a <b>stable</b> and <b>cohesive</b> group. In other words, our brain struggles to make meaningful and stable relationships when the number is greater than Dunbar's number. That's why we cannot trust strangers and that's why we form groups, tribes, organizations, and governments. Now, we are entering the Complex Adaptive System subject (topic for another blog post, maybe). Which is a system in which a perfect understanding of the individual parts does not automatically convey a perfect understanding of the whole system's behavior.
       </p>
       <p>
         Now that we know we <i>are</i> social animals and there's a limit in how many meaningful relationships our brain can handle, let's look at how organizations formed and where are we at now!
@@ -141,7 +142,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
 
   <div class="container">
     <p>
-      Before we start talking about leadership styles and their effectiveness let's take a look at different organizations throughout history. Considering evolution, we see that we have evolved from small groups of family to survive, to build today’s mega city and civilization. We went from staying together in group of dozens to have our species survive and pass our genes, to understanding biology and manipulating our genes! But, we couldn't have came so far if we had stayed in our small family circle or tribes. Forming bigger groups and organizations allowed us to shift our attention from just survival to understanding the world around us.
+      Before we start talking about leadership styles and their effectiveness let's take a look at different organizations throughout history. Considering evolution, we see that we have evolved from small groups of family to survive, to build today's mega city and civilization. We went from staying together in group of dozens to have our species survive and pass our genes, to understanding biology and manipulating our genes! But, we couldn't have came so far if we had stayed in our small family circle or tribes. Forming bigger groups and organizations allowed us to shift our attention from just survival to understanding the world around us.
     </p>
     <p>
       The book “Reinventing Organizations” charts the evolution of organizations as the following:
@@ -174,7 +175,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
       <b>Characteristics:</b> <br />
       <ul>
         <li>No ego</li>
-        <li>Don’t perceive themselves as distinct</li>
+        <li>Don't perceive themselves as distinct</li>
         <li>Simple separation of responsibility</li>
         <li>No chief</li>
       </ul>
@@ -219,7 +220,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
       Impulsive Red - 10,000 BC
     </div>
     <div class="left text">
-      Some time around 10,000 years ago leaders started ruling by force and fear. The group size was well above Dunbar’s number. The tribes believed that they have to use control to defend themselves. Ego started to form, individuals had a sense of self that separated them from others. Tribes were subsisting on horticulture which was the start of civilizations.
+      Some time around 10,000 years ago leaders started ruling by force and fear. The group size was well above Dunbar's number. The tribes believed that they have to use control to defend themselves. Ego started to form, individuals had a sense of self that separated them from others. Tribes were subsisting on horticulture which was the start of civilizations.
       <br />
       We still see examples of impulsive red in today's era in the form of wars, gangs, and the Mafia.
       <p></p>
@@ -249,7 +250,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
         <li>Complex environment</li>
         <li>Separation of planning and execution</li>
         <li>Trust</li>
-        <li>Other people’s feelings</li>
+        <li>Other people's feelings</li>
         <li>Scalability</li>
       </ul>
     </div>
@@ -264,7 +265,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
     </div>
     <div class="left text">
       <p>
-        Around 4,000 humankind had grown enough and impulsive red was not sustainable anymore. Humanity had shifted to a state of agriculture, civilization, institution. Large share of today’s adult population in developed countries operate form this paradigm.
+        Around 4,000 B.C. humankind had grown enough and impulsive red was not sustainable anymore. Humanity had shifted to a state of agriculture, civilization, institution. Large share of today's adult population in developed countries operate form this paradigm.
         <br />
         Examples of amber organizations in our lifetime are: military in peacetime, government agencies, public schools, and religion institutes.
       </p>
@@ -370,7 +371,7 @@ Warning: This article is not for those who believe in Young Earth creationism; d
       <b>Strength:</b>
       <ul>
         <li>Abolition of slavery</li>
-        <li>Women’s liberation</li>
+        <li>Women's liberation</li>
         <li>Separation of church and state</li>
         <li>Freedom of religion</li>
         <li>Democracy</li>
@@ -445,26 +446,30 @@ Warning: This article is not for those who believe in Young Earth creationism; d
         Across all these styles, a strong leader not only is setting a long term vision on how life is going to be in 5, 10, 20 years from now, they make sure that the employees are well-aware of the goals and empowers them to get there. Setting goals is an expectation for leaders but it's equally important to understand how do a leader handle disagreement and intolerance. 
       </p>
       <ul>
-        <li> Is the plan to prison the person who made a mistake or cast them out? </li>
-        <li> If everyone is agreeable then leadership is easy. </li>
-        <li> What if there’s diversity? </li>
-        <li> What’s someone’s perspective of someone else’s viewpoint? </li>
+        <li> Is the plan to prison the person who made a mistake or cast them out? If everyone is agreeable then leadership is easy. </li>
+        <li> What if there's diversity? </li>
+        <li> What's someone's perspective of someone else's viewpoint? </li>
         <li> What happens to diversity of values?</li>
       </ul>
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/company_culture.jpg" />
+      <figcaption>
+        <a href src="http://bonkersworld.net/">Manu Cornet - Bonker's World</a>
+      </figcaption>
     </div>
   </div>
 
   <strong>TODOs</strong>
 
-  Many of us have parents and grandparents who only worked for one company honorably, most of them changed jobs only if they had to. But this is changing rapidly for the new generation that's entering the workforce. I, for example, worked for 5 companies for the past 15 years that I started my profession. I co-founded Tested Minds with my husband in 2010 because I wanted to have time and space to think and be creative. I wanted to work on projects that interest me and allow me to flourish. I wanted have the freedom to pick the technology I work with, my client and most of all something that "worth" my time and life. After a few years of consulting, due to mutual agreement my husband and I decided to switch places. He spend most of his time growing our consulting while I worked for more established companies to ensure our financial are secured. One of those projects that truly made our hearts happy is an epilepsy project with to improve the life of people, specially young children to suffer epilepsy. We were introduced to a professor and John Hopkins university and surgeons from Cleavland clinic. Our team is working hard to achieve a higher goal in life. Our goal is to play a part in an amazing project that would save lives. Aside from my own company, barely over 3 years at State Farm Insurance Company is my record.
-
-  I truly believed in the mission, as I understood when I joined them, of all companies I joined. In some cases, those missions changed, in other cases my fast moving life made me leave. Nonetheless, I have never joined a company that I didn't trust their leadership or their goal. 
-
-  I always find myself looking for strong inspirational people I want to follow and learn from and group of youngsters that I can mentor. Throughout the past 15 years, I have seen several team formations, some better than the others. Often, I wish I had the authority, not just the responsibility, to change the team structure. My ideal team includes:
-  <ul> 
+  <p>
+    Many of us have parents and grandparents who only worked for one company honorably, most of them changed jobs only if they had to. But this is changing rapidly for the new generation that's entering the workforce. I, for example, worked for 5 companies for the past 15 years, since I started my profession. I co-founded Tested Minds with my husband in 2010 because I wanted to have time and space to think and be creative. I wanted to work on projects that interest me and allow me to flourish. I wanted have the freedom to pick the technology I work with, my client and most of all something that "worth" my time and life. After a few years of consulting, due to mutual agreement my husband and I decided to switch places. Currently, he spend most of his time growing Tested Minds while I worked for more established companies to ensure our financial are secured.
+  </p>
+  <p>
+    At Tested Minds, one of those projects that truly made our hearts happy is an epilepsy project to improve the life of people, specially young children to suffer epilepsy. We were introduced to a professor at John Hopkins university and surgeons from Cleavland clinic. Our team is working hard to achieve a higher goal in life. Our goal is to play a part in an amazing project that would save live.
+  </p>
+  I always find myself looking for strong inspirational people I want to follow and learn from and group of youngsters that I can mentor. Throughout the past 15 years, I have seen several team formations, some better than the others. Often, I wish I had the authority, not just the responsibility and the title, to change the team structure. My ideal team includes:
+  <ul>
     <li>A strong inspirational leader to knows how has a great vision and ability to form a group who moves towards that vision</li>
     <li>A manager who I can refer to for typical company policy stuff, request PTO, attend conference, talk about my goals and improvements</li>
     <li>Strong technical people who are ginounly happy to share knowledge and help building a stronger technical team. Those who want others around them to be as good or even better and are not holding knowledge so that they are the most senior (in a land of blinds a man with one eye is a leader)</li>
