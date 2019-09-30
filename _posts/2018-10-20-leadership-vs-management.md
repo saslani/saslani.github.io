@@ -2,8 +2,7 @@
 layout: post
 title:  "Leaders vs. Managers"
 date:   2018-10-20 16:15:15
-image:  leadership_vs_management.jpg
-tags:   [Leadership and Management Skills]
+categories: Leadership and Management Skills
 ---
 
 I've been thinking a lot about leadership lately. In particular, what does it mean to be a leader vs. a manager? Can you aspire to be a leader, or does it just happen? Do I (and you, dear reader) understand the distinction between these terms? I think the best way for me to explore these thoughts is as a set of informal essays. This first edition comes from my observations about different styles of both leadership and management that I've experienced over the last 15 years of my career in software development. It's a mix of my opinions and reflections on source material I'll cite at the end.

@@ -2,8 +2,7 @@
 layout: post
 title:  "Sparkler in 5 minutes"
 date:   2016-05-20 22:53:39
-image:  spark_presentation.jpg
-tags:   [Java]
+categories: Java
 ---
 
 ![In Search of Developer Happiness](/img/sparkler_presentation/sparkler.001.jpeg#sparkler-presentation-img "In Search of Developers")
