@@ -2,8 +2,7 @@
 layout: post
 title:  "Computational Thinking"
 date:   2017-10-27 22:04:39
-image:  scna.jpeg
-tags:   [Computer Science, Best Practices]
+categories: Computer Science
 ---
 
 <div class="container">

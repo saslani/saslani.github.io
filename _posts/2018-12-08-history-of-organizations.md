@@ -2,7 +2,7 @@
 layout: post
 title:  "Learning from History to Design Your Style of Leadership"
 date:   2018-12-08 16:15:15
-categories: Management Skills
+categories: Leadership and Management Skills
 ---
 
 As I mentioned in my [Leadership vs Management article](./management/skills/2018/10/20/leadership-vs-management.html), I am exploring leadership and management styles. I want to know what makes for inspiring and effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be great to go out with for a drink!

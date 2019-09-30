@@ -2,8 +2,7 @@
 layout: post
 title:  "Getting Started with Ruby: Tic Tac Toe"
 date:   2016-10-23 22:53:39
-image:  tic_tac_toe.svg.png
-tags:   [Ruby]
+categories: Ruby
 ---
 
 This program is designed for those who are want to learn Ruby by doing small project that helps them build their skills.
