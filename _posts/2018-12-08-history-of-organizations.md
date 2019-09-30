@@ -5,9 +5,9 @@ date:   2018-12-08 16:15:15
 categories: Leadership and Management Skills
 ---
 
-As I mentioned in my [Leadership vs Management article](./management/skills/2018/10/20/leadership-vs-management.html), I am exploring leadership and management styles. I want to know what makes for inspiring and effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be great to go out with for a drink!
+As I mentioned in my [Leadership vs Management article](./leadership/and/management/skills/2018/10/20/leadership-vs-management.html), I am exploring leadership and management styles. I want to know what makes for inspiring and effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be great to go out with for a drink!
 
-This is part 2 of the essay and focuses on why we need organizations after all. In this article we'll take a look at:
+This is part 2 of the essay and focuses on "why we need organizations" after all. In this article we'll take a look at:
 
 - What made our species survive
 - What made us develop groups, tribes, and organizations
@@ -449,7 +449,7 @@ When it comes to teal organization, I still have my doubts. Working with a group
         So far, we looked into the history of groups and organizations. We understood why we're social and why forming teams was essential to our survival. Also, as Dunbar suggests as our teams and organizations got bigger the need for leaders grow. Not only just a leader, but also the leadership style. In a modern society, a company who wants to run their organization like an impulsive red is not going to survive. Meanwhile, military cannot operate in pluralistic green or evolutionary teal, especially during war!
       </p>
       <p>
-        In order for us to determine what type of organization we have or want, and how our leaders should operate, <a href="http://localhost:4000/management/skills/2018/10/20/leadership-vs-management.html">we need to take a look at some leadership styles</a>. We have to decide what organization we want before we have a shanty town. Who sets the goal and the vision and what are we here to achieve?
+        In order for us to determine what type of organization we have or want, and how our leaders should operate, <a href="./leadership/and/management/skills/2018/10/20/leadership-vs-management.html">we need to take a look at some leadership styles</a>. We have to decide what organization we want before we have a shanty town. Who sets the goal and the vision and what are we here to achieve?
       </p>
       <p>
         Across all these styles, a strong leader not only is setting a long term vision on how life is going to be in 5, 10, 20 years from now, they make sure that the employees are well-aware of the goals and empowers them to get there. Setting goals is an expectation for leaders but it's equally important to understand how do a leader handle disagreement and intolerance. 
