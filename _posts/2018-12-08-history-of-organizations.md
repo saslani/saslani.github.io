@@ -19,7 +19,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
   <div class="container">
     <div class="left text">
       <p>
-        Before we jump into why we need organization and leadership let’s take a quick walk into where we came from and why our genus Homo Sapiens succeed.
+        Before we jump into why we need organizations and leadership let’s take a quick walk into where we came from and why our genus Homo Sapiens succeed.
       </p>
       <p>
         <strong>Warning:</strong> This article is not for those who believe in Young Earth creationism; dinosaur bones are real!
@@ -114,7 +114,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
 
   <div class="container">
     <div class="left text">
-      In the following context, let's define relationship as knowing well who each person is and how are they related to others. Even though human are social, there's limit to our social skills which we can have a meaningful, stable and cohesive relationship with others. The real number falls somewhere between 100 to 250, commonly <b>150</b>. The formula above was first proposed in 1990 by an anthropologist name Robin Dunbar as the Primate brain size and average of social group size.
+      In the following context, let's define relationship as knowing well who each person is and how are they related to others. Even though human are social, there's limit to our social skills which we can have a meaningful, stable and cohesive relationship with others. The real number falls somewhere between 100 to 250, commonly <b>150</b>. This formula was first proposed in 1990 by an anthropologist name Robin Dunbar as the Primate brain size and average of social group size.
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/dunbarsnumber.jpg" />
@@ -435,14 +435,14 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
   </div> 
 </section>
 
-### Thoughts on Green and Teal organizations
+<section>
+  <title>Thoughts on Green and Teal organizations</title>
 
 What does "culture" mean? How do we define it? What does it mean to "fit in culture"?
 Often to me, it sounds like when we talk about culture we look back. At home point in time, the team existed back then defined a set of characteristics that was important and relevant for them. But does it make sense, in green organization or teal, to set a culture? What about those with different ideas or different set of skills who won't "fit" in the culture that was defined, but can add to it? How do we set a culture that's changing all the time, for better? I don't necessarily have the answer for this, whatever I can think of, it seems the next great candidate might break it!
 
 When it comes to teal organization, I still have my doubts. Working with a group of very young and skilled team, I do see how our work styles differ. I do see how passionate they considering the "bigger" life mission.
 
-<section>
   <div class="container">
     <div class="left text">
       <p>
