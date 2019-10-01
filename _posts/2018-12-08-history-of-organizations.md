@@ -438,11 +438,23 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
 <section>
   <title>Thoughts on Green and Teal organizations</title>
 
-What does "culture" mean? How do we define it? What does it mean to "fit in culture"?
-Often to me, it sounds like when we talk about culture we look back. At home point in time, the team existed back then defined a set of characteristics that was important and relevant for them. But does it make sense, in green organization or teal, to set a culture? What about those with different ideas or different set of skills who won't "fit" in the culture that was defined, but can add to it? How do we set a culture that's changing all the time, for better? I don't necessarily have the answer for this, whatever I can think of, it seems the next great candidate might break it!
-
-When it comes to teal organization, I still have my doubts. Working with a group of very young and skilled team, I do see how our work styles differ. I do see how passionate they considering the "bigger" life mission.
-
+  <ul>
+    <li>What does "culture" mean?</li>
+    <li>How do we define it?</li>
+    <li>What does it mean to "fit in culture"?</li>
+  </ul>
+  <p>
+    When we talk about culture, to me, it sounds like we look back. From Reactive Infrared to Achievement Orange defined a set of characteristics that was important and relevant for them and formed teams that fit those criteria. The main characteristics of the Green and Teal organizations, however, is openness, acceptance, democracy, trust, and adaptation. Given those characteristics:
+    <ul>
+      <li>Does it make sense, in green organization or teal, to set a culture?</li>
+      <li>What about those with different ideas or different set of skills who won't "fit" in the culture that was defined, but can add to it?</li>
+      <li>How do we set a culture that's changing all the time, for better?</li> 
+    </ul>
+    I don't necessarily have the answer for this, whatever I can think of, it seems the next great candidate might break it! When it comes to teal organization, I still have my doubts. Working with a group of very young and skilled team, I do see how our work styles differ. I do see how passionate they considering the "bigger" life mission. But would we ever get to a place that we can all trust each other to pull our weights? 
+    <br />
+    The promises that Team organization makes reminds me of Socialism...
+    
+  </p>  
   <div class="container">
     <div class="left text">
       <p>
@@ -460,25 +472,6 @@ When it comes to teal organization, I still have my doubts. Working with a group
         <li> What's someone's perspective of someone else's viewpoint? </li>
         <li> What happens to diversity of values?</li>
       </ul>
-      <p>
-        Let's consider a mid-size IT consultancies where team's majority consist of engineers and designers (depending on the project size, you might have a project/product owner or business analysts). The consultants travel often or stay on their project usually for a few months before they rotate. In this case:
-        <ul>
-          <li>what's the ideal leadership look like? </li>
-          <li>Who should the members of the team report to?</li>
-          <li>What are the characteristics of the leader(s)?</li>
-          <li>Should each team have their own leader who's going to ultimately run reviews and help members with their career path, or should they report to some one outside of the team like CTO or Dev Managers?</li>
-          <li>If they leader/manager is outside of their project's team, then how does that leader/manager have accurate information to evaluate the employee?</li>
-          <li>If they report to a lead/manager in their team's project, what happens when the employee changes his/her project?</li>
-        </ul>
-        <br />
-        These are all the questions you (someone who's in charge of organization, or you as an engineer/designer/new leader) should ask, what's the best setup?
-        <br />
-        I have been thinking about this for a long time and what setup that I would love to try is a flat organization in which, the members of the team (regardless of your title as engineer, designer, business analyst ...) report to the Team's Lead. The lead is the person who sets the direction and can define success or failure and can carry the vision. This person can help you set goals within the project and can answer your questions regarding the end goal. The leader, however, doesn't necessarily care about what technology you are using.
-        <br />
-        When it comes to specific technology, however, I would like to see different learning groups within the organization. The lead of that learning team has great and deep knowledge of the technology. He/she can give you technical support or guide you to documents, resources outside of the organization to help you succeed.
-        <br />
-        Lastly, there should be a person you can always reach for HR questions, vacations, policies, and salary conversations. Having clear metrics is crucial in this case so that when it comes to your salary discussion there will be no doubt about what you have brought to the table and how much you grew for the past X months.
-      </p>
     </div>
     <div class="right image">
       <img src="/assets/images/leadership/company_culture.jpg" />
@@ -487,6 +480,27 @@ When it comes to teal organization, I still have my doubts. Working with a group
       </figcaption>
     </div>
   </div>
+=======
+  <p>
+    Let's consider a mid-size IT consultancies where team's majority consist of engineers and designers (depending on the project size, you might have a project/product owner or business analysts). The consultants travel often or stay on their project usually for a few months before they rotate. In this case:
+    <ul>
+      <li>What's the ideal leadership look like? </li>
+      <li>Who should the members of the team report to?</li>
+      <li>What are the characteristics of the leader(s)?</li>
+      <li>Should each team have their own leader who's going to ultimately run reviews and help members with their career path, or should they report to some one outside of the team like CTO or Dev Managers?</li>
+      <li>If they leader/manager is outside of their project's team, then how does that leader/manager have accurate information to evaluate the employee?</li>
+      <li>If they report to a lead/manager in their team's project, what happens when the employee changes his/her project?</li>
+    </ul>
+    <br />
+    These are all the questions you (someone who's in charge of organization, or you as an engineer/designer/new leader) should ask, what's the best setup?
+    <br />
+    I have been thinking about this for a long time and what setup that I would love to try is a flat organization in which, the members of the team (regardless of your title as engineer, designer, business analyst ...) report to the Team's Lead. The lead is the person who sets the direction and can define success or failure and can carry the vision. This person can help you set goals within the project and can answer your questions regarding the end goal. The leader, however, doesn't necessarily care about what technology you are using.
+    <br />
+    When it comes to specific technology, however, I would like to see different learning groups within the organization. The lead of that learning team has great and deep knowledge of the technology. He/she can give you technical support or guide you to documents, resources outside of the organization to help you succeed.
+    <br />
+    Lastly, there should be a person you can always reach for HR questions, vacations, policies, and salary conversations. Having clear metrics is crucial in this case so that when it comes to your salary discussion there will be no doubt about what you have brought to the table and how much you grew for the past X months.
+  </p>
+</section>
 
   <strong>TODOs</strong>
 
