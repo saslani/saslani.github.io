@@ -5,4 +5,5 @@ _exclude/*
 deploy.sh
 .idea
 _exclude
+about_me/*
 notes.md
