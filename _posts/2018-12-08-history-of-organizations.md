@@ -25,7 +25,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
         <strong>Warning:</strong> This article is not for those who believe in Young Earth creationism; dinosaur bones are real!
       </p>
       <p>
-        The sapiens species is thought to have merged around 300,000 to 200,000 years ago. Roughly around 200,000 years ago homo sapiens became recognizable. They evolved in Africa around 90,000 years ago and successfully migrated to populate the rest of the world, including to Europe where Neanderthals had already been settled. However, it wasn't until about 50,000 years ago when homo sapiens developed capacity for language. 
+        The sapiens species is thought to have merged around 300,000 to 200,000 years ago. Roughly around 200,000 ya homo sapiens became recognizable. They evolved in Africa around 90,000 ya and successfully migrated to populate the rest of the world, including to Europe where Neanderthals had already been settled. However, it wasn't until about 50,000 ya when homo sapiens developed capacity for language. 
       </p>
     </div>
     <div class="right image">
@@ -36,7 +36,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
   <div class="container">
     <div class="left text">
       <p>
-        There are several hypothesis as why sapiens succeeded but not neanderthals even though neanderthals were physically stronger and faster in short distance running. Despite these advantages, Neanderthals didn't succeed as a species. Some of the hypotheses about why include: Violence from modern humans, diseases, competitive exclusion, inbreeding, climate change, or a combination of these...and more!
+        There are several hypothesis as why sapiens succeeded but not neanderthals, even though neanderthals were physically stronger and faster in short distance running. Some of the hypotheses include: Violence from modern humans, diseases, competitive exclusion, inbreeding, climate change, or a combination of these...and more!
       </p>
       <p>
         The one hypothesis that relates to this article is <b>brain power</b>. Neanderthals had brawn, but humans had the advantage in brains. Sapiens brains were built to support more complex functions such as creativity, communication and imagination. Imagination, the ability to believe myth and fiction, and the ability to pass along stories became our ancestors biggest advantage.
@@ -44,15 +44,26 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     </div>
     <div class="right image">
       <figure>
+        <img src="/assets/images/leadership/lubang_jeriji_saleh_cave_painting_of_bull.jpg"
+        <figcaption>
+          Oldest known figurative painting, a depiction of an unknown bovine was discovered in the Lubang Jeriji Saléh cave dated as more than 40,000 (perhaps as old as 52,000) years old. - source: wiki
+        </figcaption>
+      </figure>
+      <figure>
         <img src="/assets/images/leadership/prehistoric_art.jpg" />
         <figcaption>
-          Cave lion drawings from Chauvet Cave, Ardèche, France (c. 35,000 to 30,000 years old) - source wiki
+          Cave lion drawings from Chauvet Cave, Ardèche, France (c. 35,000 to 30,000 years old) - source: wiki
         </figcaption>
       </figure>
     </div>
   </div>
 
   <div class="container">
+    <p>
+      One great example of human’s creative mind is religion. We are capable of believing in the supernatural. Our creative mind
+      allows us to believe in extraordinary things like a God with unlimited power, kind enough to tolerate all the
+      suffering in the world, and ready to adminster harsh punishment upon you for your sins in an eternal afterlife! Or so some stories go. We love to gossip and we love to tell stories. We have communicated those beliefs and created a community around it. Religion made us form tribes, worship Gods, and work together to make Gods happy and satisfied. Religion made us believe in an afterlife, a Heaven and Hell. We do good things to enter the heavens and pray to be protected from Hell.
+    </p>
     <div class="left center text">
       And the lord stood upon Tiamat's hinder parts,<br />
       And with his merciless club he smashed her skull.<br />
@@ -63,15 +74,10 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       <figure>
         <img src="/assets/images/leadership/tiamat.jpg" />
         <figcaption>
-          Tiamat - source wiki
+          Tiamat - source: wiki
         </figcaption>
       </figure>
     </div>
-    <p>
-      One great example of human’s creative mind is religion. We are capable of believing in the supernatural. Our creative mind
-      allows us to believe in extraordinary things like a God with unlimited power, kind enough to tolerate all the
-      suffering in the world, and ready to administer harsh punishment upon you for your sins in an eternal afterlife! Or so some stories go. We have communicated those beliefs and created a community around it. Hence, one of humans' biggest inventions is religion! Religion made us form tribes, worship Gods, and work together to make Gods happy and satisfied. Religion made us believe in an afterlife, a Heaven and Hell. We do good things to enter the heavens and pray to be protected from Hell.
-    </p>
   </div>
 </section>
 
@@ -83,7 +89,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       Human are also social animals. But what is socialization? Is there a limit to how many interactions we can handle?
     </p>
     <p>
-      Without looking too much into biology, once again, evolution supports socialization. Apologies to all of you  introverts, including myself! Look at it this way: If a father and a mother stayed around longer, children had a better chance of surviving. Larger families and tribes could also better defend themselves against intruders. They would help each other with their youngsters, share food, and build homes. That's how we formed teams and tribes.
+      Without looking too much into biology, once again, evolution supports socialization. Apologies to all of you  introverts, including myself! Look at it this way: If a family stayed around longer, children had a better chance of surviving. Larger families and tribes could also better defend themselves against intruders. They would help each other with their youngsters, share food, and build homes. That's how we formed teams and tribes.
     </p>
   </div>
   <div class="container">
@@ -124,7 +130,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
   <div class="container">
     <div class="left text">
       <p>
-        Dunbar suggests that a number larger than this requires restrictions, laws, and enforced norms to maintain a <b>stable</b> and <b>cohesive</b> group. In other words, our brain struggles to make meaningful and stable relationships when the number is greater than Dunbar's number. That's why we cannot trust strangers and that's why we form groups, tribes, organizations, and governments. Now, we are entering the Complex Adaptive System subject (topic for another blog post, maybe). Which is a system in which a perfect understanding of the individual parts does not automatically convey a perfect understanding of the whole system's behavior.
+        Dunbar suggests that a number larger than this requires restrictions, laws, and enforced norms to maintain a <b>stable</b> and <b>cohesive</b> group. In other words, our brain struggles to make meaningful and stable relationships when the number is greater than Dunbar's number. That's why we cannot trust strangers and that's why we form groups, tribes, organizations, and governments. Now, we are entering the Complex Adaptive System subject (topic for another blog post, maybe); which is a system in which a perfect understanding of the individual parts does not automatically convey a perfect understanding of the whole system's behavior.
       </p>
       <p>
         Now that we know we <i>are</i> social animals and there's a limit in how many meaningful relationships our brain can handle, let's look at how organizations formed and where are we at now!
@@ -480,7 +486,6 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </figcaption>
     </div>
   </div>
-=======
   <p>
     Let's consider a mid-size IT consultancies where team's majority consist of engineers and designers (depending on the project size, you might have a project/product owner or business analysts). The consultants travel often or stay on their project usually for a few months before they rotate. In this case:
     <ul>
