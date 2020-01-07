@@ -505,37 +505,25 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     <br />
     Lastly, there should be a person you can always reach for HR questions, vacations, policies, and salary conversations. Having clear metrics is crucial in this case so that when it comes to your salary discussion there will be no doubt about what you have brought to the table and how much you grew for the past X months.
   </p>
+  <p>
+    My ideal team includes:
+    <ul>
+      <li>A strong inspirational leader to knows how has a great vision and ability to form a group who moves towards that vision</li>
+      <li>A manager who I can refer to for typical company policy stuff, request PTO, attend conference, talk about my goals and improvements</li>
+      <li>Strong technical people who are ginounly happy to share knowledge and help building a stronger technical team. Those who want others around them to be as good or even better and are not holding knowledge so that they are the most senior (<b>in the land of the blind, the one-eyed man is king</b>)</li>
+      <li>A group of young and open-minded juniors who are ready to take the world and do not build a box around themselves</li>
+    </ul>
+  </p>
 </section>
 
-<section>
-  <strong>TODOs</strong>
-  <p>
-    Many of us have parents and grandparents who only worked for one company honorably, most of them changed jobs only if they had to. But this is changing rapidly for the new generation that's entering the workforce. I, for example, worked for 5 companies for the past 15 years, since I started my profession. I co-founded Tested Minds with my husband in 2010 because I wanted to have time and space to think and be creative. I wanted to work on projects that interest me and allow me to flourish. I wanted have the freedom to pick the technology I work with, my client and most of all something that "worth" my time and life. After a few years of consulting, due to mutual agreement my husband and I decided to switch places. Currently, he spend most of his time growing Tested Minds while I worked for more established companies to ensure our financial are secured.
-  </p>
-  <p>
-    At Tested Minds, one of those projects that truly made our hearts happy is an epilepsy project to improve the life of people, specially young children to suffer epilepsy. We were introduced to a professor at John Hopkins university and surgeons from Cleavland clinic. Our team is working hard to achieve a higher goal in life. Our goal is to play a part in an amazing project that would save live.
-  </p>
-  I always find myself looking for strong inspirational people I want to follow and learn from and group of youngsters that I can mentor. Throughout the past 15 years, I have seen several team formations, some better than the others. Often, I wish I had the authority, not just the responsibility and the title, to change the team structure. My ideal team includes:
-  <ul>
-    <li>A strong inspirational leader to knows how has a great vision and ability to form a group who moves towards that vision</li>
-    <li>A manager who I can refer to for typical company policy stuff, request PTO, attend conference, talk about my goals and improvements</li>
-    <li>Strong technical people who are ginounly happy to share knowledge and help building a stronger technical team. Those who want others around them to be as good or even better and are not holding knowledge so that they are the most senior (in a land of blinds a man with one eye is a leader)</li>
-    <li>A group of young and open-minded juniors who are ready to take the world and do not build a box around themselves</li>
-  </ul>
-
-  Recently, I attended an amazing conference in Anguilla which include couple dozen of leaders from around the glob and everybody shares knowledge. Cameron... was one of the presenters who talked about how he re-orged his company .... He nailed what I am hoping to see in more companies and very well articulated his talks in his [article](http://blah.com)
-
-  <ul>
-    <li>References of Skin in the game</li>
-    <li>Nasim Taleb - lone wolf</li>
-    <li>Cameron's talk about organization structure</li>
-  </ul>
-</section>
+<b>What team do you want to be a part of?</b>
 
 <section>
   <title>References</title>
   <div class="container">
     <ul>
+      <li>References of Skin in the game</li>
+      <li>Nasim Taleb - lone wolf</li>
       <li>Sapiens: A Brief History of Humankind by Yuval Noah Harari</li>
       <li>Reinventing Organizations, by Fredric Laloux and Ken Wilber</li>
       <li>Wikipedia</li>
