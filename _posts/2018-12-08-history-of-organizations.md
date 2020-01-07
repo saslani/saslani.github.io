@@ -44,7 +44,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     </div>
     <div class="right image">
       <figure>
-        <img src="/assets/images/leadership/lubang_jeriji_saleh_cave_painting_of_bull.jpg"
+        <img src="/assets/images/leadership/lubang_jeriji_saleh_cave_painting_of_bull.jpg">
         <figcaption>
           Oldest known figurative painting, a depiction of an unknown bovine was discovered in the Lubang Jeriji Saléh cave dated as more than 40,000 (perhaps as old as 52,000) years old. - source: wiki
         </figcaption>
@@ -281,11 +281,11 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       <ul>
         <li>Role instead of absolute power</li>
         <li>Interpersonal relationships</li>
-        <li>Laws => punishment</li>
+        <li>Laws, and therefore punishment</li>
       </ul>
       <b>Strength:</b>
       <ul>
-        <li>Cause and Effect</li>
+        <li>Understanding of cause and effect</li>
         <li>Ability to make big decisions quickly</li>
         <li>Medium to long-term planning</li>
         <li>Understanding of others feelings</li>
@@ -413,31 +413,31 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
         <span class="pluralistic_green"><b>Green:</b></span> Harmony<br />
         <span class="evolutionary_teal"><b>Teal:</b></span> Rightness, am I being true to myself, pursue life well lived<br />
       </p>
-      <p>
-        As the name implies, teal organizations have an <b>evolutionary purpose</b>. Instead of looking at 5 years ahead and plan for the year, they look 20 years ahead and plan for tomorrow. In order to achieve their goal, creating smarter groups are essential. These group focus on increasing in emotional intelligence and therefore increasing performance. By giving people authority and trusting them, creativity and innovation is unleashed and therefore employee satisfaction is improved.
-      </p>
-      <b>Metaphor:</b> Living Organism <br />
-      <b>Example:</b> Morning Star <br />
-      <b>Leader:</b> ? <br />
-      <b>Principals/Strategies:</b>
-      <ul>
-        <li>Evolutionary purpose</li>
-        <li>Wholeness</li>
-        <li>Self-management</li>
-      </ul>
-      <b>Strength:</b>
-      <ul>
-        <li>Adaptive to complex environment</li>
-        <li>Satisfaction</li>
-        <li>Trust</li>
-      </ul>
-      <b>Struggle:</b> ?<br />
-      <b>Reward:</b> Life well-lived!
-    </div>
-    <div class="right image">
-      <img src="/assets/images/leadership/evolutionary_teal.jpg" />
-    </div>
-  </div> 
+      </div>
+      <div class="right image">
+        <img src="/assets/images/leadership/evolutionary_teal.jpg" />
+      </div>
+  </div>
+  <p>
+    As the name implies, teal organizations have an <b>evolutionary purpose</b>. Instead of looking at 5 years ahead and plan for the year, they look 20 years ahead and plan for tomorrow. In order to achieve their goal, creating smarter groups are essential. These group focus on increasing in emotional intelligence and therefore increasing performance. By giving people authority and trusting them, creativity and innovation is unleashed and therefore employee satisfaction is improved.
+  </p>
+  <b>Metaphor:</b> Living Organism <br />
+  <b>Example:</b> Morning Star <br />
+  <b>Leader:</b> ? <br />
+  <b>Principals/Strategies:</b>
+  <ul>
+    <li>Evolutionary purpose</li>
+    <li>Wholeness</li>
+    <li>Self-management</li>
+  </ul>
+  <b>Strength:</b>
+  <ul>
+    <li>Adaptive to complex environment</li>
+    <li>Satisfaction</li>
+    <li>Trust</li>
+  </ul>
+  <b>Struggle:</b> ?<br />
+  <b>Reward:</b> Life well-lived!
 </section>
 
 <section>
