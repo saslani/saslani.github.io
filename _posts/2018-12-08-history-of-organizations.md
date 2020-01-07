@@ -445,37 +445,37 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
 
   <ul>
     <li>What does "culture" mean?</li>
-    <li>How do we define it?</li>
+    <li>How do we define culture within an organization?</li>
     <li>What does it mean to "fit in culture"?</li>
   </ul>
   <p>
-    When we talk about culture, to me, it sounds like we look back. From Reactive Infrared to Achievement Orange defined a set of characteristics that was important and relevant for them and formed teams that fit those criteria. The main characteristics of the Green and Teal organizations, however, is openness, acceptance, democracy, trust, and adaptation. Given those characteristics:
+    When we talk about "fitting in a culture", to me, it sounds like we look back. From Reactive Infrared to Achievement Orange organizations defined a set of characteristics that was important and relevant to them and formed teams that fit those criteria. The main characteristics of the Green and Teal organizations, however, is openness, acceptance, democracy, trust, and adaptation. Given those characteristics:
     <ul>
       <li>Does it make sense, in green organization or teal, to set a culture?</li>
       <li>What about those with different ideas or different set of skills who won't "fit" in the culture that was defined, but can add to it?</li>
       <li>How do we set a culture that's changing all the time, for better?</li> 
     </ul>
-    I don't necessarily have the answer for this, whatever I can think of, it seems the next great candidate might break it! When it comes to teal organization, I still have my doubts. Working with a group of very young and skilled team, I do see how our work styles differ. I do see how passionate they considering the "bigger" life mission. But would we ever get to a place that we can all trust each other to pull our weights? 
+    I don't have the answers to these questions. Whatever I can think of, it seems the next great candidate for the organization might break it! When it comes to teal organization, I still have my doubts. Working with a group of very young and skilled team, I do see how the work styles differ with those who are a generation before me. New generation passionately consider the "bigger" life mission. But would we ever get to a place that we can all trust each other to pull our own weights? The promises that Evolutionary Teal organization makes reminds me of Socialism and I cannot help but wonder if we, the human species, are ready.
     <br />
-    The promises that Team organization makes reminds me of Socialism...
     
   </p>  
   <div class="container">
     <div class="left text">
       <p>
-        So far, we looked into the history of groups and organizations. We understood why we're social and why forming teams was essential to our survival. Also, as Dunbar suggests as our teams and organizations got bigger the need for leaders grow. Not only just a leader, but also the leadership style. In a modern society, a company who wants to run their organization like an impulsive red is not going to survive. Meanwhile, military cannot operate in pluralistic green or evolutionary teal, especially during war!
+        So far, we looked into the history of groups and organizations. We understood why we're social and why forming teams was essential to our survival. As Dunbar suggests as our teams and organizations got bigger the need for leaders grow; not only just a leader, but also the leadership style. In a modern society, a company who wants to run their organization like an impulsive red is not going to survive. Meanwhile, military cannot operate in pluralistic green or evolutionary teal, especially during war!
       </p>
       <p>
-        In order for us to determine what type of organization we have or want, and how our leaders should operate, <a href="./leadership/and/management/skills/2018/10/20/leadership-vs-management.html">we need to take a look at some leadership styles</a>. We have to decide what organization we want before we have a shanty town. Who sets the goal and the vision and what are we here to achieve?
+        In order for us to determine what type of organization we have or want, and how our leaders should operate, <a href="./leadership/and/management/skills/2018/10/20/leadership-vs-management.html">we need to take a look at some leadership styles</a>. We have to decide what organization we want before we have a shanty town. <b>Who sets the goal and the vision and what are we here to achieve?</b>
       </p>
       <p>
-        Across all these styles, a strong leader not only is setting a long term vision on how life is going to be in 5, 10, 20 years from now, they make sure that the employees are well-aware of the goals and empowers them to get there. Setting goals is an expectation for leaders but it's equally important to understand how do a leader handle disagreement and intolerance. 
+        Across all these styles, a strong leader not only is setting a long term vision on how life is going to be tomorrow, in 5, 10, 20 years from now, they make sure that the employees are well-aware of the goals and empowers them to get there. Setting goals is an expectation for leaders but it's equally important to understand how does a leader handle disagreement and intolerance. 
       </p>
       <ul>
-        <li> Is the plan to prison the person who made a mistake or cast them out? If everyone is agreeable then leadership is easy. </li>
-        <li> What if there's diversity? </li>
-        <li> What's someone's perspective of someone else's viewpoint? </li>
-        <li> What happens to diversity of values?</li>
+        <li>Is the plan to prison the person who made a mistake or cast them out, because if everyone is agreeable then leadership is easy? </li>
+        <li>What if there's diversity? How do we define diversity?</li>
+        <li>Are we considering inclusion in addition to diversity?</li>
+        <li>What's someone's perspective of someone else's viewpoint? </li>
+        <li>How do we deal with disagreement?</li>
       </ul>
     </div>
     <div class="right image">
@@ -496,9 +496,10 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       <li>If they report to a lead/manager in their team's project, what happens when the employee changes his/her project?</li>
     </ul>
     <br />
-    These are all the questions you (someone who's in charge of organization, or you as an engineer/designer/new leader) should ask, what's the best setup?
-    <br />
-    I have been thinking about this for a long time and what setup that I would love to try is a flat organization in which, the members of the team (regardless of your title as engineer, designer, business analyst ...) report to the Team's Lead. The lead is the person who sets the direction and can define success or failure and can carry the vision. This person can help you set goals within the project and can answer your questions regarding the end goal. The leader, however, doesn't necessarily care about what technology you are using.
+    <p>
+      These are all the questions you (someone who's in charge of organization, or you as an engineer/designer/new leader) should ask, what's the best setup in an organization you want to be a part of?
+    </p>
+    I have been thinking about this for a long time. Even though I am well aware that one setup doesn't apply to all, in an IT organization, I would love to try a flat organization in which, the members of the team (regardless of your title as engineer, designer, business analyst ...) report to the Team's Lead. The lead is the person who sets the direction and can define success or failure and can carry the vision. This person can help you set goals within the project and can answer your questions regarding the end goal. The leader, however, doesn't necessarily care about what technology you are using or the details of how each feature was executed, as long as the "goal" is met.
     <br />
     When it comes to specific technology, however, I would like to see different learning groups within the organization. The lead of that learning team has great and deep knowledge of the technology. He/she can give you technical support or guide you to documents, resources outside of the organization to help you succeed.
     <br />
@@ -506,8 +507,8 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
   </p>
 </section>
 
+<section>
   <strong>TODOs</strong>
-
   <p>
     Many of us have parents and grandparents who only worked for one company honorably, most of them changed jobs only if they had to. But this is changing rapidly for the new generation that's entering the workforce. I, for example, worked for 5 companies for the past 15 years, since I started my profession. I co-founded Tested Minds with my husband in 2010 because I wanted to have time and space to think and be creative. I wanted to work on projects that interest me and allow me to flourish. I wanted have the freedom to pick the technology I work with, my client and most of all something that "worth" my time and life. After a few years of consulting, due to mutual agreement my husband and I decided to switch places. Currently, he spend most of his time growing Tested Minds while I worked for more established companies to ensure our financial are secured.
   </p>
