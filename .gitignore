@@ -2,7 +2,6 @@ _site/
 .sass-cache/
 _exclude/*
 .jekyll-metadata
-.jekyll-cache/
 deploy.sh
 .idea
 _exclude

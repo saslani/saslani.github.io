@@ -2,7 +2,8 @@
 layout: post
 title:  "Computational Thinking QA - SCNA 2017"
 date:   2017-10-20 22:04:39
-categories: Computer Science
+image:  scna_qa.jpg
+tags:   [Computer Science, Best Practices]
 ---
 
 [SCNA-2017](https://scna.softwarecraftsmanship.org/sarah-aslanifar/)
