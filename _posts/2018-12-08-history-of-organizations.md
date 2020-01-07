@@ -140,7 +140,6 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       <img src="/assets/images/leadership/graph.jpg" />
     </div>
   </div>
-
 </section>
 
 <section>
@@ -148,7 +147,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
 
   <div class="container">
     <p>
-      Before we start talking about leadership styles and their effectiveness let's take a look at different organizations throughout history. Considering evolution, we see that we have evolved from small groups of family to survive, to build today's mega city and civilization. We went from staying together in group of dozens to have our species survive and pass our genes, to understanding biology and manipulating our genes! But, we couldn't have came so far if we had stayed in our small family circle or tribes. Forming bigger groups and organizations allowed us to shift our attention from just survival to understanding the world around us.
+      Considering evolution, we see that we have evolved from small groups of family to survive, to build today's mega city and civilization. We went from staying together in group of dozens just to have our species survive and pass our threads through genes, to understanding biology and manipulating our genes! But, we couldn't have came so far if we had stayed in our small family circle or tribes. Forming bigger groups and organizations allowed us to shift our attention from survival to understanding the world around us.
     </p>
     <p>
       The book “Reinventing Organizations” charts the evolution of organizations as the following:
