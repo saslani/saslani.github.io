@@ -1,0 +1,86 @@
+I"�6<p>I recently started a project in which I need to build several RESTful API’s and microservices in Java. When I started scoping out the architecture, I thought about the fact that the last Java REST API I’d built from scratch was in 2012. I’d developed a few in Rails and Sinatra-based API’s in the meantime, though, and I wanted a similarly happy and productive developer experience in Java.</p>
+
+<h2 id="solving-for-developer-happiness">Solving for developer happiness</h2>
+
+<p>Now happiness is subjective, especially among developers. To me, being able to quickly iterate with immediate feedback is key. Everything else follows from that principle:</p>
+
+<ol>
+  <li>An architecture that takes a <a href="http://www.amazon.com/Software-Tools-Brian-W-Kernighan/dp/020103669X">software tools</a> approach, particularly the <a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html">Unix Philosophy</a> of simplicity, parsimony, and modularity.</li>
+  <li>Easy to get started with a working application, going from zero to deployed in less than ten minutes.</li>
+  <li>Ideally, live-reloading of code in development against a running server. Barring that, server build and startup loops that can be measured in seconds. I don’t want the overhead of having to compile, deploy a WAR, and wait for an application server to launch an app before I see results. If I redeploy the application 20 times a day, waiting a minute or two for each iteration means I could lose almost an hour. This rules out approaches that involve application servers like Tomcat in favor of an application with an embedded Jetty or Netty.</li>
+  <li>Support for a REPL for small, fast experimentation. Dynamic languages like Ruby, Python, and Clojure have set the standard, but there are ways to get a REPL in Java without waiting for Java 9.</li>
+  <li>Support for continuous integration and continuous delivery with end-to-end, fast functional tests and an automated deployment.</li>
+  <li>If a relational database is needed, support for migrations and easy object-relational mapping without massive cognitive overhead.</li>
+  <li>A workflow that is independent of any IDE. If the work can’t be automated on a command line, you’ve locked yourself and your team into an exercise of point and click in Eclipse or IntelliJ. It’s doesn’t scale, and point and click workflows that rely on memorization and mouse dexterity aren’t fun to me.</li>
+</ol>
+
+<p>Point number 1 bears special attention. I want to be able to combine small tools that each do one thing well into a solution that meets my needs for the situation. In contrast, consider something like Spring MVC. What started off with good intentions has become a grand complication. The <a href="http://docs.spring.io/autorepo/docs/spring/3.2.x/spring-framework-reference/htmlsingle/">Spring Framework Reference Documentation</a> is <em>626 printed pages</em> at the time of this writing, April 2016. The opening line of the overview states, “The Spring Framework is a lightweight solution and a potential one-stop-shop for building your enterprise-ready applications.” Sorry, but “lightweight” and “one-stop-shop” don’t sound like compatible goals to me. Again, I’m looking for a solution that follows the <a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html">Unix Philosophy</a>. I don’t know about you, but simplicity and parsimony are words I don’t often hear from myself or others when speaking of Spring.</p>
+
+<p>While not as bloated as Spring, I would put other “full stack web application frameworks” like Ninja and Play in the list of things I don’t want as the basis of a microservice. There’s simply too much there to consider. Small things can be understood, mastered, and combined in many different ways.</p>
+
+<h2 id="diy-api">DIY API</h2>
+
+<p>Given the very specific vision of what I was looking for in an application architecture, I realized the simplest way forward was to build a proof-of-concept to show my colleagues and the world to get feedback. If someone tells me, “Hey, didn’t you know about X? It does everything you just did!”, I’ll be very interested in taking a look. For now, I wanted an API with a dead simple domain just to show what it would take to build something deployable in a real-world way.</p>
+
+<p>Allow me to introduce you to <a href="https://github.com/saslani/sparkler">Sparkler</a>! Sparkler was developed by two software engineers, Sarah Aslanifar (that’s me) and <a href="http://bobbynorton.com/">Bobby Norton</a>. Rather than starting with a framework, we started with a stub of a domain that would illustrate the other “plumbing” we’d need for our RESTful microservices. You can check out the <a href="https://github.com/saslani/sparkler/blob/master/README.md">README</a> for details about how to get started, but this introduction is more about some of the more interesting implementation choices.</p>
+
+<h4 id="building-the-server-and-rest-api-with-the-spark-web-framework">Building the Server and REST API with the Spark Web Framework</h4>
+
+<p>Not to be confused with the distributed computing framework Apache Spark, “Spark Web” is a relatively new Java Web Application “microframework”. Based on the design principles of Sinatra and leveraging the functional programming potential of Java 8, Spark proved to be a fantastic foundation for the stack I wanted to build. From <a href="http://sparkjava.com/">Spark’s introduction</a>,</p>
+
+<blockquote>
+  <p>“Microservices work best with micro frameworks, and Spark has your REST API ready to serve JSON in less than ten lines of code. Spark is mainly used for creating REST API’s, but it also supports a multitude of template engines. Why not create one Spark application for your backend and one for your frontend?”</p>
+</blockquote>
+
+<p>This is exactly the kind of modular thinking we wanted. Don’t need a front-end? Great…it isn’t there. Don’t need a database? Don’t think about it…it isn’t there. After spending a couple of hours experimenting with one of Frederico Tomassetti’s <a href="https://sparktutorials.github.io/2015/04/03/spark-lombok-jackson-reduce-boilerplate.html">well-written tutorial</a>, I was ready to extend Spark with my own ideas.</p>
+
+<p>Spark includes an embedded Jetty server, which is perfect for my needs. From the <a href="http://www.eclipse.org/jetty/documentation/current/embedding-jetty.html">Jetty documentation</a>:</p>
+
+<blockquote>
+  <p>Jetty has a slogan, “Don’t deploy your application in Jetty, deploy Jetty in your application!” What this means is that as an alternative to bundling your application as a standard WAR to be deployed in Jetty, Jetty is designed to be a software component that can be instantiated and used in a Java program just like any POJO. Put another way, running Jetty in embedded mode means putting an HTTP module into your application, rather than putting your application into an HTTP server.</p>
+</blockquote>
+
+<h4 id="functional-testingwith-junit-semantic-versioning">Functional Testing…with JUnit! Semantic Versioning</h4>
+
+<p>For those that have found functional testing to have become “Cucumbersome”, seeing an approach for end-to-end testing using nothing more than JUnit may be interesting.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">cucumbersome</span>
+<span class="o">[</span><span class="n">kyoo</span><span class="o">-</span><span class="n">kuhm</span><span class="o">-</span><span class="n">ber</span><span class="o">-</span><span class="n">suh</span> <span class="n">m</span><span class="o">]</span>
+<span class="n">adjective</span>
+<span class="mi">1</span><span class="o">.</span> <span class="n">burdensome</span><span class="o">;</span> <span class="n">troublesome</span> <span class="n">due</span> <span class="n">to</span> <span class="n">a</span> <span class="n">separation</span> <span class="n">of</span> <span class="n">testing</span> <span class="n">language</span> <span class="n">and</span> 
+<span class="n">application</span> <span class="n">language</span> <span class="n">inherent</span> <span class="n">in</span> <span class="nf">Cucumber</span> <span class="o">(</span><span class="n">cucumber</span><span class="o">.</span><span class="na">io</span><span class="o">)</span></code></pre></figure>
+
+<p>Seem harsh? Have a look at one approach to <a href="https://sparktutorials.github.io/2015/09/27/spark-testing-functional.html">functional testing with Cucumber in Spark</a> and compare to the <a href="https://github.com/saslani/sparkler/blob/master/src/test/java/com/testedminds/sparkler/RestfulApiFunctionalTest.java">functional tests in Sparkler</a>.</p>
+
+<p>Test-driving the service’s public RESTful API allowed us to carefully define our API’s contract. Defining the public API this way is essential for <a href="http://semver.org/">Semantic Versioning</a>: If the public API changes, i.e. the semantics of the functional test in this case, that’s a major revision. If there’s a bug fix or some refactoring anywhere in the application, that’s a patch. Just about anything else is a minor version.</p>
+
+<h4 id="ready-for-continuous-delivery">Ready for Continuous Delivery</h4>
+
+<p>Sparkler is a <a href="http://12factor.net/">12 Factor App</a>. As a way to put that to the test, Sparkler includes a fully automated deployment to Heroku with a single <code class="highlighter-rouge">make heroku-deploy</code> command. The artifact deployed to Heroku is the same as an alternative tarball-based deployment artifact that you can deploy just about anywhere that runs Java 8. How we did that could be an article of its own, but have a look at the <a href="https://github.com/saslani/sparkler/blob/master/makefile">makefile</a> and <a href="https://github.com/saslani/sparkler/blob/master/Procfile">Procfile</a> for now if you’re curious about how we did it.</p>
+
+<h4 id="immediate-feedback-with-the-repl">Immediate feedback with the REPL</h4>
+
+<p>Unit tests can be a great way to get fast feedback, but REPL-driven development also has a place for even faster line-by-line experimentation. There isn’t a built-in REPL in Java, though one is <a href="https://blogs.oracle.com/java/entry/jshell_and_relp_in_java">coming in Java 9</a>. In the meantime, we can leverage Groovy to provide a REPL through Maven using <code class="highlighter-rouge">maven groovy:shell</code>. There’s a shortcut for this in the Sparkler <code class="highlighter-rouge">makefile</code>:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">make repl
+Groovy Shell <span class="o">(</span>1.8.7, JVM: 1.8.0_40<span class="o">)</span>
+Type <span class="s1">'help'</span> or <span class="s1">'\h'</span> <span class="k">for </span>help.
+<span class="nt">-----------------------------------------------------------</span>
+groovy:000&gt; import com.testedminds.sparkler.util.Version<span class="p">;</span>
+<span class="o">===&gt;</span> <span class="o">[</span>import com.testedminds.sparkler.util.Version<span class="p">;</span><span class="o">]</span>
+groovy:000&gt; Version.get<span class="o">()</span>
+<span class="o">===&gt;</span> sparkler-1.0.2-SNAPSHOT
+groovy:000&gt;</code></pre></figure>
+
+<p>True REPL-driven development like you would see in, for example, a Clojure workflow, involves functions being composed piece by piece sent from a text buffer for evaluation. The Maven Groovy shell doesn’t support integration with an IDE like IntelliJ, but does offer the benefit of immediate evaluation. For Java developers that are completely new to dynamic languages, a Groovy shell can be a gentle introduction. Again, REPL-driven Java is a big enough topic to deserve its own article, but this provides a glimpse.</p>
+
+<h2 id="so-will-this-be-a-framework-eventually">So will this be a framework eventually?</h2>
+
+<p>Maybe some day. A framework implies a level of extensibility through the <a href="https://en.wikipedia.org/wiki/Open/closed_principle">open-closed principle</a> that is currently missing in Sparkler. This application isn’t closed at all, in fact. It’s completely open for you to inspect, criticize, and most importantly, understand. I think of Sparkler as a cookbook for me and other developers with like-minded design principles to easily build Java-based REST API’s from a worked example.</p>
+
+<p>After we’ve deployed several production applications based on Sparkler, it might be time to think about introducing a framework. For now, I think the value is in seeing how Java is a viable alternative for iterative, adaptive REST API development. I think there are some interesting design alternatives in Sparkler for the SparkJava community to consider. On one hand, there’s nothing new here. On the other, we couldn’t find any other project where all of these ideas had been combined.</p>
+
+<p>Maybe you don’t agree with some of the choices we made. Maybe you think configuration files should be used in favor of environment variables, or perhaps you like Gradle instead of Maven. That’s the beauty of open source: You’re welcome to fork Sparkler and modify it in any way you wish. Building your own template is a great way to get to know the libraries you need to use. Rather than taking an off-the-shelf package of someone else’s choices, build your own!</p>
+
+<p>In addition to a write-up for how to build a more complicated domain in Sparkler, some follow-up articles might be in order for the functional testing approach, support for different databases in dev and prod-like environments, or continuous delivery. In the meantime, take a look at <a href="https://github.com/saslani/sparkler#getting-started">getting started</a> with Sparkler and tell me what you think! I’d love to hear from you please contact me by email, <a href="mailto:sarah@testedminds.com">sarah@testedminds.com</a>.</p>
+:ET

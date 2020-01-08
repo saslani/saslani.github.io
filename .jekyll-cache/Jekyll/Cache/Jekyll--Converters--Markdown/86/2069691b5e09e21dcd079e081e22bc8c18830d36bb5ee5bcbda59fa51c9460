@@ -1,0 +1,300 @@
+I"\<p>This program is designed for those who are want to learn Ruby by doing small project that helps them build their skills.
+Below is the link to my workshop, I encourage you to use <a href="repl.it">repl.it</a> since it is the easiest, not necessarily the best, way to get started with ruby. You need to sign up, create a session, choose ruby from the list, and start your work.</p>
+
+<p>Note: I found out that sometimes after creating a new session I have to refresh my browser in order to see my new session.</p>
+
+<p><img src="/img/ruby_beginners/repl.gif" alt="" /></p>
+
+<p>Another way to do this exercise is to use a simple text file and save it in your development directory, or Desktop or where ever you prefer to work. You can name it ‘tic_tac_toe.rb’, the name dosn’t matter however, we prefer underscored lowercase names but the extension has to be ‘.rb’. Then from your terminal navigate to the directory that contains your file. Use your IDE of choice to go through the steps. In order to run your program use ‘ruby tic_tac_toe.rb’ from your terminal.</p>
+
+<p><img src="/img/ruby_beginners/tic_tac_toe.gif" alt="" /></p>
+
+<p>Have fun and feel free to shoot me an email if you have any questions!</p>
+
+<iframe src="//slides.com/sarahaslanifar/tic-tac-toe/embed" width="700" height="500" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>Following is the step-by-step solution to the tic-tac-toe beginner; try not to use this unless you are really stuck!</p>
+
+<p>Step 1:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">################</span>
+<span class="c1">#	LET'S PLAY</span>
+<span class="c1">################</span>
+<span class="c1"># Here is the order in which we want to play the game. Run the code section below and see what happens</span>
+<span class="c1"># Note:</span>
+<span class="c1"># You will see the following error:</span>
+<span class="c1"># -&gt; undefined local variable or method `initialize_board` for main:Object</span>
+<span class="c1"># This means the repl doesn't understand 'initialize_board', let's go ahead and define this method. Then go back up to Step 2 and build your tic-tac-toe</span>
+
+<span class="n">initialize_board</span>
+<span class="k">begin</span>
+  <span class="k">break</span> <span class="k">if</span> <span class="o">!</span><span class="n">play</span>
+  <span class="n">switch_player</span>
+<span class="k">end</span> <span class="k">while</span> <span class="o">!</span><span class="n">game_over?</span>
+<span class="nb">puts</span> <span class="s2">"GAME OVER"</span> <span class="k">if</span><span class="p">(</span><span class="n">game_over?</span><span class="p">)</span></code></pre></figure>
+
+<hr />
+
+<p>Step 2:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">initialize_board</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<p>Step 3:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">play</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<p>Step 4:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">switch_player</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<p>Step 5:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">game_over?</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>By the end of Step 5, your program looks like this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">initialize_board</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">play</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">switch_player</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">game_over?</span>
+<span class="k">end</span>
+
+<span class="n">initialize_board</span>
+<span class="k">begin</span>
+<span class="k">break</span> <span class="k">if</span> <span class="o">!</span><span class="n">play</span>
+<span class="n">switch_player</span>
+<span class="k">end</span> <span class="k">while</span> <span class="o">!</span><span class="n">game_over?</span>
+<span class="nb">puts</span> <span class="s2">"GAME OVER"</span> <span class="k">if</span><span class="p">(</span><span class="n">game_over?</span><span class="p">)</span></code></pre></figure>
+
+<hr />
+
+<p>Step 6:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">initialize_board</span>
+  <span class="vi">@board</span> <span class="o">=</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">){</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">print_board</span>
+  <span class="nb">puts</span> <span class="s2">"---------"</span>
+  <span class="vi">@board</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="n">row</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">" | "</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"---------"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># .</span>
+<span class="c1"># .</span>
+
+<span class="n">initialize_board</span>
+<span class="n">print_board</span>
+<span class="k">begin</span>
+  <span class="k">break</span> <span class="k">if</span> <span class="o">!</span><span class="n">play</span>
+  <span class="n">switch_player</span>
+<span class="k">end</span> <span class="k">while</span> <span class="o">!</span><span class="n">game_over?</span>
+<span class="nb">puts</span> <span class="s2">"GAME OVER"</span> <span class="k">if</span><span class="p">(</span><span class="n">game_over?</span><span class="p">)</span></code></pre></figure>
+
+<hr />
+
+<p>Step 7:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">PLAYER_ONE</span> <span class="o">=</span> <span class="s1">'X'</span>
+<span class="no">PLAYER_TWO</span> <span class="o">=</span> <span class="s1">'O'</span>
+
+<span class="k">def</span> <span class="nf">initialize_board</span>
+  <span class="vi">@player</span> <span class="o">=</span> <span class="no">PLAYER_ONE</span>
+  <span class="vi">@board</span> <span class="o">=</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">){</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">get_inputs</span>
+  <span class="nb">print</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="s2">, please enter the row: "</span>
+  <span class="n">input_row</span> <span class="o">=</span> <span class="nb">gets</span>
+
+  <span class="nb">print</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="s2">, please enter the column: "</span>
+  <span class="n">input_column</span> <span class="o">=</span> <span class="nb">gets</span>
+
+  <span class="p">[</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span><span class="p">,</span> <span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">play</span>
+  <span class="n">inputs</span> <span class="o">=</span> <span class="n">get_inputs</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">game_over?</span>
+  <span class="kp">true</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<p>Step 8:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">update_board</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+  <span class="vi">@board</span><span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@player</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">play</span>
+  <span class="n">inputs</span> <span class="o">=</span> <span class="n">get_inputs</span>
+  <span class="n">update_board</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+  <span class="n">print_board</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<p>Step 9:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">initialize_board</span>
+  <span class="vi">@count</span> <span class="o">=</span> <span class="mi">9</span>
+  <span class="vi">@player</span> <span class="o">=</span> <span class="no">PLAYER_ONE</span>
+  <span class="vi">@board</span> <span class="o">=</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">){</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">switch_player</span>
+  <span class="k">if</span><span class="p">(</span><span class="vi">@player</span> <span class="o">==</span> <span class="no">PLAYER_ONE</span><span class="p">)</span>
+    <span class="vi">@player</span> <span class="o">=</span> <span class="no">PLAYER_TWO</span>
+  <span class="k">else</span>
+    <span class="vi">@player</span> <span class="o">=</span> <span class="no">PLAYER_ONE</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">game_over?</span>
+  <span class="vi">@count</span> <span class="o">=</span> <span class="vi">@count</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="vi">@count</span> <span class="o">&lt;=</span> <span class="mi">0</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<p>Step 10:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">get_inputs</span>
+  <span class="nb">print</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="s2">, please enter the row: "</span>
+  <span class="n">input_row</span> <span class="o">=</span> <span class="nb">gets</span>
+  <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span><span class="p">(</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span> <span class="o">==</span> <span class="mi">999</span><span class="p">)</span>
+
+  <span class="nb">print</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="s2">, please enter the column: "</span>
+  <span class="n">input_column</span> <span class="o">=</span> <span class="nb">gets</span>
+  <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span><span class="p">(</span><span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span> <span class="o">==</span> <span class="mi">999</span><span class="p">)</span>
+
+  <span class="p">[</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span><span class="p">,</span> <span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">play</span>
+  <span class="n">inputs</span> <span class="o">=</span> <span class="n">get_inputs</span>
+  <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span> <span class="o">!</span><span class="n">inputs</span>
+  <span class="n">update_board</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+  <span class="n">print_board</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<p>Step 11:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">get_inputs</span>
+  <span class="k">begin</span>
+    <span class="nb">print</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="s2">, please enter the row: "</span>
+    <span class="n">input_row</span> <span class="o">=</span> <span class="nb">gets</span>
+    <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span><span class="p">(</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span> <span class="o">==</span> <span class="mi">999</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="s2">, please enter the column: "</span>
+    <span class="n">input_column</span> <span class="o">=</span> <span class="nb">gets</span>
+    <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span><span class="p">(</span><span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span> <span class="o">==</span> <span class="mi">999</span><span class="p">)</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">valid</span> <span class="o">=</span> <span class="n">valid_move?</span><span class="p">(</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span><span class="p">,</span> <span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span><span class="p">))</span>
+      <span class="nb">puts</span> <span class="s2">"That one is taken </span><span class="se">\"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="se">\"</span><span class="s2">, try again: "</span>
+    <span class="k">end</span>
+  <span class="k">end</span> <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">valid</span><span class="p">)</span>
+
+  <span class="p">[</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span><span class="p">,</span> <span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">valid_move?</span><span class="p">(</span><span class="n">input_row</span><span class="p">,</span> <span class="n">input_column</span><span class="p">)</span>
+  <span class="vi">@board</span><span class="p">[</span><span class="n">input_row</span><span class="p">.</span><span class="nf">-</span><span class="mi">1</span><span class="p">][</span><span class="n">input_column</span><span class="p">.</span><span class="nf">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">strip</span><span class="p">.</span><span class="nf">empty?</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Finished program:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">PLAYER_ONE</span> <span class="o">=</span> <span class="s1">'X'</span>
+<span class="no">PLAYER_TWO</span> <span class="o">=</span> <span class="s1">'O'</span>
+
+<span class="k">def</span> <span class="nf">initialize_board</span>
+  <span class="vi">@count</span> <span class="o">=</span> <span class="mi">9</span>
+  <span class="vi">@player</span> <span class="o">=</span> <span class="no">PLAYER_ONE</span>
+  <span class="vi">@board</span> <span class="o">=</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">){</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">print_board</span>
+  <span class="nb">puts</span> <span class="s2">"---------"</span>
+  <span class="vi">@board</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="n">row</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">" | "</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"---------"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">get_inputs</span>
+  <span class="k">begin</span>
+    <span class="nb">print</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="s2">, please enter the row: "</span>
+    <span class="n">input_row</span> <span class="o">=</span> <span class="nb">gets</span>
+    <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span><span class="p">(</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span> <span class="o">==</span> <span class="mi">999</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="s2">, please enter the column: "</span>
+    <span class="n">input_column</span> <span class="o">=</span> <span class="nb">gets</span>
+    <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span><span class="p">(</span><span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span> <span class="o">==</span> <span class="mi">999</span><span class="p">)</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">valid</span> <span class="o">=</span> <span class="n">valid_move?</span><span class="p">(</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span><span class="p">,</span> <span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span><span class="p">))</span>
+      <span class="nb">puts</span> <span class="s2">"That one is taken </span><span class="se">\"</span><span class="si">#{</span><span class="vi">@player</span><span class="si">}</span><span class="se">\"</span><span class="s2">, try again: "</span>
+    <span class="k">end</span>
+  <span class="k">end</span> <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">valid</span><span class="p">)</span>
+
+  <span class="p">[</span><span class="n">input_row</span><span class="p">.</span><span class="nf">to_i</span><span class="p">,</span> <span class="n">input_column</span><span class="p">.</span><span class="nf">to_i</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">valid_move?</span><span class="p">(</span><span class="n">input_row</span><span class="p">,</span> <span class="n">input_column</span><span class="p">)</span>
+  <span class="vi">@board</span><span class="p">[</span><span class="n">input_row</span><span class="p">.</span><span class="nf">-</span><span class="mi">1</span><span class="p">][</span><span class="n">input_column</span><span class="p">.</span><span class="nf">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">strip</span><span class="p">.</span><span class="nf">empty?</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">update_board</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+  <span class="vi">@board</span><span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@player</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">play</span>
+  <span class="n">inputs</span> <span class="o">=</span> <span class="n">get_inputs</span>
+  <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span> <span class="o">!</span><span class="n">inputs</span>
+  <span class="n">update_board</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+  <span class="n">print_board</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">switch_player</span>
+  <span class="k">if</span><span class="p">(</span><span class="vi">@player</span> <span class="o">==</span> <span class="no">PLAYER_ONE</span><span class="p">)</span>
+    <span class="vi">@player</span> <span class="o">=</span> <span class="no">PLAYER_TWO</span>
+  <span class="k">else</span>
+    <span class="vi">@player</span> <span class="o">=</span> <span class="no">PLAYER_ONE</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">game_over?</span>
+  <span class="vi">@count</span> <span class="o">=</span> <span class="vi">@count</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="vi">@count</span> <span class="o">&lt;=</span> <span class="mi">0</span>
+<span class="k">end</span>
+
+<span class="n">initialize_board</span>
+<span class="n">print_board</span>
+<span class="k">begin</span>
+  <span class="k">break</span> <span class="k">if</span> <span class="o">!</span><span class="n">play</span>
+  <span class="n">switch_player</span>
+<span class="k">end</span> <span class="k">while</span> <span class="o">!</span><span class="n">game_over?</span>
+<span class="nb">puts</span> <span class="s2">"GAME OVER"</span></code></pre></figure>
+:ET

@@ -1,23 +1,62 @@
-# Site settings
+#-------------------------------
+# General Site Settings
+
 title: Sarah Aslanifar
-tagline: Procrastination Terminator
-email: Sarah@testedminds.com
-description: > # this means to ignore newlines until "baseurl"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://sarahaslanifar.com" # the base hostname & protocol for your site
-github_username:  saslani
-# paginate: 10
+description: Write to clear my brain!
+baseurl: ""
+url: "http://sarahaslanifar.com"
 
-#Disqus
-#comments: true
 
+#-------------------------------
+# About Section
+author-name:   Sarah Aslanifar
+author-avatar: me.jpg
+
+
+#-------------------------------
+# Contact links
+testedminds: http://testedminds.com
+github: https://github.com/saslani
+linkedin: http://linkedin.in/in/felfeli
+twitter: https://twitter.com/testedminds
+
+
+#-------------------------------
+# Comment Section (Disqus)
+disqus-identifier: saslani
+
+
+#-------------------------------
+# Google Analytics
+google-analytics: UA-155767940-1
+
+
+#-------------------------------
 # Build settings
 markdown: kramdown
-sass:
-    style: :compressed
+permalink: ":title/"
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
 
-# Gems
-plugings: [jekyll-paginate]
+paginate: 7
+paginate_path: "/page/:num"
+
+include:
+  - _pages
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+
+#-------------------------------
+# Exclude from processing.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

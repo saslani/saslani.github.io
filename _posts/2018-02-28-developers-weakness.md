@@ -2,7 +2,8 @@
 layout: post
 title:  "Developers' Weakness"
 date:   2018-02-28 23:04:39
-categories: Computational Thinking, Computer Science
+image:  choice.png
+tags:   [Computational Thinking, Computer Science, Career]
 ---
 
 You have a choice in designing your software development career: You can be a technologist that can exploit one technology to solve problems that technology was built to solve. Alternatively, you can be a computational thinker that can address a much broader set of problems, choosing or building the technology you need.

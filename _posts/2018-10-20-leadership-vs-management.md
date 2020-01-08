@@ -2,7 +2,8 @@
 layout: post
 title:  "Leaders vs. Managers"
 date:   2018-10-20 16:15:15
-categories: Management Skills
+image:  leadership_vs_management.jpg
+tags:   [Leadership and Management Skills]
 ---
 
 I've been thinking a lot about leadership lately. In particular, what does it mean to be a leader vs. a manager? Can you aspire to be a leader, or does it just happen? Do I (and you, dear reader) understand the distinction between these terms? I think the best way for me to explore these thoughts is as a set of informal essays. This first edition comes from my observations about different styles of both leadership and management that I've experienced over the last 15 years of my career in software development. It's a mix of my opinions and reflections on source material I'll cite at the end.
@@ -47,7 +48,7 @@ Not every manager is a leader but in some organizations, leaders are also manage
 
   </div>
   <div class="right image">
-    <img src="/assets/images/leadership_styles/leadership_vs_management.jpg" />
+    <img src="/img/leadership_styles/leadership_vs_management.jpg" />
   </div>
 </div>
 
@@ -57,7 +58,7 @@ Not every manager is a leader but in some organizations, leaders are also manage
 
 <div class="container">
   <div class="left image">
-    <img src="/assets/images/leadership_styles/leadership_front.jpg">
+    <img src="/img/leadership_styles/leadership_front.jpg">
   </div>
   <div class="right text">
     <p>In this style of leadership, leaders are steps ahead of their followers to make sure the task is doable before they ask others do them. You can detect this style in organizations when you see the leaders who are fully engaged. They frequently want to approve before any one takes a different approach to problem solving.</p>
@@ -70,7 +71,7 @@ Not every manager is a leader but in some organizations, leaders are also manage
 
 <div class="container">
   <div class="left image">
-    <img src="/assets/images/leadership_styles/leadership_behind.jpg">
+    <img src="/img/leadership_styles/leadership_behind.jpg">
   </div>
   <div class="right text">
     <blockquote>
@@ -100,7 +101,7 @@ Not every manager is a leader but in some organizations, leaders are also manage
 
 <div class="container">
   <div class="left image">
-    <img src="/assets/images/leadership_styles/leadership_visionary.jpg">
+    <img src="/img/leadership_styles/leadership_visionary.jpg">
   </div>
   <div class="right text">
     <p>
@@ -120,7 +121,7 @@ Not every manager is a leader but in some organizations, leaders are also manage
     To wrap up, I want to call out a couple of styles of <i>attempted</i> leadership or management styles that I've run into...and I'm wagering you have, too. These hopefully don't describe <i>you</i>, but if they do...take this as some feedback and make a change!
   </div>
   <div class="right image">
-    <img src="/assets/images/leadership_styles/styles.jpg" />
+    <img src="/img/leadership_styles/styles.jpg" />
   </div>
 </div>
 
@@ -128,7 +129,7 @@ Not every manager is a leader but in some organizations, leaders are also manage
 
 <div class="container">
   <div class="left image">
-    <img src = "/assets/images/leadership_styles/leadership_sideline.jpg">
+    <img src = "/img/leadership_styles/leadership_sideline.jpg">
   </div>
   <div class="right text">
     <p>Successful leaders know how to and must delegate. Sometimes, leaders forget this and effectively demote themselves to individual contributors by pushing their people aside and doing the work on their own. This is tragic, because they have followers, but fail to trust them. It's easier for them to do the job rather than empower and trust others to do it. They won't have followers for long with this style!</p>
@@ -142,7 +143,7 @@ Not every manager is a leader but in some organizations, leaders are also manage
 
 <div class="container">
   <div class="left image">
-    <img src="/assets/images/leadership_styles/micromanagement.jpg" />
+    <img src="/img/leadership_styles/micromanagement.jpg" />
   </div>
   <div class="right text">
     <p>

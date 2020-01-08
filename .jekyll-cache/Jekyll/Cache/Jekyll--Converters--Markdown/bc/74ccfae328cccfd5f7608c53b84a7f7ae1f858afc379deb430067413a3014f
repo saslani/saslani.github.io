@@ -1,0 +1,262 @@
+I"�x<p><img src="/img/sparkler_presentation/sparkler.001.jpeg#sparkler-presentation-img" alt="In Search of Developer Happiness" title="In Search of Developers" /></p>
+
+<p>In my last post, I <a href="http://sarahaslanifar.com/java/2016/04/12/sparkler.html">introduced Sparkler</a>, a reference app for how I’m using the Spark web application framework to deploy Java-based API’s and microservices. I’ve recently given a few five-minute lightning talks about Sparker based on the concepts in this article.</p>
+
+<p>First of all, why Java and not something “modern” like Clojure, Ruby, or Python? To start, I’m not a <em>fan</em> of any programming language or framework: I believe choosing the right tool for the job. Part of what it means to be <em>the right tool</em> is matching the skills of the developers involved and the tolerance of the organization for uncertainty.</p>
+
+<p>In many enterprises, Java-based applications are familiar to both development and ops teams. As such, I wanted a way to quickly build Java-based API’s that preserved the productivity and flow I’d experienced in some of the dynamic language ecosystems.</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.002.jpeg#sparkler-presentation-img" alt="" title="Frameworks" /></p>
+
+<p>When talking about building Java web applications, you often hear about solutions like Spring, Play, Struts, Hibernate, etc. “Simple” and “modular” aren’t usually the adjectives people choose to describe these creations. Spring, in particular, has a user manual that’s over 600 pages long!</p>
+
+<p>The scary thing is that some of these frameworks are so big that people haven’t usually even looked at the source code. Even if you did, you might be horrified by the complication of what you find. People mostly resort to treating the framework like a Big Black Box as a coping mechanism…“I don’t know how it works, and I don’t want to know.”</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.003.jpeg#sparkler-presentation-img" alt="" title="BIG BLACK BOX" /></p>
+
+<p>Combine this large frameworks with workflows that are tied to an editor, you get people writing articles that explain REST in Java in terms of how to deploy a Spring MVC WAR into JBoss using Eclipse without talking about any of the high-level design principles. People quote these articles like it’s THE WAY, not just “A Way”. How did they get there, and why do they stay?</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.004.jpeg#sparkler-presentation-img" alt="" title="IDEs" /></p>
+
+<p>Suddenly, you find yourself becoming a <em>Spring</em> developer rather than a Java developer. Your simple restful API makes you want to scream.</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.005.jpeg#sparkler-presentation-img" alt="" title="WTH" /></p>
+
+<p>It makes me feel like someone is jumping on my head while I am already down, wiping snot on my face with a laugh!</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.006.gif#sparkler-presentation-img" alt="" title="snot" /></p>
+
+<p>What is developer’s happiness? A huge pastry shop full of freshly baked and beautifully decorated pastries?</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.007.jpeg#sparkler-presentation-img" alt="" title="Happiness?" /></p>
+
+<p>Ask my husband, and you’ll get a “Yes”. What about for the rest of us?</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.008.jpeg#sparkler-presentation-img" alt="" title="Found it!" /></p>
+
+<p>Enter Spark, a wrapper around Jetty that gives you a nice framework for a restful API. A few weeks ago I had to do a project in Java. When I was searching for a small, simple Java framework to start with, I came across Spark. Within a couple of hours of working on tutorials I was ready to start my application. I added make, Sql2o, Flyway, and RabbitMQ to compose a modular, loosely coupled custom framework for my project.</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.009.jpeg#sparkler-presentation-img" alt="" title="Spark" /></p>
+
+<p>HTTP routes are defined in a manner very similar to Sinatra or Rails:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Routes</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">Routes</span><span class="o">(</span><span class="nc">ExampleDao</span> <span class="n">dao</span><span class="o">,</span> <span class="kt">int</span> <span class="n">serverPort</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">version</span> <span class="o">=</span> <span class="nc">Version</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="n">port</span><span class="o">(</span><span class="n">serverPort</span><span class="o">);</span>
+
+        <span class="n">get</span><span class="o">(</span><span class="s">"/"</span><span class="o">,</span> <span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">res</span><span class="o">)</span> <span class="o">-&gt;</span>
+            <span class="s">"It's time to sparkle and shine! See the README to
+                get started. Version: "</span> <span class="o">+</span> <span class="n">version</span><span class="o">);</span>
+
+        <span class="n">get</span><span class="o">(</span><span class="s">"/examples/:id"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">GetExampleHandler</span><span class="o">(</span><span class="n">dao</span><span class="o">));</span>
+        <span class="n">post</span><span class="o">(</span><span class="s">"/examples"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">PostExampleHandler</span><span class="o">(</span><span class="n">dao</span><span class="o">));</span>
+        <span class="n">put</span><span class="o">(</span><span class="s">"/examples/:id"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">PutExampleHandler</span><span class="o">(</span><span class="n">dao</span><span class="o">));</span>
+        <span class="n">delete</span><span class="o">(</span><span class="s">"/examples/:id"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">DeleteExampleHandler</span><span class="o">(</span><span class="n">dao</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>For more complicated verbs like POST, you can define a Handler class:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PostExampleHandler</span> <span class="kd">implements</span> <span class="nc">Route</span> <span class="o">{</span>
+
+  <span class="kd">final</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">LoggerFactory</span>
+    <span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">PostExampleHandler</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ExampleDao</span> <span class="n">dao</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">PostExampleHandler</span><span class="o">(</span><span class="nc">ExampleDao</span> <span class="n">dao</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">dao</span> <span class="o">=</span> <span class="n">dao</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">handle</span><span class="o">(</span><span class="nc">Request</span> <span class="n">req</span><span class="o">,</span> <span class="nc">Response</span> <span class="n">res</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">body</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="na">body</span><span class="o">();</span>
+    <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"creating an example: "</span> <span class="o">+</span> <span class="n">body</span><span class="o">);</span>
+    <span class="nc">Example</span> <span class="n">example</span><span class="o">;</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="n">example</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Gson</span><span class="o">().</span><span class="na">fromJson</span><span class="o">(</span><span class="n">body</span><span class="o">,</span> <span class="nc">Example</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+      <span class="n">example</span><span class="o">.</span><span class="na">validate</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ExampleException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">res</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="mi">400</span><span class="o">);</span>
+      <span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Invalid Example: %s"</span><span class="o">,</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+      <span class="n">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+      <span class="k">return</span> <span class="n">message</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">JsonSyntaxException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">res</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="mi">400</span><span class="o">);</span>
+      <span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Invalid JSON: %s"</span><span class="o">,</span> <span class="n">body</span><span class="o">);</span>
+      <span class="n">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+      <span class="k">return</span> <span class="n">message</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nc">Example</span> <span class="n">saved</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">example</span><span class="o">);</span>
+    <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"example created with id: "</span> <span class="o">+</span> <span class="n">saved</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+    <span class="n">res</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="mi">201</span><span class="o">);</span>
+    <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">saved</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Functional test units are easy to write.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postWithInvalidJsonReturnsBadRequest</span><span class="o">()</span>
+            <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">http</span>
+            <span class="o">.</span><span class="na">postJson</span><span class="o">(</span><span class="no">DEFAULT_HOST_URL</span> <span class="o">+</span>
+                <span class="s">"/examples"</span><span class="o">,</span>
+                <span class="s">"bunk body"</span><span class="o">,</span>
+                <span class="mi">400</span><span class="o">);</span>
+        <span class="n">assertEquals</span><span class="o">(</span><span class="s">"Invalid JSON: bunk body"</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">postWithInvalidExampleReturnsBadRequest</span><span class="o">()</span>
+    <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">incompleteExample</span> <span class="o">=</span> <span class="s">"{\"name\" : \"foo\"}"</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">http</span>
+        <span class="o">.</span><span class="na">postJson</span><span class="o">(</span><span class="no">DEFAULT_HOST_URL</span> <span class="o">+</span>
+            <span class="s">"/examples"</span><span class="o">,</span>
+            <span class="n">incompleteExample</span><span class="o">,</span>
+            <span class="mi">400</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="s">"Invalid Example: type is a required field"</span><span class="o">,</span>
+        <span class="n">response</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">putWithValidJsonAndIdReturnsUpdatedExample</span><span class="o">()</span>
+    <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">Example</span> <span class="n">saved</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">new</span> <span class="nc">Example</span><span class="o">(</span><span class="s">"foo"</span><span class="o">,</span> <span class="s">"bar"</span><span class="o">));</span>
+    <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">http</span>
+        <span class="o">.</span><span class="na">putJson</span><span class="o">(</span><span class="no">DEFAULT_HOST_URL</span> <span class="o">+</span>
+            <span class="s">"/examples/"</span> <span class="o">+</span>
+            <span class="n">saved</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span>
+            <span class="s">"junk"</span><span class="o">,</span>
+            <span class="mi">400</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="s">"Example is not valid"</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">putWithMissingIdReturnsNotFound</span><span class="o">()</span>
+    <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">Example</span> <span class="n">saved</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">new</span> <span class="nc">Example</span><span class="o">(</span><span class="s">"foo"</span><span class="o">,</span> <span class="s">"bar"</span><span class="o">));</span>
+    <span class="nc">Example</span> <span class="n">update</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Example</span><span class="o">(</span><span class="n">saved</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="s">"foo"</span><span class="o">,</span> <span class="s">"baz"</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">http</span>
+        <span class="o">.</span><span class="na">putJson</span><span class="o">(</span><span class="no">DEFAULT_HOST_URL</span> <span class="o">+</span>
+            <span class="s">"/examples/"</span> <span class="o">+</span>
+            <span class="n">saved</span><span class="o">.</span><span class="na">getId</span><span class="o">()+</span><span class="mi">1</span><span class="o">,</span>
+            <span class="k">new</span> <span class="nf">Gson</span><span class="o">().</span><span class="na">toJson</span><span class="o">(</span><span class="n">update</span><span class="o">),</span>
+            <span class="mi">404</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span>
+        <span class="s">"Example with id "</span> <span class="o">+</span> <span class="n">saved</span><span class="o">.</span><span class="na">getId</span><span class="o">()+</span><span class="mi">1</span> <span class="o">+</span><span class="s">" does not exist."</span><span class="o">,</span>
+        <span class="n">response</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>For those that have found functional testing to have become “Cucumbersome”, seeing an approach for end-to-end testing using nothing more than JUnit may be interesting.</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.013.jpeg#sparkler-presentation-img" alt="" title="Cucumbersome" /></p>
+
+<p>You can also use a superclass if you need to manage the database for tests or any other purpose:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FunctionalTestSuite</span> <span class="o">{</span>
+  <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">HOST</span> <span class="o">=</span> <span class="s">"localhost"</span><span class="o">;</span>
+  <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PORT</span> <span class="o">=</span> <span class="mi">4551</span><span class="o">;</span>
+  <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">DEFAULT_HOST_URL</span> <span class="o">=</span>
+    <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"http://%s:%d"</span><span class="o">,</span> <span class="no">HOST</span><span class="o">,</span> <span class="no">PORT</span><span class="o">);</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="nc">CloseableHttpClient</span> <span class="n">httpClient</span> <span class="o">=</span>
+    <span class="nc">HttpClientBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+  <span class="kd">protected</span> <span class="kd">static</span> <span class="nc">HttpTestUtils</span> <span class="n">http</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HttpTestUtils</span><span class="o">(</span><span class="n">httpClient</span><span class="o">);</span>
+
+  <span class="c1">// NB: Composing rather than inheriting here to make</span>
+  <span class="c1">// BeforeClass behavior</span>
+  <span class="c1">// in this class behave as expected. JUnit would normally run the</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="nc">DatabaseTestRunner</span> <span class="n">dbTest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DatabaseTestRunner</span><span class="o">();</span>
+
+  <span class="kd">protected</span> <span class="kd">static</span> <span class="nc">ExampleDao</span> <span class="n">dao</span> <span class="o">=</span> <span class="n">dbTest</span><span class="o">.</span><span class="na">getExampleDao</span><span class="o">();</span>
+
+  <span class="nd">@BeforeClass</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">DatabaseTestRunner</span><span class="o">.</span><span class="na">migrateDatabase</span><span class="o">();</span>
+    <span class="k">new</span> <span class="nf">Routes</span><span class="o">(</span><span class="n">dao</span><span class="o">,</span> <span class="no">PORT</span><span class="o">);</span>
+    <span class="nc">Spark</span><span class="o">.</span><span class="na">awaitInitialization</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@AfterClass</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">stopServer</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">Spark</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+    <span class="n">httpClient</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Before</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="n">dbTest</span><span class="o">.</span><span class="na">clearDatabase</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Migrations with Flyway are as simple as writing SQL:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Migrate</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="nf">Migrate</span><span class="o">(</span><span class="nc">String</span> <span class="n">url</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="nc">DatabaseUrl</span><span class="o">.</span><span class="na">params</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">dataSourceUrl</span> <span class="o">=</span> <span class="nc">JdbcUrl</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="nc">Flyway</span> <span class="n">flyway</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Flyway</span><span class="o">();</span>
+    <span class="n">flyway</span><span class="o">.</span><span class="na">setDataSource</span><span class="o">(</span><span class="n">dataSourceUrl</span><span class="o">,</span>
+        <span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"user"</span><span class="o">),</span>
+        <span class="n">params</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"password"</span><span class="o">));</span>
+    <span class="n">flyway</span><span class="o">.</span><span class="na">migrate</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"JDBC_DATABASE_URL"</span><span class="o">);</span>
+    <span class="k">new</span> <span class="nf">Migrate</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>SQL is already a DSL for schema definition:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">create</span> <span class="n">table</span> <span class="nf">EXAMPLES</span> <span class="o">(</span>
+  <span class="no">ID</span> <span class="n">bigserial</span> <span class="n">primary</span> <span class="n">key</span><span class="o">,</span>
+  <span class="no">E_NAME</span> <span class="nf">varchar</span><span class="o">(</span><span class="mi">255</span><span class="o">)</span> <span class="n">not</span> <span class="kc">null</span><span class="o">,</span>
+  <span class="no">E_TYPE</span> <span class="nf">varchar</span><span class="o">(</span><span class="mi">255</span><span class="o">)</span>
+<span class="o">);</span></code></pre></figure>
+
+<p>The Server class is the entry point to the application, where I inject application dependencies:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Server</span> <span class="o">{</span>    
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">serverPort</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"PORT"</span><span class="o">));</span>
+    <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"JDBC_DATABASE_URL"</span><span class="o">);</span>
+
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="nc">DatabaseUrl</span><span class="o">.</span><span class="na">params</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+    <span class="nc">Sql2o</span> <span class="n">db</span> <span class="o">=</span> <span class="nc">Sql2oFactory</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="nc">ExampleDao</span> <span class="n">dao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ExampleDao</span><span class="o">(</span><span class="n">db</span><span class="o">);</span>
+    <span class="k">new</span> <span class="nf">Routes</span><span class="o">(</span><span class="n">dao</span><span class="o">,</span> <span class="n">serverPort</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Now you have a very simple, custom made framework that fits your business needs without having to learn or use all the extra baggage that comes with other frameworks “out of the box.”</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.018.jpeg#sparkler-presentation-img" alt="" title="GOT IT!" /></p>
+
+<p>Is Sparkler going to be a framework? NO! In fact, I am asking you to stay away from big frameworks; However, Sparkler can help you as a reference app, something for you to get started, and you can add or remove features to make it yours.</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.019.jpeg#sparkler-presentation-img" alt="" title="Framework?" /></p>
+
+<p>So there you have it! Take it, use it, give me feedback… But most importantly, keep in mind that for the project that you are going to work on for months and maybe even years, it’s worth the time to create something that you and your team understand and really need. There is no such a thing as “One Framework fits All Projects!”</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.020.jpeg#sparkler-presentation-img" alt="" title="All done" /></p>
+
+<p>Stay in touch and feel free to contact me if you have any questions!</p>
+
+<p><img src="/img/sparkler_presentation/sparkler.021.jpeg#sparkler-presentation-img" alt="" title="Contact Info" /></p>
+
+<p><a href="http://sarahaslanifar.com/java/2016/04/12/sparkler.html">Read the previous post about Spark and Sparkler</a></p>
+
+<p><a href="https://github.com/saslani/sparkler">Check out the Sparkler source</a></p>
+
+<p><a href="https://www.linkedin.com/in/felfeli">Find me on LinkedIn</a></p>
+
+<p><a href="mailto://sarah@testedminds.com">Email me at sarah@testedminds.com</a></p>
+:ET

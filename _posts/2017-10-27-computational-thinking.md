@@ -2,7 +2,8 @@
 layout: post
 title:  "Computational Thinking"
 date:   2017-10-27 22:04:39
-categories: computer science
+image:  scna.jpeg
+tags:   [Computer Science, Best Practices]
 ---
 
 <div class="container">
@@ -89,13 +90,13 @@ categories: computer science
       Nowadays, there are over 256 programing languages. The first program I wrote was over 20 years ago in DOS. When I started programming professionally, 14 years ago, I always gave it my all to deliver the project. But it took me some time to really go deep to try to understand <strong>why</strong> the program was going to work before I even wrote it.
     </div>
     <div class="right image">
-      <img class="programing-language-icon" src="/assets/images/scna_extended/java.png" />
-      <img class="programing-language-icon" src="/assets/images/scna_extended/clojure.png" />
-      <img class="programing-language-icon" src="/assets/images/scna_extended/dotNet.png" />
+      <img class="programing-language-icon" src="/img/scna_extended/java.png" />
+      <img class="programing-language-icon" src="/img/scna_extended/clojure.png" />
+      <img class="programing-language-icon" src="/img/scna_extended/dotNet.png" />
       <br />
-      <img class="programing-language-icon" src="/assets/images/scna_extended/elixir.png" />
-      <img class="programing-language-icon" src="/assets/images/scna_extended/react.png" />
-      <img class="programing-language-icon" src="/assets/images/scna_extended/c++.png" />
+      <img class="programing-language-icon" src="/img/scna_extended/elixir.png" />
+      <img class="programing-language-icon" src="/img/scna_extended/react.png" />
+      <img class="programing-language-icon" src="/img/scna_extended/c++.png" />
     </div>
   </div>
 
@@ -104,7 +105,7 @@ categories: computer science
       In 2010, I left ThoughtWorks and started my own consultancy, Tested Minds. Which then allowed me to really think and pick projects that I was really interested in. Then, I made my first project from a genuine desire to have a computer solve a problem for me. I wanted to teach my husband read and write Farsi. I wanted him to practice as much as he wanted too. But I didn’t have time or was available all the time to sit with him.
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/04.jpeg#scna_extended" />
+      <img src="/img/scna_extended/04.jpeg#scna_extended" />
     </div>
   </div>
 
@@ -114,8 +115,8 @@ categories: computer science
     </p>
     <div class="row">
       <div class="left image">
-        <img class="image-small" src="/assets/images/scna_extended/literatelyExample1.png" />
-        <img class="image-small" src="/assets/images/scna_extended/literatelyExample2.png" />
+        <img class="image-small" src="/img/scna_extended/literatelyExample1.png" />
+        <img class="image-small" src="/img/scna_extended/literatelyExample2.png" />
       </div>
       <div class="right text">
         Provide a user with immediate feedback about whether they'd recognized the character.
@@ -123,7 +124,7 @@ categories: computer science
     </div>
     <div class="row">
       <div class="left image">
-        <img class="image-small" src="/assets/images/scna_extended/literatelyExample3.png" />
+        <img class="image-small" src="/img/scna_extended/literatelyExample3.png" />
       </div>
       <div class="right text">
         Show aggregated stats about a user's progress.
@@ -150,7 +151,7 @@ categories: computer science
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/edsgerWybeDijkstra.jpg" />
+      <img src="/img/scna_extended/edsgerWybeDijkstra.jpg" />
     </div>
   </div>
 
@@ -174,7 +175,7 @@ categories: computer science
       Mathematics is the way to precisely represent data and proof a formula. In order to do computation and for the computers to be able to run algorithm we need to be quite precise, that’s why mathematics is important in computation
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/07.jpeg" />
+      <img src="/img/scna_extended/07.jpeg" />
     </div>
   </div>
 </section>
@@ -193,7 +194,7 @@ categories: computer science
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/fib.jpg" />
+      <img src="/img/scna_extended/fib.jpg" />
     </div>
   </div>
   .
@@ -283,7 +284,7 @@ categories: computer science
       And that’s what Luis Von Ahn did!
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/13.jpeg" />
+      <img src="/img/scna_extended/13.jpeg" />
     </div>
   </div>
 
@@ -294,7 +295,7 @@ categories: computer science
       This is an example of what our brain can read and comprehend with one look but computers are not yet sophisticated enough to do. Most humans can't do numeric manipulation quickly. Most computers can't do free-form pattern-matching the way our brains can.
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/14.jpeg" />
+      <img src="/img/scna_extended/14.jpeg" />
     </div>
   </div>
 </section>
@@ -315,7 +316,7 @@ categories: computer science
         </p>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/gradyBooch.jpg" />
+        <img src="/img/scna_extended/gradyBooch.jpg" />
       </div>
     </div>
 
@@ -332,17 +333,18 @@ categories: computer science
         </p>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/16.jpeg" />
+        <img src="/img/scna_extended/16.jpeg" />
       </div>
     </div>
 
     <div class="row">
       <div class="left image">
-        <img src="/assets/images/scna_extended/17.jpeg" />
-        <br />
-        <strong>We are still the most extraordinary computers of all.</strong>
+        <img src="/img/scna_extended/17.jpeg" />
       </div>
       <div class="right text">
+        <p>
+          <strong>We are still the most extraordinary computers of all.</strong>
+        </p>
         We are computing on a daily basis. We planned our route to this conference. We performed a scheduling algorithm to arrive to a place on time. We just might not have done any of this consciously.
         <br />
         How do we gain skill in <strong>consciously</strong> thinking of problems computationally? And if we can do so as adults, how early can humans start? Can we make computational and mathematical thinking like a second language at home to teach our kids while we practice ourselves?
@@ -367,7 +369,7 @@ categories: computer science
     </div>
     <div class="right image">
       <figure>
-        <img src="/assets/images/scna_extended/18.jpeg" />
+        <img src="/img/scna_extended/18.jpeg" />
         <figcaption>
           Aidin 4 and Armin 6 years old.
         </figcaption>
@@ -377,7 +379,7 @@ categories: computer science
 
   <div class="container">
     <div class="left image">
-      <img src="/assets/images/scna_extended/19.jpeg" />
+      <img src="/img/scna_extended/19.jpeg" />
     </div>
     <div class="right text">
       <p>
@@ -404,7 +406,7 @@ categories: computer science
         </ul>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/fridge.jpg" />
+        <img src="/img/scna_extended/fridge.jpg" />
       </div>
     </div>
 
@@ -418,7 +420,7 @@ categories: computer science
         </ul>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/21.gif" />
+        <img src="/img/scna_extended/21.gif" />
       </div>
     </div>
 
@@ -431,7 +433,7 @@ categories: computer science
         </ul>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/likeFatherLikeSon.jpg" />
+        <img src="/img/scna_extended/likeFatherLikeSon.jpg" />
       </div>
     </div>
   </div>
@@ -457,7 +459,7 @@ categories: computer science
     </p>
 
     <div class="container">
-      <video controls="controls" name="To Think" src="/assets/images/scna_extended/23.mp4"></video>
+      <video controls="controls" name="To Think" src="/img/scna_extended/23.mp4"></video>
     </div>
 
     <p>
@@ -491,7 +493,7 @@ categories: computer science
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/24.jpeg" />
+      <img src="/img/scna_extended/24.jpeg" />
     </div>
   </div>
 
@@ -507,9 +509,9 @@ categories: computer science
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/seymour.jpg" />
+      <img src="/img/scna_extended/seymour.jpg" />
       <br />
-      <img src="/assets/images/scna_extended/mindstorms.jpg" />
+      <img src="/img/scna_extended/mindstorms.jpg" />
     </div>
   </div>
 
@@ -528,7 +530,7 @@ categories: computer science
         </blockquote>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/maryamMirzakhani.jpg" />
+        <img src="/img/scna_extended/maryamMirzakhani.jpg" />
       </div>
     </div>
     <p>
@@ -554,7 +556,7 @@ categories: computer science
         Now how to go from here:
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/28.jpeg" />
+        <img src="/img/scna_extended/28.jpeg" />
       </div>
     </div>
 
@@ -565,7 +567,7 @@ categories: computer science
         Organize the closet by type of cloths, color, sleeve length and so on!
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/29.jpeg" />
+        <img src="/img/scna_extended/29.jpeg" />
       </div>
     </div>
   </div>
@@ -594,7 +596,7 @@ categories: computer science
       </ol>
     </div>
     <div class="left image">
-      <img src="/assets/images/scna_extended/34.gif" />
+      <img src="/img/scna_extended/34.gif" />
     </div>
   </div>
 
@@ -622,7 +624,7 @@ categories: computer science
     </p>
     <div class="row">
       <div class="left image">
-        <img class="armin_confused_picture" src="/assets/images/scna_extended/confusedArmin.png" />
+        <img class="armin_confused_picture" src="/img/scna_extended/confusedArmin.png" />
       </div>
       <div class="right text">
         This is NOT how we want to introduce the algorithm to a 5-year old!
@@ -650,7 +652,7 @@ categories: computer science
       He also likes to know that the work he does is valuable and appreciated. So he was more than happy to make this video and explain how he does the sorting!
     </p>
     <div class="container">
-      <video controls="controls" name="Merge Sort" src="/assets/images/scna_extended/36.mov" />
+      <video controls="controls" name="Merge Sort" src="/img/scna_extended/36.mov" />
     </div>
     <p>
       Not only did he get an introduction to sorting, but he’s already seen his first divide and conquer algorithm. Divide and conquer is a family of algorithms and a useful pattern, and shows up in politics from time to time as well…something for another talk, perhaps.
@@ -667,7 +669,7 @@ categories: computer science
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/37.jpeg" />
+      <img src="/img/scna_extended/37.jpeg" />
     </div>
   </div>
 
@@ -684,7 +686,7 @@ categories: computer science
         </p>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/setGame.png" />
+        <img src="/img/scna_extended/setGame.png" />
       </div>
     </div>
     <p>
@@ -722,7 +724,7 @@ categories: computer science
         </blockquote>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/keithDevlin.jpg" />
+        <img src="/img/scna_extended/keithDevlin.jpg" />
       </div>
     </div>
     <p>
@@ -736,18 +738,21 @@ categories: computer science
         How to get from cards:
       </div>
       <div class="left image">
-        <img src="/assets/images/scna_extended/set.png" />
+        <img src="/img/scna_extended/set.png" />
       </div>
     </div>
-    <div class="row">
-     To the Clojure definition of set?
+
+    <p>
+      To the Clojure definition of set?
+    </p>
+
      {% highlight clojure %}
      #{:red :purple :green}
      #{:oval :squiggle :diamond}
      #{1 2 3}
      #{:solid :striped :outlined}
      {% endhighlight %}
-   </div>
+
    <p>
     When we eventually introduce the programming concept of a Set, like the Clojure sets here, Armin will have some familiar concepts to fall back on.
     </p>
@@ -777,7 +782,7 @@ categories: computer science
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/41.jpeg" />
+      <img src="/img/scna_extended/41.jpeg" />
     </div>
   </div>
 
@@ -787,7 +792,7 @@ categories: computer science
       functions are used as well as the step that's being executed, while Cubetto is performing it so the child can make the connection.
     </p>
     <div class="container">
-      <video controls="controls" name="Cubetto 101" src="/assets/images/scna_extended/42.mov" />
+      <video controls="controls" name="Cubetto 101" src="/img/scna_extended/42.mov" />
     </div>
     <div class="row">
       <div class="left text">
@@ -805,7 +810,7 @@ categories: computer science
         </p>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/arminCubettoSudoCode.jpg" />
+        <img src="/img/scna_extended/arminCubettoSudoCode.jpg" />
       </div>
     </div>
   </div>
@@ -821,7 +826,7 @@ categories: computer science
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/scienceOfPatternsBook.jpg" />
+      <img src="/img/scna_extended/scienceOfPatternsBook.jpg" />
     </div>
   </div>
 
@@ -833,7 +838,7 @@ categories: computer science
       He and his colleagues created the LOGO programming language and visualization environment in 1967.
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/logo.png" />
+      <img src="/img/scna_extended/logo.png" />
     </div>
   </div>
 
@@ -846,7 +851,7 @@ categories: computer science
         {% endhighlight %}
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/turtleClojure.png" />
+        <img src="/img/scna_extended/turtleClojure.png" />
       </div>
     </div>
     <p>
@@ -858,16 +863,16 @@ categories: computer science
     </p>
 
     <p>
-      <img class="image-medium" src="/assets/images/scna_extended/turtleTrees.png" />
+      <img class="image-medium" src="/img/scna_extended/turtleTrees.png" />
     </p>
     <p>
-      <img class="image-medium" src="/assets/images/scna_extended/turtleFun.png" />
+      <img class="image-medium" src="/img/scna_extended/turtleFun.png" />
     </p>
     <p>
       For the pythonista’s in the audience, there’s python-turtle
     <p>
     </p>
-      <img class="image-medium" src="/assets/images/scna_extended/turtleSpiral.png" />
+      <img class="image-medium" src="/img/scna_extended/turtleSpiral.png" />
     </p>
   </div>
 
@@ -886,7 +891,7 @@ categories: computer science
         and fully open at 90 degrees!
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/arminProtractor1.jpg" />
+        <img src="/img/scna_extended/arminProtractor1.jpg" />
       </div>
     </div>
     <div class="row">
@@ -897,7 +902,7 @@ categories: computer science
         He started with a triangle, to square, pentagon, hexagon, octagon… and so on till he got a circle.
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/arminProtractor2.jpg" />
+        <img src="/img/scna_extended/arminProtractor2.jpg" />
       </div>
     </div>
 
@@ -950,9 +955,9 @@ categories: computer science
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/scna_extended/blue1.jpg" />
+      <img src="/img/scna_extended/blue1.jpg" />
       <br />
-      <img src="/assets/images/scna_extended/blue2.jpg" />
+      <img src="/img/scna_extended/blue2.jpg" />
     </div>
   </div>
 </section>
@@ -1002,7 +1007,7 @@ categories: computer science
         Jeffery Karpicke is a 10-year faculty staff at Purdue University, in Cognitive Psychology department.
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/jeffreyKarpicke.png" />
+        <img src="/img/scna_extended/jeffreyKarpicke.png" />
       </div>
     </div>
     <div class="row">
@@ -1018,7 +1023,7 @@ categories: computer science
         </ul>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/jeffreyKarpickeHIdex.png" />
+        <img src="/img/scna_extended/jeffreyKarpickeHIdex.png" />
       </div>
     </div>
   </div>
@@ -1046,7 +1051,7 @@ categories: computer science
       </div>
       <div class="right image">
         <figure>
-          <img src="/assets/images/scna_extended/spaceRepititionLearning.png" />
+          <img src="/img/scna_extended/spaceRepititionLearning.png" />
           <figcaption>
             Retrieval: One week after the learning session - <a href="http://www.apa.org/science/about/psa/2016/06/learning-memory.aspx" target="blank">Read the full article</a>.
           </figcaption>
@@ -1083,7 +1088,7 @@ categories: computer science
         </p>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/arminGraph.jpg" />
+        <img src="/img/scna_extended/arminGraph.jpg" />
       </div>
     </div>
     <div class="row">
@@ -1094,7 +1099,7 @@ categories: computer science
         </blockquote>
       </div>
       <div class="right image">
-        <img src="/assets/images/scna_extended/arminGraphNote.png" />
+        <img src="/img/scna_extended/arminGraphNote.png" />
       </div>
     </div>
   </div>
@@ -1114,7 +1119,7 @@ categories: computer science
 <section>
   <div class="container">
     And as something special for SCNA:
-    <img src="/assets/images/scna_extended/61.jpeg" />
+    <img src="/img/scna_extended/61.jpeg" />
   </div>
 </section>
 

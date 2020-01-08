@@ -1,0 +1,1224 @@
+I"�r<p>As an engineer that designs and builds on EC2, I am pro Infrastructure as Code:</p>
+
+<ul>
+  <li>I like programming rather than tedious, error-prone clicking though a UI.</li>
+  <li>I want to minimize my work if I have to change cloud providers (e.g., move from AWS to Azure, or on-prem to AWS)</li>
+  <li>I want to generate a graph of dependencies among infrastructure components</li>
+</ul>
+
+<p>Most of all, I want my team members who are not keen on, as some of them say, “DevOpsy” work, to see that DevOps, infrastructure engineering, and IT Operations are not the same thing! Those three topics are all big ideas, but this exercise will just tackle one of them: Infrastructure as Code. We can make infrastructure something real and more familiar. Once we have repeatable, usable infrastructure, we at least have a <em>part</em> of the automation required for implementing DevOps in an organization.</p>
+
+<p>I decided to put together an exercise using Terraform to provision a TeamCity installation on AWS. This tutorial provides a very basic installation. If you need a more sophisticated setup, this is a good starting point for you, and you can add your specific infrastructure requirements. High-availability, zero-downtime deployments, DR, monitoring, etc. are out of scope for now.</p>
+
+<p><a href="https://github.com/saslani/terraform_teamcity_aws">You can find this code on github</a></p>
+
+<h4 id="tools">Tools:</h4>
+
+<ul>
+  <li>AWS to host TeamCity. You need familiarity with AWS. We won’t be focusing on the AWS UI and how to set things up via point and click, though I’ll show you how to navigate AWS to visually see your changes.</li>
+  <li>TeamCity for continuous integration. You also need to be familiar with TeamCity. We will not be going through TeamCity training. We will just confirm that it works properly.</li>
+  <li>Terraform for infrastructure coding. We won’t go deep into learning Terraform. You can refer to the HashiCorp documents if you want to learn more.</li>
+  <li>Docker to install TeamCity. Basic familiarity with Docker is helpful but not required.</li>
+</ul>
+
+<h4 id="getting-started">Getting started:</h4>
+
+<ul>
+  <li>We will be using <code class="highlighter-rouge">make</code> later in the tutorial. If you’re on OS X like me, you may need to install <code class="highlighter-rouge">brew install make --with-default-names</code>.
+    <ul>
+      <li>If you don’t want to use <code class="highlighter-rouge">make</code>, copy the commands from the makefile and run them manually in your terminal</li>
+    </ul>
+  </li>
+  <li><a href="https://www.jetbrains.com/teamcity/">TeamCity</a> 2017.2+ has a free account with 3 build agents for 100 build configurations. You can start there and purchase the license if you need more. There’s no need to download anything right now…we’ll be using a Docker image of TeamCity.</li>
+  <li><a href="https://learn.hashicorp.com/terraform/getting-started/install.html">Install terraform</a>
+    <ul>
+      <li>brew install terraform</li>
+    </ul>
+  </li>
+  <li>Setup your AWS account
+    <ul>
+      <li>create a <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console">non-admin user</a> with proper accesses to perform the following. Avoid using your admin user to make changes in AWS. Here are my Permissions…adjust based on your needs:
+        <ul>
+          <li>AmazonRDSFullAccess</li>
+          <li>AmazonEC2FullAccess</li>
+          <li>AmazonS3FullAccess</li>
+          <li>AmazonDynamoDBFullAccess</li>
+          <li>AmazonVPCFullAccess</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>NOTE:</strong></p>
+<ul>
+  <li>I am using resources available in us-east-2. If you prefer to use a different region or change instances you will need to change the following accordingly:
+    <ul>
+      <li>region in <em>variables.tf</em></li>
+      <li>debian_ami in <em>variables.tf</em></li>
+      <li>instance_type in <em>ec2/main.tf</em></li>
+      <li>instance_class in <em>rds/main.tf</em></li>
+    </ul>
+  </li>
+  <li>This is a great source for aws instance price information and region availability: <a href="https://ec2instances.info/?region=us-east-2&amp;cost_duration=monthly">ec2instances.info</a></li>
+  <li>To choose a different ami:
+    <ul>
+      <li>Visit the <a href="https://aws.amazon.com/marketplace">AWS marketplace</a> and filter the results (i.e. All Infrastructure, Amazon Machine Image, Free, API, in the next window select your region …)</li>
+      <li>Pick your image and “Continue to Subscribe” &gt; “Continue to configuration”</li>
+      <li>Make a note of the Ami Id: In my case, it’s <code class="highlighter-rouge">ami-0bd9223868b4778d7</code></li>
+      <li><strong>DO NOT CONTINUE TO LAUNCH</strong>…we’re going to do this in terraform!</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/img/terraform_teamcity_aws/ami.jpg" alt="" width="600x" /></p>
+
+<ul>
+  <li>Protip: To keep AWS charges to a minimum, run <strong>terraform destroy</strong> at the end of the tutorial, if you wish.</li>
+  <li>I am using <em>main.tf</em>, <em>variables.tf</em>, and <em>outputs.tf</em> consistently throughout this project. You may wish to change the names, or just develop in one single file. All tf files in a directory will be compiled together. Separating them is my personal preference to keep things modular and minimize the amount of code I have to read when I want to go back and make a change later.</li>
+  <li>I am using MAC OS Majave, so change the bash commands appropriately if you are using any other OS.</li>
+</ul>
+
+<h4 id="what-are-we-building">What are we building?</h4>
+
+<p>In this tutorial, first, we are going to build a Virtual Private Cloud. We do not want the RDS instance to be publicly available. Hence, next, we will add a private subnet that will contain the TeamCity Database. Then, we’re going to add a NAT gateway, and a public subnet. We will add routing and security groups for the public and the private subnets. In this example, I am using RDS instance for the postgresql database and would like to have S3 bucket for the backups. Finally, we’re going to launch an EC2 instance inside the public subnet. We’ll use TeamCity’s docker image to host TeamCity inside the EC2 instance.</p>
+
+<ul>
+  <li>Create a VPC</li>
+  <li>Build a private subnet for TeamCity’s database on RDS
+    <ul>
+      <li>Create a public subnet for NAT</li>
+      <li>Add NAT</li>
+      <li>Create a public subnet</li>
+      <li>Create routing</li>
+      <li>Create a security group for the public Subnet</li>
+      <li>Create a security group for the private Subnet</li>
+    </ul>
+  </li>
+  <li>Add RDS
+    <ul>
+      <li>Create the database</li>
+      <li>Create S3 backup</li>
+    </ul>
+  </li>
+  <li>Launch a public EC2 instance to host the TeamCity (using docker image) and connect to RDS PostgreSQL</li>
+</ul>
+
+<p>Let’s get started!!</p>
+
+<h2 id="create-a-vpc">Create a VPC</h2>
+
+<p>If you have created your Amazon account within the past couple of years, it’s likely that it comes with a default VPC. We are going to create an isolated Virtual Private Cloud and subnets and use them to host TeamCity.</p>
+
+<p>Once you’ve installed terraform, create an empty folder where you want to write your code, and <code class="highlighter-rouge">cd</code> into it:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">mkdir </span>teamcity
+<span class="nv">$ </span><span class="nb">cd </span>teamcity</code></pre></figure>
+
+<p>In the root directory, create a file called <code class="highlighter-rouge">main.tf</code>. <strong>tf</strong> is a terraform convention. We will use this <em>main.tf</em> as a driver that contains other modules to build the pieces we need.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>main.tf</code></pre></figure>
+
+<p>Now let’s write some terraform code. An advantage of infrastructure as code is that it’s scalable and makes it easy to change your infrastructure provider. In this tutorial we’re going to use AWS, thus, our provider is <code class="highlighter-rouge">aws</code>.</p>
+
+<p>I am going to use <strong>us-east-2</strong>. You can use any region you like. To prevent automatic upgrades to new major versions that may contain breaking changes, add version = “…” constraints to the corresponding provider blocks in configuration with the constraint strings suggested below. You can find the possible provider version constraints in the <a href="https://www.terraform.io/docs/configuration/providers.html#provider-versions">Terraform documentation</a>.</p>
+
+<p>_main.tf</p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>
+  <span class="nx">region</span> <span class="p">=</span> <span class="s2">"us-east-2"</span>
+  <span class="nx">version</span> <span class="p">=</span> <span class="s2">"~&gt; 1.54"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Next, we want to add an <a href="https://www.terraform.io/docs/providers/aws/r/vpc.html">aws_vpc</a> resource to create our VPC. We’ll call it <strong>vpc</strong>. This is like naming a variable so you can access it later throughout your project.</p>
+
+<p>For the <a href="https://whatismyipaddress.com/cidr">cidr_block</a>, we’re using the <strong>10.0.0.0</strong> as opposed to <strong>192.168</strong> because it’s more common: 192.168 is mainly associated with your personal IP.</p>
+
+<p><code class="highlighter-rouge">enable_dns_hostnames</code> by default is false. We want to enable DNS hostnames in the VPC, so set it to true.</p>
+
+<p>Add a tag for “Name” to see the name in the VPC list, esspecially if you have more than 1 VPC, so that you can easily distinguish them.</p>
+
+<p><em>main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_vpc"</span> <span class="s2">"vpc"</span> <span class="p">{</span>
+  <span class="nx">cidr_block</span>            <span class="p">=</span> <span class="s2">"10.0.0.0/16"</span>
+  <span class="nx">enable_dns_hostnames</span>  <span class="p">=</span> <span class="kc">true</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"Teamcity VPC"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now you have enough code to see terraform in action. In your terminal, initialize terraform:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform init</code></pre></figure>
+
+<p>If you look at your project’s root directory, you see a .terraform folder. This is to keep the current status of your terraform commands and keep track of what’s been created or changed.</p>
+
+<p>To see the plan before you execute it, run the following command:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform plan</code></pre></figure>
+
+<p>You will see the following error because you haven’t told terraform how to access your Amazon account!</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Error: Error refreshing state: 1 error<span class="o">(</span>s<span class="o">)</span> occurred:
+
+<span class="k">*</span> provider.aws: No valid credential sources found <span class="k">for </span>AWS Provider.
+  Please see https://terraform.io/docs/providers/aws/index.html <span class="k">for </span>more information on
+  providing credentials <span class="k">for </span>the AWS Provider</code></pre></figure>
+
+<p>You can do this in a couple of different ways. I’m going to assume that you’re familiar with AWS’s <a href="https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html">Best Practices for Managing AWS Access Keys</a>. As a brief primer, there are only a few <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html">AWS tasks that require root</a>. You should, at a minimum, have created an IAM Admin User and Group. Use your IAM user’s access keys, not keys attached to your root user. Setting this up is outside the scope of this tutorial, but refer to the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html">AWS documentation</a> if you need to do this step.</p>
+
+<p>You can export the credentials as environment variables into the terminal shell and you won’t be prompted as long as you use that shell. Or you can save them into a <strong>.tfvars</strong> file and add it to the provider (make sure to include this file in .gitignore).</p>
+
+<p><strong>Export into the shell</strong> (if you choose this skip creating variables.tf and modifications to main.tf. You can run <code class="highlighter-rouge">terraform plan</code> and you won’t see any errors)</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">"YOUR_SECRET_KEY"</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">"YOUR_ACCESS_KEY"</span></code></pre></figure>
+
+<p>If you want to use a <strong>.tfvars</strong> file instead, add the terraform file to your root directory:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>terraform.tfvars</code></pre></figure>
+
+<p><em>terraform.tfvars</em></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">aws_access_key <span class="o">=</span> <span class="s2">"YOUR_ACCESS_KEY"</span>
+aws_secret_key <span class="o">=</span> <span class="s2">"YOUR_SECRET_KEY"</span></code></pre></figure>
+
+<p>If you exported the values in the shell, skip the following and <em>variables.tf</em> and run <code class="highlighter-rouge">terraform plan</code>
+<em>main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>
+  <span class="p">.</span>
+  <span class="p">.</span>
+
+  <span class="nx">access_key</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">aws_access_key</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">secret_key</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">aws_secret_key</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Run</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform plan</code></pre></figure>
+
+<p>Now you see a different error: :/</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Error: provider config <span class="s1">'aws'</span>: unknown variable referenced: <span class="s1">'aws_access_key'</span><span class="p">;</span> define it with a <span class="s1">'variable'</span> block
+Error: provider config <span class="s1">'aws'</span>: unknown variable referenced: <span class="s1">'aws_secret_key'</span><span class="p">;</span> define it with a <span class="s1">'variable'</span> block</code></pre></figure>
+
+<p>In the root directory create a <em>variables.tf</em> file. For the rest of this tutorial, we’ll use this file to declare what variables we need for the modules we are going to build.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>variables.tf</code></pre></figure>
+
+<p>Terraform variables are declared in a variable block. You can declare a type, description, and a default value:</p>
+
+<p><em>variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">variable <span class="s2">"aws_access_key"</span> <span class="o">{</span>
+  description <span class="o">=</span> <span class="s2">"AWS access key"</span>
+<span class="o">}</span>
+
+variable <span class="s2">"aws_secret_key"</span> <span class="o">{</span>
+  description <span class="o">=</span> <span class="s2">"AWS secret key"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Try again to see the plan that’s going to be executed and verify that’s what your want to do. In our case, we want to <strong>create</strong> a <strong>vpc</strong>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform plan
+
+data.aws_availability_zones.zones: Refreshing state...
+
+<span class="nt">------------------------------------------------------------------------</span>
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + module.vpc.aws_vpc.vpc
+      <span class="nb">id</span>:                               &lt;computed&gt;
+      arn:                              &lt;computed&gt;
+      assign_generated_ipv6_cidr_block: <span class="s2">"false"</span>
+      cidr_block:                       <span class="s2">"10.0.0.0/16"</span>
+      default_network_acl_id:           &lt;computed&gt;
+      default_route_table_id:           &lt;computed&gt;
+      default_security_group_id:        &lt;computed&gt;
+      dhcp_options_id:                  &lt;computed&gt;
+      enable_classiclink:               &lt;computed&gt;
+      enable_classiclink_dns_support:   &lt;computed&gt;
+      enable_dns_hostnames:             <span class="s2">"true"</span>
+      enable_dns_support:               <span class="s2">"true"</span>
+      instance_tenancy:                 <span class="s2">"default"</span>
+      ipv6_association_id:              &lt;computed&gt;
+      ipv6_cidr_block:                  &lt;computed&gt;
+      main_route_table_id:              &lt;computed&gt;
+      owner_id:                         &lt;computed&gt;
+      tags.%:                           <span class="s2">"1"</span>
+      tags.Name:                        <span class="s2">"Teamcity VPC"</span>
+
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+<span class="nt">------------------------------------------------------------------------</span></code></pre></figure>
+
+<p>Looks great, run the following command to execute the plan. You will be prompted to verify if that’s what you want to do…enter <strong>yes</strong>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform apply</code></pre></figure>
+
+<p>Great!!!! Now if you navigate to VPC on your AWS account (AWS &gt; Services &gt; VPC). You see that the VPC is created! This is step 1 in your architecture diagram.</p>
+
+<h2 id="building-a-private-subnet-for-rds">Building a private subnet for RDS</h2>
+
+<p>In this section we’re going to add more code to our terraform project. Before we do so, let’s do a small refactoring to keep things organized going forward. Some of you may think this isn’t needed yet unless I call the same block of code 3 times…you can go ahead and use a single file. Personally, I like to add a little structure to my projects, knowing this is going to grow:</p>
+
+<p>In terraform, modules, are similar to classes in OO programing. I want to move the job of creating <a href="https://www.terraform.io/docs/providers/aws/d/vpc.html">VPC</a>, <a href="https://www.terraform.io/docs/providers/aws/d/subnet.html">subnets</a>, <a href="https://www.terraform.io/docs/providers/aws/d/nat_gateway.html">NAT</a>, and <a href="https://www.terraform.io/docs/providers/aws/d/route_table.html">routing</a> to separate modules.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">mkdir </span>vpc
+<span class="nv">$ </span><span class="nb">touch </span>vpc/main.tf</code></pre></figure>
+
+<p>Now let’s move the “aws_vpc” from <em>main.tf</em> to <em>vpc/main.tf</em></p>
+
+<p><em>vpc/main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_vpc"</span> <span class="s2">"vpc"</span> <span class="p">{</span>
+  <span class="nx">cidr_block</span>           <span class="p">=</span> <span class="s2">"10.0.0.0/16"</span>
+  <span class="nx">enable_dns_hostnames</span> <span class="p">=</span> <span class="kc">true</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"Teamcity VPC"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now change the <em>main.tf</em> to call module vpc. The source’s value is the path to the vpc module. You can also include a git url, if a different team is in charge of that module.</p>
+
+<p><em>main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">module</span> <span class="s2">"vpc"</span> <span class="p">{</span>
+  <span class="nx">source</span> <span class="p">=</span> <span class="s2">"vpc"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Because we just added a folder (module vpc), we need to run terraform init to let terraform know about this change:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform init</code></pre></figure>
+
+<p>Moving forward…</p>
+
+<p>RDS needs multiple zones and at least 2 private subnets. Before we add a private subnet, however, we need to create a NAT. A NAT needs an Elastic IP to work, and needs to be in the public subnet.</p>
+
+<p>Let’s go ahead and make those changes. We will be using <a href="https://www.terraform.io/docs/providers/aws/r/eip.html">aws_eip</a>, <a href="https://www.terraform.io/docs/providers/aws/d/nat_gateway.html">aws_nat_gateway</a></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>vpc/nat.tf</code></pre></figure>
+
+<p><em>vpc/nat.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_eip"</span> <span class="s2">"nat_gw_eip"</span> <span class="p">{</span>
+  <span class="nx">vpc</span> <span class="p">=</span> <span class="kc">true</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity NAT"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_nat_gateway"</span> <span class="s2">"gw"</span> <span class="p">{</span>
+  <span class="nx">allocation_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_eip</span><span class="p">.</span><span class="nx">nat_gw_eip</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">subnet_id</span>     <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">public</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity NAT Gateway"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now we’re ready to add a single public subnet.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>vpc/subnets.tf</code></pre></figure>
+
+<p>Navigate to <em>vpc/subnets.tf</em> inside the vpc folder. We want to add an <a href="https://www.terraform.io/docs/providers/aws/d/subnet.html">aws_subnet</a> resource and name it public. I am passing a variable <em>availability_zone</em> since I don’t have a preference. If you do, you can hard-code this to be “us-east-2a” for example.</p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">resource</span> <span class="s2">"aws_subnet"</span> <span class="s2">"public"</span> <span class="p">{</span>
+  <span class="nx">availability_zone</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">element</span><span class="p">(</span><span class="kd">var</span><span class="p">.</span><span class="nx">availability_zones</span><span class="p">,</span> <span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">cidr_block</span>        <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">public_cidr_block</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">vpc_id</span>            <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"Public TeamCity Subnet"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now we’re ready to create a route table and association for the NAT.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>vpc/routing.tf</code></pre></figure>
+
+<p>In this file, we need to create an <a href="https://www.terraform.io/docs/providers/aws/d/internet_gateway.html">aws_internet_gateway</a> (we name it vpc_igw). Then create an <a href="https://www.terraform.io/docs/providers/aws/d/route_table.html">aws_route_table</a> (vpc_public). Last but not the least, an association resource, <a href="https://www.terraform.io/docs/providers/aws/r/route_table_association.html">aws_route_table_association</a> (vpc_public).</p>
+
+<p><em>vpc/routing.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_internet_gateway"</span> <span class="s2">"vpc_igw"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity Gateway"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_route_table"</span> <span class="s2">"vpc_public"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="nx">route</span> <span class="p">{</span>
+    <span class="nx">cidr_block</span> <span class="p">=</span> <span class="s2">"0.0.0.0/0"</span>
+    <span class="nx">gateway_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_internet_gateway</span><span class="p">.</span><span class="nx">vpc_igw</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity Public Subnet Route Table"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_route_table_association"</span> <span class="s2">"vpc_public"</span> <span class="p">{</span>
+  <span class="nx">subnet_id</span>      <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">public</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">route_table_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_route_table</span><span class="p">.</span><span class="nx">vpc_public</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Everything looks good. Since we are already calling the vpc module from main.tf, let’s go ahead and see the plan so far:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform plan
+
+Error: resource <span class="s1">'aws_subnet.public'</span> config: unknown variable referenced: <span class="s1">'availability_zones'</span><span class="p">;</span> define it with a <span class="s1">'variable'</span> block
+Error: resource <span class="s1">'aws_subnet.public'</span> config: unknown variable referenced: <span class="s1">'public_cidr_block'</span><span class="p">;</span> define it with a <span class="s1">'variable'</span> block</code></pre></figure>
+
+<p>Looks like we need to pass in some variables:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>vpc/variables.tf</code></pre></figure>
+
+<p>Let’s create a default cidr_block inside the <em>vpc/variables.tf</em> but pass in the availability_zones from <em>main.tf</em>.</p>
+
+<p><em>vpc/variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">variable</span> <span class="s2">"availability_zones"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"List of availability zones over which to distribute subnets"</span>
+  <span class="nx">type</span>        <span class="p">=</span> <span class="s2">"list"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"public_cidr_block"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"10.0.0.0/24"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>and change the <em>main.tf</em>, where we call the vpc module:</p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">data</span> <span class="s2">"aws_availability_zones"</span> <span class="s2">"zones"</span> <span class="p">{}</span>
+
+<span class="k">module</span> <span class="s2">"vpc"</span> <span class="p">{</span>
+  <span class="p">.</span>
+  <span class="nx">availability_zones</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"</span><span class="k">${data</span><span class="p">.</span><span class="nx">aws_availability_zones</span><span class="p">.</span><span class="nx">zones</span><span class="p">.</span><span class="nx">names</span><span class="k">}</span><span class="s2">"</span><span class="p">]</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Before we apply our changes, let’s create a security group for this public VPC as well:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">mkdir </span>sg <span class="o">&amp;&amp;</span> <span class="nb">touch </span>sg/main.tf</code></pre></figure>
+
+<p>Inside <code class="highlighter-rouge">sg/main.tf</code>, we are going to create an <a href="https://www.terraform.io/docs/providers/aws/d/internet_gateway.html">aws_security_group</a> (teamcity_web_sg) and add ingress and egress rules:</p>
+
+<p><em>sp/main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_security_group"</span> <span class="s2">"teamcity_web_sg"</span> <span class="p">{</span>
+  <span class="nx">name</span>        <span class="p">=</span> <span class="s2">"TeamCity_sg"</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"Allow TeamCity SSH &amp; HTTP inbound connection"</span>
+  <span class="nx">vpc_id</span>      <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">vpc_id</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="p">=</span> <span class="mi">22</span>
+    <span class="nx">to_port</span>     <span class="p">=</span> <span class="mi">22</span>
+    <span class="nx">protocol</span>    <span class="p">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="p">=</span> <span class="mi">8111</span>
+    <span class="nx">to_port</span>     <span class="p">=</span> <span class="mi">8111</span>
+    <span class="nx">protocol</span>    <span class="p">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">egress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="p">=</span> <span class="s2">"0"</span>
+    <span class="nx">to_port</span>     <span class="p">=</span> <span class="s2">"0"</span>
+    <span class="nx">protocol</span>    <span class="p">=</span> <span class="s2">"-1"</span>
+    <span class="nx">cidr_blocks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity Web Security Group"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>We are using the vpc_id to create the routing, let’s go ahead and pass that:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>sg/variables.tf</code></pre></figure>
+
+<p><em>sg/variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">variable</span> <span class="s2">"vpc_id"</span> <span class="p">{</span>
+  <span class="nx">type</span>        <span class="p">=</span> <span class="s2">"string"</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"VPC ID in which to deploy RDS"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Last, but not least, we need to call this module from <em>main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">module</span> <span class="s2">"sg"</span> <span class="p">{</span>
+  <span class="nx">source</span> <span class="p">=</span> <span class="s2">"sg"</span>
+  <span class="nx">vpc_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">vpc_id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Looks like we have solid code to build our public subnet. Since we added sg module, we need to init again:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform init</code></pre></figure>
+
+<p>And there’s error:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Initializing modules...
+- module.vpc
+- module.sg
+  Getting <span class="nb">source</span> <span class="s2">"sg"</span>
+
+Error: module <span class="s1">'sg'</span>: <span class="s2">"vpc_id"</span> is not a valid output <span class="k">for </span>module <span class="s2">"vpc"</span></code></pre></figure>
+
+<p>This is because we’re passing vpc_id, but we never defined it anywhere:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>vpc/outputs.tf</code></pre></figure>
+
+<p><em>vpc/outputs.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">output</span> <span class="s2">"vpc_id"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Let’s try again:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform init
+<span class="nv">$ </span>terraform plan
+<span class="c"># Notice all the new resources that are in green</span>
+<span class="c"># Plan: 7 to add, 0 to change, 0 to destroy.</span>
+
+<span class="nv">$ </span>terraform apply</code></pre></figure>
+
+<p>If you want to see all the changes you made, navigate to:</p>
+<ul>
+  <li>AWS &gt; VPCs</li>
+  <li>Subnets</li>
+  <li>Route Tables</li>
+  <li>Internet Gateways</li>
+  <li>Elastic IPs</li>
+  <li>Nat Gateways</li>
+  <li>Network ACLs</li>
+  <li>Security Groups</li>
+</ul>
+
+<p>That’s a lot of changes! This is a good place to commit our changes to git, if you haven’t done it yet. This is my <em>.gitignore</em> file:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Local .terraform directories</span>
+<span class="k">**</span>/.terraform/<span class="k">*</span>
+
+<span class="c"># .tfstate files</span>
+<span class="k">*</span>.tfstate
+<span class="k">*</span>.tfstate.<span class="k">*</span>
+
+<span class="c"># secret files</span>
+<span class="k">*</span>.tfvars
+
+<span class="c"># Crash log files</span>
+crash.log
+
+<span class="c"># Ignore override files as they are usually used to override resources locally and so</span>
+<span class="c"># are not checked in</span>
+override.tf
+override.tf.json
+<span class="k">*</span>_override.tf
+<span class="k">*</span>_override.tf.json</code></pre></figure>
+
+<p>Now, we’re ready to create our private subnet and security group for the RDS:</p>
+
+<p><em>vpc/subnets.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">resource</span> <span class="s2">"aws_subnet"</span> <span class="s2">"private"</span> <span class="p">{</span>
+  <span class="nx">availability_zone</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">element</span><span class="p">(</span><span class="kd">var</span><span class="p">.</span><span class="nx">availability_zones</span><span class="p">,</span> <span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">cidr_block</span>        <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">element</span><span class="p">(</span><span class="kd">var</span><span class="p">.</span><span class="nx">private_cidr_block</span><span class="p">,</span> <span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">count</span>             <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">length</span><span class="p">(</span><span class="kd">var</span><span class="p">.</span><span class="nx">private_cidr_block</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">vpc_id</span>            <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">format</span><span class="p">(</span><span class="s2">"TeamCity Private Subnet %d"</span><span class="p">,</span> <span class="nx">count</span><span class="p">.</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_db_subnet_group"</span> <span class="s2">"rds"</span> <span class="p">{</span>
+  <span class="nx">name</span>        <span class="p">=</span> <span class="s2">"teamcity-subnet-group"</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"TeamCity RDS Subnet Group"</span>
+  <span class="nx">subnet_ids</span>  <span class="p">=</span> <span class="p">[</span><span class="s2">"</span><span class="k">${</span><span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">private</span><span class="p">.</span><span class="o">*</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span><span class="p">]</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity RDS Subnet Group"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>vpc/routing.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">resource</span> <span class="s2">"aws_route_table"</span> <span class="s2">"vpc_private"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="nx">route</span> <span class="p">{</span>
+    <span class="nx">cidr_block</span> <span class="p">=</span> <span class="s2">"0.0.0.0/0"</span>
+    <span class="nx">gateway_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_nat_gateway</span><span class="p">.</span><span class="nx">gw</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity Private Subnet's Route Table"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_route_table_association"</span> <span class="s2">"vpc_private"</span> <span class="p">{</span>
+  <span class="nx">count</span>          <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">length</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">subnet_id</span>      <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">element</span><span class="p">(</span><span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">private</span><span class="p">.</span><span class="o">*</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">route_table_id</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_route_table</span><span class="p">.</span><span class="nx">vpc_private</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>vpc/variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">variable</span> <span class="s2">"length"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"private_cidr_block"</span> <span class="p">{</span>
+  <span class="nx">type</span>    <span class="p">=</span> <span class="s2">"list"</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"10.0.1.0/24"</span><span class="p">,</span> <span class="s2">"10.0.2.0/24"</span><span class="p">]</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>and the RDS security group:</p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_security_group"</span> <span class="s2">"rds_sg"</span> <span class="p">{</span>
+  <span class="nx">name</span>        <span class="p">=</span> <span class="s2">"TeamCity_rds_sg"</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"TeamCity RDS Security Group"</span>
+  <span class="nx">vpc_id</span>      <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">vpc_id</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="c1"># TODO: Should this change to only allow ssh from other IPs?</span>
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="p">=</span> <span class="mi">22</span>
+    <span class="nx">to_port</span>     <span class="p">=</span> <span class="mi">22</span>
+    <span class="nx">protocol</span>    <span class="p">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="p">=</span> <span class="mi">5432</span>
+    <span class="nx">to_port</span>     <span class="p">=</span> <span class="mi">5432</span>
+    <span class="nx">protocol</span>    <span class="p">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">egress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="p">=</span> <span class="s2">"0"</span>
+    <span class="nx">to_port</span>     <span class="p">=</span> <span class="s2">"0"</span>
+    <span class="nx">protocol</span>    <span class="p">=</span> <span class="s2">"-1"</span>
+    <span class="nx">cidr_blocks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity RDS Security Group"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Apply the changes:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform apply</code></pre></figure>
+
+<p>Congrats! You have everything you need to build your RDS now! Don’t forget to commit your changes often!</p>
+
+<p>So far, this is what my folder structure looks like:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">.</span>
+├── main.tf
+├── sg
+│   ├── main.tf
+│   └── variables.tf
+├── terraform.tfstate
+├── terraform.tfstate.backup
+├── terraform.tfvars
+├── variables.tf
+└── vpc
+    ├── main.tf
+    ├── nat.tf
+    ├── outputs.tf
+    ├── routing.tf
+    ├── subnets.tf
+    └── variables.tf</code></pre></figure>
+
+<h2 id="add-rds">Add RDS</h2>
+
+<p>Let’s add our RDS module first:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">mkdir </span>rds <span class="o">&amp;&amp;</span> <span class="nb">touch </span>rds/main.tf <span class="o">&amp;&amp;</span> <span class="nb">touch </span>rds/variables.tf</code></pre></figure>
+
+<p>We will be using an <a href="https://www.terraform.io/docs/providers/aws/d/db_instance.html">aws_db_instance</a> resource. I am using an instance_class that’s available in us-east-2. Change the instance_class appropriately if you are using a different region (please refer to the Notes section in the beginning of this tutorial).</p>
+
+<p><em>rds/main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_db_instance"</span> <span class="s2">"database"</span> <span class="p">{</span>
+  <span class="nx">identifier</span>                <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">instance_identifier</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">final_snapshot_identifier</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">instance_identifier</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">skip_final_snapshot</span>       <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">allocated_storage</span>         <span class="p">=</span> <span class="s2">"60"</span>
+  <span class="nx">storage_type</span>              <span class="p">=</span> <span class="s2">"gp2"</span>
+  <span class="nx">engine</span>                    <span class="p">=</span> <span class="s2">"postgres"</span>
+  <span class="nx">instance_class</span>            <span class="p">=</span> <span class="s2">"db.t2.medium"</span>
+  <span class="nx">name</span>                      <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">username</span>                  <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_username</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">password</span>                  <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_password</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">port</span>                      <span class="p">=</span> <span class="mi">5432</span>
+  <span class="nx">publicly_accessible</span>       <span class="p">=</span> <span class="kc">false</span>
+  <span class="nx">vpc_security_group_ids</span>    <span class="p">=</span> <span class="p">[</span><span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">vpc_security_group_ids</span><span class="k">}</span><span class="s2">"</span><span class="p">]</span>
+  <span class="nx">db_subnet_group_name</span>      <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_subnet_group_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">multi_az</span>                  <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">backup_retention_period</span>   <span class="p">=</span> <span class="mi">7</span>
+  <span class="nx">backup_window</span>             <span class="p">=</span> <span class="s2">"08:17-08:47"</span>
+  <span class="nx">maintenance_window</span>        <span class="p">=</span> <span class="s2">"sat:09:30-sat:22:00"</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity RDS"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>rds/variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">variable</span> <span class="s2">"db_password"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_subnet_group_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_username"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"dns_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"instance_identifier"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"private_subnet_id"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"service_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"vpc_id"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"vpc_security_group_ids"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Call the rds module from <em>main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">module</span> <span class="s2">"rds"</span> <span class="p">{</span>
+  <span class="nx">source</span>                 <span class="p">=</span> <span class="s2">"rds"</span>
+  <span class="nx">db_name</span>                <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">db_password</span>            <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_password</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">db_username</span>            <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_username</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">db_subnet_group_name</span>   <span class="p">=</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">db_subnet_group_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">dns_name</span>               <span class="p">=</span> <span class="s2">"pg"</span>
+  <span class="nx">instance_identifier</span>    <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">vpc_id</span>                 <span class="p">=</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">vpc_id</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">private_subnet_id</span>      <span class="p">=</span> <span class="p">[</span><span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">private_subnet</span><span class="k">}</span><span class="s2">"</span><span class="p">]</span>
+  <span class="nx">service_name</span>           <span class="p">=</span> <span class="s2">"TeamCity"</span>
+  <span class="nx">vpc_security_group_ids</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">sg</span><span class="p">.</span><span class="nx">rds_security_groups_id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>If you run the init, you will see that we’re missing a few variables. Let’s go ahead and get rid of those errors. First is db_password. We are going to add the password to the terraform.tfvars. This file is not getting checked and it’s a safe place to store our secrets.</p>
+
+<p><em>terraform.tfvars</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="nx">db_password</span> <span class="err">=</span> <span class="s2">"YOUR_DB_PASSWORD"</span></code></pre></figure>
+
+<p><em>variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">variable</span> <span class="s2">"db_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"teamcity"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_password"</span> <span class="p">{</span>
+  <span class="nx">type</span> <span class="p">=</span> <span class="s2">"string"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_username"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"teamcityuser"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>We also need to add a few outputs:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>sg/outputs.tf</code></pre></figure>
+
+<p><em>sg/outputs.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">output</span> <span class="s2">"rds_security_groups_id"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_security_group</span><span class="p">.</span><span class="nx">rds_sg</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>vpc/outputs/tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">output</span> <span class="s2">"private_subnet"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="p">[</span><span class="s2">"</span><span class="k">${</span><span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">private</span><span class="p">.</span><span class="o">*</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">output</span> <span class="s2">"db_subnet_group_name"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_db_subnet_group</span><span class="p">.</span><span class="nx">rds</span><span class="p">.</span><span class="nx">name</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now we’re ready:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform refresh
+<span class="nv">$ </span>terraform apply</code></pre></figure>
+
+<p>This is going to take a while… so go out for a coffee break and stretch. See you in about 15-20 min!
+.
+.
+.</p>
+
+<p>Nice! Navigate to AWS &gt; RDS to see your newly created RDS!</p>
+
+<p>While we’re at it, let’s create an S3 bucket for the backup</p>
+
+<p>This is going to be very short and sweet compared to the last step:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">mkdir </span>s3 <span class="o">&amp;&amp;</span> <span class="nb">touch </span>s3/main.tf <span class="o">&amp;&amp;</span> <span class="nb">touch </span>s3/variables.tf <span class="o">&amp;&amp;</span> <span class="nb">touch </span>s3/outputs.tf</code></pre></figure>
+
+<p><em>s3/main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_s3_bucket"</span> <span class="s2">"backup_bucket"</span> <span class="p">{</span>
+  <span class="nx">bucket</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">acl</span>    <span class="p">=</span> <span class="s2">"private"</span>
+
+  <span class="nx">tags</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">description</span><span class="k">}</span><span class="s2">"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>s3/variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">variable</span> <span class="s2">"name"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"Name of the S3 Bucket"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"description"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"Description of the S3 Bucket (for tagging)"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>s3/outputs.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">output</span> <span class="s2">"arn"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_s3_bucket</span><span class="p">.</span><span class="nx">backup_bucket</span><span class="p">.</span><span class="nx">arn</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="c1">#S3 bucket name has to be unique</span>
+<span class="k">module</span> <span class="s2">"backup_bucket"</span> <span class="p">{</span>
+  <span class="nx">source</span>      <span class="p">=</span> <span class="s2">"s3"</span>
+  <span class="nx">name</span>        <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">unique_s3_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"TeamCity Backups"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">variable</span> <span class="s2">"unique_s3_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"PICK_A_GLOBALLY_UNIQUE_NAME"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Apply changes:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform init
+<span class="nv">$ </span>terraform apply</code></pre></figure>
+
+<p>Looks good!</p>
+
+<p><strong>Summary:</strong>
+So far we have created a VPC, a public subnet, NAT, 2 private subnets, public, private and rds security groups, an RDS instance in the private subnet, and an S3 bucket for the backup. At this point, my folder structure looks like this:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">.</span>
+├── main.tf
+├── rds
+│   ├── main.tf
+│   └── variables.tf
+├── s3
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── sg
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── terraform.tfstate
+├── terraform.tfstate.backup
+├── terraform.tfvars
+├── variables.tf
+└── vpc
+    ├── main.tf
+    ├── nat.tf
+    ├── outputs.tf
+    ├── routing.tf
+    ├── subnets.tf
+    └── variables.tf
+
+4 directories, 19 files</code></pre></figure>
+
+<h2 id="launch-a-public-ec2-instance-to-host-teamcity">Launch a public EC2 instance to host TeamCity</h2>
+
+<p>Now we’re ready to build our EC2 instance. We are going to launch this in the public subnet. Next we’re going to use TeamCity Docker image and run it in our instance and configure it to use the RDS we just built.</p>
+
+<p>I am going to use a debian trusted image that I have used before. You may choose a debian, ubuntu, etc. Just keep in mind that they might have a different default username to use for ssh. For example, debian uses <code class="highlighter-rouge">admin</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">mkdir </span>ec2 <span class="o">&amp;&amp;</span> <span class="nb">touch </span>ec2/main.tf <span class="o">&amp;&amp;</span> <span class="nb">touch </span>ec2/variables.tf</code></pre></figure>
+
+<p>Before we create the ec2 module, AWS requires a Key Pair. For simplicity, we can generate a key-pair and upload it to teamcity. I am using a makefile to generate the key and save it in <code class="highlighter-rouge">~/.ssh</code>, you can change the path if you wish. Let’s call our key <strong>teamcity</strong>. Create <strong>makefile</strong> in the root.</p>
+
+<p><em>makefile</em></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SHELL :<span class="o">=</span> /usr/bin/env bash
+ssh-key:
+  <span class="nb">test</span> <span class="o">!</span> <span class="nt">-f</span> ~/.ssh/teamcity.pub <span class="o">&amp;&amp;</span> ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-C</span> <span class="s1">'teamcity'</span> <span class="nt">-P</span> <span class="s1">''</span> <span class="nt">-f</span> ~/.ssh/teamcity <span class="o">&amp;&amp;</span> <span class="nb">chmod </span>400 ~/.ssh/teamcity.pub</code></pre></figure>
+
+<p>Make is very particular about spacing, so make sure you get the tabs right!</p>
+
+<p>Then, we need to upload the public key to aws.</p>
+
+<p><em>ec2/main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">resource</span> <span class="s2">"aws_key_pair"</span> <span class="s2">"upload_key"</span> <span class="p">{</span>
+  <span class="nx">key_name</span>              <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">key_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">public_key</span>            <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">file</span><span class="p">(</span><span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">ssh_path</span><span class="k">}</span><span class="s2">/</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">key_name</span><span class="k">}</span><span class="s2">.pub"</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now let’s add the ec2 instance. Again, git I am using an instance_type that’s available and affordable on us-east-2, change this appropriately if you are using a different region  (please refer to the Notes section in the beginning of this tutorial).</p>
+
+<p><em>ec2/main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">resource</span> <span class="s2">"aws_instance"</span> <span class="s2">"teamcity"</span> <span class="p">{</span>
+  <span class="nx">ami</span>                         <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">ami</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">instance_type</span>               <span class="p">=</span> <span class="s2">"t3.medium"</span>
+  <span class="nx">key_name</span>                    <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">key_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">subnet_id</span>                   <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">public_subnet_id</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">user_data</span>                   <span class="p">=</span> <span class="s2">"</span><span class="k">${data</span><span class="p">.</span><span class="nx">template_file</span><span class="p">.</span><span class="nx">teamcity_userdata</span><span class="p">.</span><span class="nx">rendered</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">vpc_security_group_ids</span>      <span class="p">=</span> <span class="p">[</span><span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">vpc_security_group_ids</span><span class="k">}</span><span class="s2">"</span><span class="p">]</span>
+  <span class="nx">associate_public_ip_address</span> <span class="p">=</span> <span class="kc">true</span>
+
+  <span class="nx">tags</span> <span class="p">=</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="p">=</span> <span class="s2">"TeamCity"</span>
+  <span class="p">}</span>
+
+  <span class="nx">lifecycle</span> <span class="p">{</span>
+    <span class="nx">create_before_destroy</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>I want to use the user_data to configure the instance immediately using a template, using resource. Do add this to <em>ec2/main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">data</span> <span class="s2">"template_file"</span> <span class="s2">"teamcity_userdata"</span> <span class="p">{</span>
+  <span class="nx">template</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">file</span><span class="p">(</span><span class="s2">"</span><span class="k">${</span><span class="nx">path</span><span class="p">.</span><span class="k">module}</span><span class="s2">/scripts/setup.sh"</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+
+  <span class="nx">vars</span> <span class="p">{</span>
+    <span class="nx">db_url</span>      <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_url</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nx">db_port</span>     <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_port</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nx">db_name</span>     <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_name</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nx">db_username</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_username</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nx">db_password</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_password</span><span class="k">}</span><span class="s2">"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>db_setup.sh</em> will contain all the steps that I want to run in order to configure my instance. You can also ssh into the machine and run these manually. I am also installing “tree” and “touch” because I use them often: You can customize it however you want.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">mkdir </span>ec2/scripts <span class="o">&amp;&amp;</span> <span class="nb">touch </span>ec2/scripts/setup.sh</code></pre></figure>
+
+<p><em>ec2/scripts/setup.sh</em></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
+<span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>tree
+<span class="nb">sudo </span>apt-get <span class="nb">install touch
+sudo mkdir</span> <span class="nt">-p</span> /opt/teamcity
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /opt/teamcity/var/logs
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /opt/teamcity/lib/jdbc
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /opt/teamcity/config
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> apt-transport-https dirmngr
+<span class="nb">echo</span> <span class="s1">'deb https://apt.dockerproject.org/repo debian-stretch main'</span> | <span class="nb">sudo tee</span> <span class="nt">--append</span> /etc/apt/sources.list
+<span class="nb">sudo </span>apt-key adv <span class="nt">--keyserver</span> hkp://p80.pool.sks-keyservers.net:80 <span class="nt">--recv-keys</span> F76221572C52609D
+<span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> docker-engine <span class="nt">--allow-unauthenticated</span>
+<span class="nb">sudo </span>docker system prune <span class="nt">-af</span>
+<span class="nb">sudo </span>docker <span class="nb">rm</span> <span class="si">$(</span>docker ps <span class="nt">-aq</span><span class="si">)</span>
+<span class="nb">sudo </span>docker pull jetbrains/teamcity-server
+<span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive <span class="nb">sudo </span>apt-get update <span class="nt">-y</span>
+<span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive <span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> wget
+wget https://jdbc.postgresql.org/download/postgresql-9.4.1209.jre6.jar
+<span class="nb">sudo mv </span>postgresql-9.4.1209.jre6.jar /opt/teamcity/lib/jdbc/
+<span class="nb">sudo tee</span> /opt/teamcity/config/database.properties <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
+connectionUrl=jdbc:postgresql://</span><span class="k">${</span><span class="nv">db_url</span><span class="k">}</span><span class="sh">:</span><span class="k">${</span><span class="nv">db_port</span><span class="k">}</span><span class="sh">/</span><span class="k">${</span><span class="nv">db_name</span><span class="k">}</span><span class="sh">
+connectionProperties.user=</span><span class="k">${</span><span class="nv">db_username</span><span class="k">}</span><span class="sh">
+connectionProperties.password=</span><span class="k">${</span><span class="nv">db_password</span><span class="k">}</span><span class="sh">
+</span><span class="no">EOF
+</span><span class="nb">sudo sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> postgresql
+<span class="nb">sudo </span>docker run <span class="nt">--rm</span> <span class="nt">-d</span> <span class="nt">--name</span> teamcity-server-instance <span class="nt">-v</span> /opt/teamcity:/data/teamcity_server/datadir <span class="nt">-v</span> /opt/teamcity/var/logs:/opt/teamcity/logs <span class="nt">-p</span> 8111:8111 jetbrains/teamcity-server</code></pre></figure>
+
+<p>Let’s go ahead and create our variables.</p>
+
+<p><em>ec2/variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">variable</span> <span class="s2">"ami"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">"trusted debian ami"</span>
+  <span class="nx">default</span>     <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_url"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_username"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_password"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_port"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"db_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"key_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"public_subnet_id"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"ssh_path"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"vpc_security_group_ids"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"default value"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>It’s time to call our ec2 module.</p>
+
+<p><em>main.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">module</span> <span class="s2">"ec2"</span> <span class="p">{</span>
+  <span class="nx">source</span>                 <span class="p">=</span> <span class="s2">"ec2"</span>
+  <span class="nx">ami</span>                    <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">debian_ami</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">db_username</span>            <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_username</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">db_password</span>            <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_password</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">db_name</span>                <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">db_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">db_port</span>                <span class="p">=</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">rds</span><span class="p">.</span><span class="nx">db_port</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">db_url</span>                 <span class="p">=</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">rds</span><span class="p">.</span><span class="nx">database_address</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">key_name</span>               <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">key_name</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">public_subnet_id</span>       <span class="p">=</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">public_subnet</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">ssh_path</span>               <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">ssh_path</span><span class="k">}</span><span class="s2">"</span>
+  <span class="nx">vpc_security_group_ids</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">sg</span><span class="p">.</span><span class="nx">web_security_groups_id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>I kept my debian_ami in the <em>variables.tf</em> because I am going to use that image in a couple of other places later…you can hard-code it if you want to. Also, I am using the debian_ami that’s available on us-east-2. Change the image if you are using a different region (please refer to the Notes section in the beginning of this tutorial).</p>
+
+<p><strong>Notice:</strong> key_name should be the name of the key you added in AWS. Also, I keep my keys is <code class="highlighter-rouge">~/.ssh</code>…modify this variable accordingly.</p>
+
+<p><em>variables.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">variable</span> <span class="s2">"key_name"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"teamcity"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"debian_ami"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"ami-05829248ffee66250"</span>
+<span class="p">}</span>
+
+<span class="k">variable</span> <span class="s2">"ssh_path"</span> <span class="p">{</span>
+  <span class="nx">default</span> <span class="p">=</span> <span class="s2">"~/.ssh"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Let’s add the rest of the variables and outputs we need.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>rds/outputs.tf</code></pre></figure>
+
+<p><em>rds/outputs.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">output</span> <span class="s2">"database_address"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">replace</span><span class="p">(</span><span class="nx">aws_db_instance</span><span class="p">.</span><span class="nx">database</span><span class="p">.</span><span class="nx">endpoint</span><span class="p">,</span> <span class="s2">":5432"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span>
+
+<span class="k">output</span> <span class="s2">"db_port"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"5432"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>vpc/outputs.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="err">.</span>
+<span class="err">.</span>
+
+<span class="k">output</span> <span class="s2">"public_subnet"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">public</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><em>sg/outouts.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">output</span> <span class="s2">"web_security_groups_id"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_security_group</span><span class="p">.</span><span class="nx">teamcity_web_sg</span><span class="p">.</span><span class="nx">id</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Let’s output the ssh command so we can easily access our instance.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>outputs.tf</code></pre></figure>
+
+<p><em>outputs.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">output</span> <span class="s2">"teamcity_web_ssh_command"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">format</span><span class="p">(</span><span class="s2">"ssh -i ~/.ssh/teamcity admin@%s"</span><span class="p">,</span> <span class="s2">"</span><span class="k">${module</span><span class="p">.</span><span class="nx">ec2</span><span class="p">.</span><span class="nx">teamcity_web_ip</span><span class="k">}</span><span class="s2">"</span><span class="p">)</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now we need to add an output for ec2 to give us the teamcity_web_ip:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">touch </span>ec2/outputs.tf</code></pre></figure>
+
+<p><em>ec2/outputs.tf</em></p>
+
+<figure class="highlight"><pre><code class="language-terraform" data-lang="terraform"><span class="k">output</span> <span class="s2">"teamcity_web_ip"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="s2">"</span><span class="k">${</span><span class="nx">aws_instance</span><span class="p">.</span><span class="nx">teamcity</span><span class="p">.</span><span class="nx">public_dns</span><span class="k">}</span><span class="s2">"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Let’s create our key. Rmember that you need to have <code class="highlighter-rouge">make</code> installed!</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">  make ssh-key</code></pre></figure>
+
+<p>At this point, this is how my folder structure looks:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">.</span>
+├── ec2
+│   ├── main.tf
+│   ├── outputs.tf
+│   ├── scripts
+│   │   └── setup.sh
+│   └── variables.tf
+├── main.tf
+├── outputs.tf
+├── rds
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── s3
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── sg
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── variables.tf
+├── terraform.tfstate
+├── terraform.tfstate.backup
+├── terraform.tfvars
+├── variables.tf
+└── vpc
+    ├── main.tf
+    ├── nat.tf
+    ├── outputs.tf
+    ├── routing.tf
+    ├── subnets.tf
+    └── variables.tf
+
+6 directories, 25 files</code></pre></figure>
+
+<p>NOW … It’s the moment of truth!!!</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>terraform init
+<span class="nv">$ </span>terraform plan
+<span class="nv">$ </span>terraform apply</code></pre></figure>
+
+<p>You should see a similar output to the following:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Apply <span class="nb">complete</span><span class="o">!</span> Resources: 1 added, 1 changed, 0 destroyed.
+
+Outputs:
+
+teamcity_web_ssh_command <span class="o">=</span> ssh <span class="nt">-i</span> ~/.ssh/teamcity admin@ex.y.z.d.compute-1.amazonaws.com</code></pre></figure>
+
+<h1 id="beautiful">BEAUTIFUL!</h1>
+
+<p>Navigate to AWS &gt; EC2. You know have 1 running instance. Wait for the initialization to be done.
+When the status check is done and server is up you can access your TeamCity via browser: ex.y.z.d.compute-1.amazonaws.com:8111</p>
+
+<p>The first time you access TeamCity via browser, TeamCity might take a long time to initialize, depending on the image and instance_type you chose for EC2.</p>
+
+<p>Congratulations!</p>
+
+<p>I hope this was helpful. Please let me know your thoughts.
+You can find the code on github: https://github.com/saslani/terraform_teamcity_aws
+This is a very simple setup, but is on the right track for something production-ready. If you would like to add features, please fork and send me a PR!</p>
+
+<p><a href="https://github.com/saslani/terraform_teamcity_aws">Find this code on github</a></p>
+:ET
