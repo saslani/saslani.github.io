@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Learning from History to Design Your Style of Leadership"
-date:   2018-12-08 16:15:15
+date:   2018-12-15 16:15:15
 categories: Leadership and Management Skills
 ---
 
-As I mentioned in my [Leadership vs Management article](./leadership/and/management/skills/2018/10/20/leadership-vs-management.html), I am exploring leadership and management styles. I want to know what makes for inspiring and effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be great to go out with for a drink!
+As I mentioned in my [Leadership vs Management article](http://sarahaslanifar.com/leadership-vs-management/), I am exploring leadership and management styles. I want to know what makes for inspiring and effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be great to go out with for a drink!
 
 This is part 2 of the essay and focuses on "why we need organizations" after all. In this article we'll take a look at:
 
@@ -29,7 +29,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/leadership/evolution.svg.png" />
+      <img src="/img/leadership/evolution.svg.png" />
     </div>
   </div>
 
@@ -44,13 +44,13 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     </div>
     <div class="right image">
       <figure>
-        <img src="/assets/images/leadership/lubang_jeriji_saleh_cave_painting_of_bull.jpg">
+        <img src="/img/leadership/lubang_jeriji_saleh_cave_painting_of_bull.jpg">
         <figcaption>
           Oldest known figurative painting, a depiction of an unknown bovine was discovered in the Lubang Jeriji Saléh cave dated as more than 40,000 (perhaps as old as 52,000) years old. - source: wiki
         </figcaption>
       </figure>
       <figure>
-        <img src="/assets/images/leadership/prehistoric_art.jpg" />
+        <img src="/img/leadership/prehistoric_art.jpg" />
         <figcaption>
           Cave lion drawings from Chauvet Cave, Ardèche, France (c. 35,000 to 30,000 years old) - source: wiki
         </figcaption>
@@ -72,7 +72,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     </div>
     <div class="right image">
       <figure>
-        <img src="/assets/images/leadership/tiamat.jpg" />
+        <img src="/img/leadership/tiamat.jpg" />
         <figcaption>
           Tiamat - source: wiki
         </figcaption>
@@ -110,7 +110,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     </div>
     <div class="right image">
       <figure>
-        <img src="/assets/images/leadership/team_of_one.jpg" />
+        <img src="/img/leadership/team_of_one.jpg" />
         <figcaption>
           Team of one
         </figcaption>
@@ -123,7 +123,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       In the following context, let's define relationship as knowing well who each person is and how are they related to others. Even though human are social, there's limit to our social skills which we can have a meaningful, stable and cohesive relationship with others. The real number falls somewhere between 100 to 250, commonly <b>150</b>. This formula was first proposed in 1990 by an anthropologist name Robin Dunbar as the Primate brain size and average of social group size.
     </div>
     <div class="right image">
-      <img src="/assets/images/leadership/dunbarsnumber.jpg" />
+      <img src="/img/leadership/dunbarsnumber.jpg" />
     </div>
   </div>
 
@@ -137,7 +137,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </p>
     </div>
     <div class="right image">
-      <img src="/assets/images/leadership/graph.jpg" />
+      <img src="/img/leadership/graph.jpg" />
     </div>
   </div>
 </section>
@@ -187,7 +187,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     </div>
     <div class="right image">
       <video width="100%" controls>
-        <source src="http://localhost:4000//assets/images/leadership/infrared-short.mp4">
+        <source src="http://localhost:4000//img/leadership/infrared-short.mp4">
       </video>
     </div>
   </div>
@@ -211,7 +211,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     </div>
     <div class="right image">
       <figure>
-        <img src="/assets/images/leadership/year_one.jpg" />
+        <img src="/img/leadership/year_one.jpg" />
         <figcaption>
           Year one
         </figcaption>
@@ -260,7 +260,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </ul>
     </div>
     <div class="right image">
-      <img src="/assets/images/leadership/impulsive_red.jpg" />
+      <img src="/img/leadership/impulsive_red.jpg" />
     </div>
   </div>
 
@@ -298,7 +298,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </ul>
     </div>
     <div class="right image">
-      <img src="/assets/images/leadership/confirmist_amber.jpg" />
+      <img src="/img/leadership/confirmist_amber.jpg" />
     </div>
   </div>
 
@@ -344,7 +344,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </ul>
     </div>
     <div class="right image">
-      <img src="/assets/images/leadership/achievement_orange.jpg" />
+      <img src="/img/leadership/achievement_orange.jpg" />
     </div>
   </div>
 
@@ -392,7 +392,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </ul>
     </div>
     <div class="right image">
-      <img src="/assets/images/leadership_styles/pluralistic_green.jpg" />
+      <img src="/img/leadership_styles/pluralistic_green.jpg" />
     </div>
   </div>
 
@@ -415,7 +415,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </p>
       </div>
       <div class="right image">
-        <img src="/assets/images/leadership/evolutionary_teal.jpg" />
+        <img src="/img/leadership/evolutionary_teal.jpg" />
       </div>
   </div>
   <p>
@@ -465,7 +465,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
         So far, we looked into the history of groups and organizations. We understood why we're social and why forming teams was essential to our survival. As Dunbar suggests as our teams and organizations got bigger the need for leaders grow; not only just a leader, but also the leadership style. In a modern society, a company who wants to run their organization like an impulsive red is not going to survive. Meanwhile, military cannot operate in pluralistic green or evolutionary teal, especially during war!
       </p>
       <p>
-        In order for us to determine what type of organization we have or want, and how our leaders should operate, <a href="./leadership/and/management/skills/2018/10/20/leadership-vs-management.html">we need to take a look at some leadership styles</a>. We have to decide what organization we want before we have a shanty town. <b>Who sets the goal and the vision and what are we here to achieve?</b>
+        In order for us to determine what type of organization we have or want, and how our leaders should operate, <a href="http://sarahaslanifar.com/leadership-vs-management/">we need to take a look at some leadership styles</a>. We have to decide what organization we want before we have a shanty town. <b>Who sets the goal and the vision and what are we here to achieve?</b>
       </p>
       <p>
         Across all these styles, a strong leader not only is setting a long term vision on how life is going to be tomorrow, in 5, 10, 20 years from now, they make sure that the employees are well-aware of the goals and empowers them to get there. Setting goals is an expectation for leaders but it's equally important to understand how does a leader handle disagreement and intolerance. 
@@ -479,7 +479,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       </ul>
     </div>
     <div class="right image">
-      <img src="/assets/images/leadership/company_culture.jpg" />
+      <img src="/img/leadership/company_culture.jpg" />
       <figcaption>
         <a href src="http://bonkersworld.net/">Manu Cornet - Bonker's World</a>
       </figcaption>
