@@ -6,7 +6,7 @@ image:  history_of_organizations.jpg
 tags:   [Leadership and Management Skills]
 ---
 
-As I mentioned in my [Leadership vs Management article](http://sarahaslanifar.com/leadership-vs-management/), I am exploring leadership and management styles. I want to know what makes for inspiring and effective leadership. On the other hand, I want to know why some managers are so hard to work with, even though they might be great to go out with for a drink!
+As I mentioned in my [Leadership vs Management article](http://sarahaslanifar.com/leadership-vs-management/), I am exploring leadership and management styles. I want to know what makes for inspiring and effective leadership. I also want to know why some managers are so hard to work with, even though they might be great to go out with for a drink!
 
 This is part 2 of the essay and focuses on "why we need organizations" after all. In this article we'll take a look at:
 
@@ -16,17 +16,17 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
 - Where we are now in terms of organizational evolution
 
 <section>
-  <title>History of Organization</title>
+  <title>History of Organizations</title>
   <div class="container">
     <div class="left text">
       <p>
-        Before we jump into why we need organizations and leadership let’s take a quick walk into where we came from and why our genus Homo Sapiens succeed.
+        Before we jump into why we need organizations and leadership, let's take a quick walk into where we came from and why our genus Homo Sapiens succeeded.
       </p>
       <p>
-        <strong>Warning:</strong> This article is not for those who believe in Young Earth creationism; dinosaur bones are real!
+        <strong>Warning:</strong> This article is not for those who believe in Young Earth creationism; dinosaur bones are older than 10,000 years, people!
       </p>
       <p>
-        The sapiens species is thought to have merged around 300,000 to 200,000 years ago. Roughly around 200,000 ya homo sapiens became recognizable. They evolved in Africa around 90,000 ya and successfully migrated to populate the rest of the world, including to Europe where Neanderthals had already been settled. However, it wasn't until about 50,000 ya when homo sapiens developed capacity for language. 
+        The sapiens species is thought to have emerged around 300,000-200,000 years ago. Our species, _homo sapiens_, became anatomically recognizable roughly 50,000-30,000 ya, when the species developed the capacity for language.
       </p>
     </div>
     <div class="right image">
@@ -37,23 +37,20 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
   <div class="container">
     <div class="left text">
       <p>
-        There are several hypothesis as why sapiens succeeded but not neanderthals, even though neanderthals were physically stronger and faster in short distance running. Some of the hypotheses include: Violence from modern humans, diseases, competitive exclusion, inbreeding, climate change, or a combination of these...and more!
-      </p>
-      <p>
-        The one hypothesis that relates to this article is <b>brain power</b>. Neanderthals had brawn, but humans had the advantage in brains. Sapiens brains were built to support more complex functions such as creativity, communication and imagination. Imagination, the ability to believe myth and fiction, and the ability to pass along stories became our ancestors biggest advantage.
+        There are several theories for why _H. sapiens_ succeeded but not other members of the genus such as Neanderthal and Denisovan neanderthals: Violence from modern humans, diseases, competitive exclusion, inbreeding, climate change, or a combination of these factors and more. The theory that relates to this article is <b>brain power</b>. Neanderthals had brawn, but humans had the advantage in brains. Our _H. sapiens_ brains were built to support more complex functions such as creativity, communication, and imagination. The ability to believe myth and fiction, and the ability to pass along stories may have been our ancestors biggest advantage.
       </p>
     </div>
     <div class="right image">
       <figure>
         <img src="/img/leadership/lubang_jeriji_saleh_cave_painting_of_bull.jpg">
         <figcaption>
-          Oldest known figurative painting, a depiction of an unknown bovine was discovered in the Lubang Jeriji Saléh cave dated as more than 40,000 (perhaps as old as 52,000) years old. - source: wiki
+          The ldest known figurative painting, a depiction of an unknown bovine was discovered in the Lubang Jeriji Saléh cave, dated around 40,000 years ago. [source](https://www.nature.com/articles/s41586-018-0679-9)
         </figcaption>
       </figure>
       <figure>
         <img src="/img/leadership/prehistoric_art.jpg" />
         <figcaption>
-          Cave lion drawings from Chauvet Cave, Ardèche, France (c. 35,000 to 30,000 years old) - source: wiki
+          Cave lion drawings from Chauvet Cave, Ardèche, France (c. 35,000 to 30,000 years old) [source](https://en.wikipedia.org/wiki/Chauvet_Cave#Dating)
         </figcaption>
       </figure>
     </div>
@@ -61,9 +58,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
 
   <div class="container">
     <p>
-      One great example of human’s creative mind is religion. We are capable of believing in the supernatural. Our creative mind
-      allows us to believe in extraordinary things like a God with unlimited power, kind enough to tolerate all the
-      suffering in the world, and ready to adminster harsh punishment upon you for your sins in an eternal afterlife! Or so some stories go. We love to gossip and we love to tell stories. We have communicated those beliefs and created a community around it. Religion made us form tribes, worship Gods, and work together to make Gods happy and satisfied. Religion made us believe in an afterlife, a Heaven and Hell. We do good things to enter the heavens and pray to be protected from Hell.
+      Myth and religion are great examples of the creative mind in our species. We are capable of believing in the supernatural, something unseen in any other species on Earth. Our creative mind allows us to believe in extraordinary things like a God with unlimited power, kind enough to tolerate all the suffering in the world, and ready to adminster harsh punishment upon you for your sins in an eternal afterlife! Or so some stories go. We love to gossip and we love to tell stories. We have communicated those beliefs and have created communities around them. Religion made us form tribes, worship gods, and work together to make the gods happy and satisfied. Some religions told of an afterlife, a Heaven and Hell, and one should do good things to enter the Good Place and pray to be protected from the Bad Place and all its minions.
     </p>
     <div class="left center text">
       And the lord stood upon Tiamat's hinder parts,<br />
@@ -75,7 +70,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       <figure>
         <img src="/img/leadership/tiamat.jpg" />
         <figcaption>
-          Tiamat - source: wiki
+          Tiamat - [source](https://en.wikipedia.org/wiki/Tiamat)
         </figcaption>
       </figure>
     </div>
@@ -87,22 +82,22 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
 
   <div class="container">
     <p>
-      Human are also social animals. But what is socialization? Is there a limit to how many interactions we can handle?
+      Humans are also social animals. But what is socialization? Is there a limit to how many interactions we can handle?
     </p>
     <p>
-      Without looking too much into biology, once again, evolution supports socialization. Apologies to all of you  introverts, including myself! Look at it this way: If a family stayed around longer, children had a better chance of surviving. Larger families and tribes could also better defend themselves against intruders. They would help each other with their youngsters, share food, and build homes. That's how we formed teams and tribes.
+      Being social, forming strong and weak ties with others and being able to work together in groups as well as alone, supports the evolution of the species. Apologies to all of you introverts, including myself, who like to spend time alone...we can't all be alone all the time! Look at it this way: If a family stayed together, children had a better chance of surviving. Larger families and tribes could also better defend themselves against intruders, or care for one another in times of sickness or disaster. They would help each other with their youngsters, share food, and build homes. Travel was dangerous, so we stayed close to natural resources, and guarded them. And so we formed teams and tribes.
     </p>
   </div>
   <div class="container">
     <div class="left text">
       <p>
-        What about those who want to stay alone? If one has to only answer to themselves and can do whatever they want, we don't say they're in a team or an organization.
+        What about those who do want to stay alone? If one has to only answer to themselves and can do whatever they want, we don't say they're in a team or an organization.
       </p>
       <p>
-        What happens when we add a second person? Now we have a team because we have relationships (n*(n-1)/2). The moment we add a second person, we have a team dynamics. It's a small team, but it is at last a team.
+        What happens when we add a second person? Now we have a team because we have relationships. The moment we add a second person, we have a team dynamics. It's a small team, but it is at last a team.
       </p>
       <p>
-        Now let's come a few hundred thousand years forward to the present. The growth of our societies, families, companies, and teams raises the question, "What team size is the right size?"
+        Now let's come a few hundred thousand years forward to the present. The growth of our societies, families, companies, and teams raises the question, "What team size is the right size?". TODO: explain (n*(n-1)/2)
       </p>
       <blockquote>
         If you cannot feed a team with two pizzas, it's too large.
