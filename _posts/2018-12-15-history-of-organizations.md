@@ -26,7 +26,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
         <strong>Warning:</strong> This article is not for those who believe in Young Earth creationism; dinosaur bones are older than 10,000 years, people!
       </p>
       <p>
-        The sapiens species is thought to have emerged around 300,000-200,000 years ago. Our species, _homo sapiens_, became anatomically recognizable roughly 50,000-30,000 ya, when the species developed the capacity for language.
+        The sapiens species is thought to have emerged around 300,000-200,000 years ago. Our species, homo sapiens, became anatomically recognizable roughly 50,000-30,000 ya, when the species developed the capacity for language.
       </p>
     </div>
     <div class="right image">
@@ -37,7 +37,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
   <div class="container">
     <div class="left text">
       <p>
-        There are several theories for why _H. sapiens_ succeeded but not other members of the genus such as Neanderthal and Denisovan neanderthals: Violence from modern humans, diseases, competitive exclusion, inbreeding, climate change, or a combination of these factors and more. The theory that relates to this article is <b>brain power</b>. Neanderthals had brawn, but humans had the advantage in brains. Our _H. sapiens_ brains were built to support more complex functions such as creativity, communication, and imagination. The ability to believe myth and fiction, and the ability to pass along stories may have been our ancestors biggest advantage.
+        There are several theories for why H. sapiens succeeded but not other members of the genus such as Neanderthal and Denisovan neanderthals: Violence from modern humans, diseases, competitive exclusion, inbreeding, climate change, or a combination of these factors and more. The theory that relates to this article is <b>brain power</b>. Neanderthals had brawn, but humans had the advantage in brains. Our H. sapiens brains were built to support more complex functions such as creativity, communication, and imagination. The ability to believe myth and fiction, and the ability to pass along stories may have been our ancestors biggest advantage.
       </p>
     </div>
     <div class="right image">
