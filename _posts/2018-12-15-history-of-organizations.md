@@ -44,7 +44,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
       <figure>
         <img src="/img/leadership/lubang_jeriji_saleh_cave_painting_of_bull.jpg">
         <figcaption>
-          The ldest known figurative painting, a depiction of an unknown bovine was discovered in the Lubang Jeriji Saléh cave, dated around 40,000 years ago. <a href="https://www.nature.com/articles/s41586-018-0679-9">source</a>
+          The oldest known figurative painting, a depiction of an unknown bovine was discovered in the Lubang Jeriji Saléh cave, dated around 40,000 years ago. <a href="https://www.nature.com/articles/s41586-018-0679-9">source</a>
         </figcaption>
       </figure>
       <figure>
@@ -58,7 +58,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
 
   <div class="container">
     <p>
-      Myth and religion are great examples of the creative mind in our species. We are capable of believing in the supernatural, something unseen in any other species on Earth. Our creative mind allows us to believe in extraordinary things like a God with unlimited power, kind enough to tolerate all the suffering in the world, and ready to adminster harsh punishment upon you for your sins in an eternal afterlife! Or so some stories go. We love to gossip and we love to tell stories. We have communicated those beliefs and have created communities around them. Religion made us form tribes, worship gods, and work together to make the gods happy and satisfied. Some religions told of an afterlife, a Heaven and Hell, and one should do good things to enter the Good Place and pray to be protected from the Bad Place and all its minions.
+      Myth and religion are great examples of the creative mind in our species. We are capable of believing in the supernatural, something unseen in any other species on Earth. Our creative mind allows us to believe in extraordinary things like a God with unlimited power, kind enough to tolerate all the suffering in the world, and ready to administer harsh punishment upon you for your sins in an eternal afterlife! Or so some stories go. We love to gossip and we love to tell stories. We have communicated those beliefs and have created communities around them. Religion made us form tribes, worship gods, and work together to make the gods happy and satisfied. Some religions told of an afterlife, a Heaven and Hell, and one should do good things to enter the Good Place and pray to be protected from the Bad Place and all its minions.
     </p>
     <div class="left center text">
       And the lord stood upon Tiamat's hinder parts,<br />
@@ -186,7 +186,7 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
     </div>
     <div class="right image">
       <video width="100%" controls>
-        <source src="http://localhost:4000//img/leadership/infrared-short.mp4">
+        <source src="/img/leadership/infrared-short.mp4">
       </video>
     </div>
   </div>
