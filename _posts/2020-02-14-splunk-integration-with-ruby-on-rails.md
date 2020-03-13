@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Splunk Integration with Ruby on Rails (dokcer or not!)"
+title:  "Splunk Integration with Ruby on Rails"
 date:   2020-01-10 10:11:00
 image:  
 tags:   [Splunk, Logging, Ruby, Rails, Docker]
@@ -25,27 +25,35 @@ This article is to walk you through setting up splunk and rails integration and 
 [Create an account with splunk](https://www.splunk.com/), if you haven't one yet. You may choose to sign-up for the 14-day free trial for the cloud instance, or download splunk directly. We will cover both setups in this article!
 
 ## Step 2: Install gems
-We're using `rails_sementic_logger` for logging and `puma` compiler
+We're using `rails_sementic_logger` for logging and `puma` puma app server
 
 ## Step 3: Configure Splunk
 First you need to setup a token to use in your app or from the command line and this is how you do it:
-- Visit your cloud instance "https://prd-p-YOUR-INSTANCE.cloud.splunk.com" or your self-service setup "http://localhost:8000/"
+- Visit your cloud instance "https://prd-p-YOUR-INSTANCE.cloud.splunk.com" or your [self-service setup](https://splk.it/38OT28D) "http://localhost:8000/", assuming you are running on localhost port 8000
 - Click on "Settings"
 - Under "DATA", choose "Data Inputs"
+ 
+![](/img/splunk_rails/setting_data_input.png){:width="300x"}
+
 - Under "Local inputs", choose "HTTP Event Collector"
+
+![](/img/splunk_rails/http_event_collector.png){:width="300x"}
+
 - Click on "New Token"
 - Give your token a name and follow steps till you create a token
 - Go back to "HTTP Event Collector" page and make sure the token in "Enabled"
 
+![](/img/splunk_rails/token_status_enabled.png){:width="600x"}
+
 ## Step 4: Use command-line to make sure your token is working
-Notice url is slightly different between the cloud instance and your local setup. We are looking for a success message: `{"text":"Success","code":0}`
+Let's make send a simple "Hello, World!" log to splunk to make sure the token is working. Notice url is slightly different between the cloud instance and your local setup. We are looking for a success message: `{"text":"Success","code":0}`. Also, notice that by default Splunk's HTTP Event Collector (HEC) is running on port **8088**
 - Self-service cloud instances: https://input-prd-p-XXXXXXXX.cloud.splunk.com:8088
 - Managed cloud instances: https://http-inputs-XXXXXXXX.splunkcloud.com
 - Enterprise instances (also your local setup "localhost"): https://my-self-hosted-splunk.com:8088
 
 #### Self-service
 - From your local machine: `curl -k https://localhost:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
-- From docker, accessing splunk on your local host machine: `curl -k https://docker.for.mac.host.internal:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
+- From docker, accessing splunk on your local host machine (mac in this case): `curl -k https://docker.for.mac.host.internal:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
 
 #### Cloud
 `curl -k https://input-prd-p-XXXXXXXX.cloud.splunk.com:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
@@ -87,7 +95,7 @@ end
 {% endhighlight %}
 
 ## Step 6: Open a worker for SemanticLogger
-[So put this in puma.rb](https://rdoc.info/gems/rails_semantic_logger/1.5.0/frames)
+[Add the following to your worker boot code (puma.rb)](https://rdoc.info/gems/rails_semantic_logger/1.5.0/frames)
 
 {% highlight ruby %}
   # Re-open appenders after forking the process
@@ -96,7 +104,7 @@ end
 
 
 ## Step 7: Moment of truth!
-Log a message anywhere in your code. For example `logger.info("Yo Ho Let's Go!")`. How log into your splunk and you should be seeing a message got logged into splunk instantly!
+Log a message anywhere in your code. For example `logger.info("Yo Ho Let's Go!")`. Now log into your splunk and you should see that a message got logged into splunk instantly!
 
 
 Happy logging and let me know if you run into any issues with the steps above!
