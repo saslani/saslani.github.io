@@ -2,7 +2,7 @@
 layout: post
 title:  "Splunk Integration with Ruby on Rails"
 date:   2020-01-10 10:11:00
-image:  
+image:  splunk_rails.jpg
 tags:   [Splunk, Logging, Ruby, Rails, Docker]
 ---
 
