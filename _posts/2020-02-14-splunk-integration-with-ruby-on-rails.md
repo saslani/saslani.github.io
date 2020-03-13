@@ -8,6 +8,8 @@ tags:   [Splunk, Logging, Ruby, Rails, Docker]
 
 This article is to walk you through setting up splunk and rails integration and not how to use splunk.
 
+Note: We are using rails_semantic_logger for its enriched splunk support. [Read more about semantic logger...](http://rocketjob.github.io/semantic_logger/rails)
+
 **Stack and Versions:**
 - Docker: 19.03.5
 - Ruby: 2.6.4
@@ -52,11 +54,18 @@ Let's make send a simple "Hello, World!" log to splunk to make sure the token is
 - Enterprise instances (also your local setup "localhost"): https://my-self-hosted-splunk.com:8088
 
 #### Self-service
-- From your local machine: `curl -k https://localhost:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
-- From docker, accessing splunk on your local host machine (mac in this case): `curl -k https://docker.for.mac.host.internal:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
-
+- From your local machine: 
+{% highlight bash %}
+curl -k https://localhost:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'
+{% endhighlight %}
+- From docker, accessing splunk on your local host machine (mac in this case): 
+{% highlight bash %}
+curl -k https://docker.for.mac.host.internal:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
+{% endhighlight %}
 #### Cloud
-`curl -k https://input-prd-p-XXXXXXXX.cloud.splunk.com:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
+{% highlight bash %}
+curl -k https://input-prd-p-XXXXXXXX.cloud.splunk.com:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'`
+{% endhighlight %}
 
 ## Step 5: Configure logs in development.rb
 Note: 
