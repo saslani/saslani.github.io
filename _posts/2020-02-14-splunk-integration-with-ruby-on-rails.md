@@ -103,7 +103,7 @@ if ENV["RAILS_LOG_TO_STDOUT"] == true.to_s
 end
 {% endhighlight %}
 
-## Step 6: Open a worker for SemanticLogger
+## Step 6: Puma configuration
 [Add the following to your worker boot code (puma.rb)](https://rdoc.info/gems/rails_semantic_logger/1.5.0/frames)
 
 {% highlight ruby %}
