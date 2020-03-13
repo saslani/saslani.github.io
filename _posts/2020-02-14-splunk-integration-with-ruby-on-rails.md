@@ -8,7 +8,7 @@ tags:   [Splunk, Logging, Ruby, Rails, Docker]
 
 This article is to walk you through setting up splunk and rails integration and not how to use splunk.
 
-### Stack and Versions:
+**Stack and Versions:**
 - Docker: 19.03.5
 - Ruby: 2.6.4
 - Rails: 6.0
@@ -25,10 +25,10 @@ This article is to walk you through setting up splunk and rails integration and 
 [Create an account with splunk](https://www.splunk.com/), if you haven't one yet. You may choose to sign-up for the 14-day free trial for the cloud instance, or download splunk directly. We will cover both setups in this article!
 
 ## Step 2: Install gems
-Install the gems, we're using `rails_sementic_logger` for logging and `puma` compiler
+We're using `rails_sementic_logger` for logging and `puma` compiler
 
 ## Step 3: Configure Splunk
-First you need to setup a token to use in our app, or from the command line and this is how you do it:
+First you need to setup a token to use in your app or from the command line and this is how you do it:
 - Visit your cloud instance "https://prd-p-YOUR-INSTANCE.cloud.splunk.com" or your self-service setup "http://localhost:8000/"
 - Click on "Settings"
 - Under "DATA", choose "Data Inputs"
@@ -57,8 +57,7 @@ Note:
 
 {% highlight ruby %}
 Rails.logger.silence do
-.
-.
+  # Your code here
 end
 {% endhighlight %}
 
@@ -95,3 +94,9 @@ end
   SemanticLogger.reopen
 {% endhighlight %}
 
+
+## Step 7: Moment of truth!
+Log a message anywhere in your code. For example `logger.info("Yo Ho Let's Go!")`. How log into your splunk and you should be seeing a message got logged into splunk instantly!
+
+
+Happy logging and let me know if you run into any issues with the steps above!
