@@ -69,9 +69,9 @@ Thursday, March 12, 2020, right around 5:00 pm I was packing up my stuff at work
 
 What went through my head was: It's just a week .. or two .. we got this! And before we know it, we're in week 5...
 
-We tried many things, including, print daily schedule and leaving notes for the boys about what to do, and when we're busy. Simply it didn't work! 
+We tried many things, including, print daily schedule and leaving notes for the boys about what to do, and when we're busy. Simply it didn't work! It's not easy to work full-time and teach 2 kids at different grade levels (this is easily 3 full-time jobs) in addition to daily house chores, workout, etc.
 
-**What's been working for us, finally, after 5 weeks of trying is:**
+**So how's work/life schedule pandemic way for us these days?**
 <br/>
 We are very fortunate to have a 2 floor house and a finished basement that we use as a playroom / TV room. As soon as the school-closing new came out, I converted our art table in the basement to a desk. We brought a 10-years old iMac that I cannot even update because it’s so old to the basement too, so both boys can use it for their homework. We made the basement the designated “home school”, while the main floor remained as the family area and my designated workspace remained upstairs. 
 
@@ -80,18 +80,18 @@ For the past few days that things have gone better
 - Bobby wakes up around 6 am and starts his work day
 - Boys wake up at 7 am and they eat breakfast
 - I wake up around 8:00 am and start my day. 
-In the mornings, boys spend time with me. One starts on his music or reading (which doesn't need a computer or my supervision) while the other camps in my office, next to my desk to use my personal laptop for school work (in other words, the designate "home school" and iMac in the basement idea went right out the door!)
+In the mornings, boys spend time with me since they tent to be more punctual and focused around me. One starts on his music or reading (which doesn't need a computer or my supervision) while the other camps in my office, next to my desk to use my personal laptop for school work that's being assigned weekly and daily by teachers and school district (in other words, the designate "home school" and iMac in the basement idea went right out the door!)
 
 ![cozy and comfy Aidin](/img/wfh_pandemic/aidin.jpeg){:width="300x"}
 
-At 12:15 when my lunch time starts, I make lunch for the boys and update Bobby on the school work progress. Bobby takes over around 1 pm. He's definitely the fun parent! This is the time I have an uninterrupted time to get my work done while Bobby and the boys either play outside or get house chores done.
+At 12:15 when my lunch time starts. This is the time that boys wrap on what they could get done for the day. I make lunch for the boys and update Bobby on the school work progress. Bobby takes over around 1 pm. He's definitely the fun parent! This is the time I have an uninterrupted time to get my work done while Bobby and the boys either play outside or get house chores done, "sometimes" they get a little more school work done.
 
 I usually stop by 6 pm and join the family for dinner and family time. 
 - Boys head to bed around 8 - 8:30 pm
 - Bobby goes to bed by 9 pm
-- I finish my work for the time lost. I try to tidy around then spend a little time reading or writing to unwind, heading to bed around midnight
+- I finish my work for the time lost in the morning. I try to tidy around then spend a little time reading or writing to unwind, heading to bed around midnight
 
-And this is finally what's working for us after 5 weeks...
+And this is finally what's "working" for us after 5 weeks...
 
 **What are we still struggling with?**
 <br />
