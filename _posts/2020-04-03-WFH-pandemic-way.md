@@ -20,8 +20,9 @@ It might take one family a day and another a month to find a routine that works 
 
 Here is how a few us us are WFH pandemic way. If you would like to share your story send me a message to sarah@testedminds.com and I will add your way to this article:
 
-- [Sarah and Bobby: Both are software engineers](#Sarah&Bobby)
+- [Sarah and Bobby: Software engineers](#Sarah&Bobby)
 - [Cat: Software engineer & partner works for an electrical utility company](#Cat). Cat is a great and well known engineer, so I reached out to her to see how she's managing her time these days. I completely agree with her point about things really being different. We’re not looking at this as the chance to win a “Tiger parent of the year” award!
+- [Ronda and Allan: Client engagement manager and investment advisor](#Ronda)
 
 ------------------------------------------------------------------------------------
 
@@ -117,3 +118,20 @@ In some ways, I am really lucky. My employer supports work from home, and they h
 We are settling into a little bit of routine at home. I wake up at 4:30 am to catch up on work and to-dos. When my son wakes up, I fix him breakfast and he writes in his journal. I usually have some materials prepared based on whatever questions he asked me the day before. For example, one day he asked me about dirigibles and the next day I had pulled together some things for him like information on the Hindenburg, some related math problems, etc. Then I go out to the office we have out in our rec room. It's separate from the rest of the house, and I consider that a huge advantage. Based on the advice of Devorah Heitner, I don't let Ray play video games until the afternoon, but I let him do basically anything else eg. slip n slide, play in the treehouse, bake, whatever. His grandma usually video calls him sometime after 1 pm, and they have been learning to play Animal Crossing together. They've been reading a day by day guide together and trying to work through the things in that guide. At about 5 pm, I wrap up work. We eat dinner and clean up the house. Before bed, we've been watching His Dark Materials. Even though my partner isn't home, watching a streaming TV show is an activity he can do with us. 
 
 Overall, I am just trying to be realistic. I am not trying to go about work and school the same way we did before. We are all in this together. We should be gentle with ourselves and with each other.
+
+------------------------------------
+
+<a name="Ronda"></a>
+#### Ronda: Client engagement manager
+#### Partner: Investment advisor
+#### Children: 2 teenagers
+
+My “work from home with kids”is much different than many of those who are managing younger children. I have teenagers and while I don’t have to entertain them, it would be insensitive to not acknowledge the emotional toll this is taking on everyone. 
+
+I have two high school daughters whose schools were ready for e-learning from the beginning. For the first week or two, we were on top of things. This was a new adventure! It was very nice to not have to get up at 6 am to catch the school bus and do drop offs. My kids are teenagers so they don’t require a lot of help with work, just the occasional nudge. We were well stocked with food and toilet paper. 
+
+I love to plan! I am in my happy place when I get to be a little creative and handle figuring out new logistics. So the moment I heard we might be working from home and e-learning, I figured out all four members of our households working location, ordered a foldable desk. My husband is an Investment Advisor who is on the phone all day and is pretty loud, so he got the space with the closed door. I’m on video calls a lot so I made sure I had decent lighting :-). I created a gym in the garage by buying flooring and moving some mostly unused weights, bands and yoga mats there. I planned a schedule that includes breakfast, lunch, dinner and workouts. That was the easy part. After all I’m a Product Manager for a software company. This is what I do!
+
+As time has passed it is getting tougher to be positive. There is no hiding the truth from them. They read the news and see data. It’s scary. The uncertainty of my oldest’s Senior Year makes us both sad. Prom? Graduation Ceremony? My youngest is an athlete and her volleyball season has been put on hold. As a mom, I want to assure them that it will all be fine. All I can do is keep going out to work on their driving skills and taking time to watch our favorite TV shows together and not tell them that they should “just be happy they have it so good”. Time is what we have with them now and if you have younger kids, I promise you that it will be gone before you know it. Even if it does seem like this will never end.
+
+Ronda Joubert
