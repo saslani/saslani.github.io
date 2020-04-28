@@ -6,21 +6,19 @@ image:  splunk_rails.jpg
 tags:   [Splunk, Logging, Ruby, Rails, Docker]
 ---
 
-This article is to walk you through setting up splunk and rails integration and not how to use splunk.
+This article is to walk you through setting up splunk and rails integration, but not how to use splunk.
 
-Note: We are using rails_semantic_logger for its enriched splunk support. [Read more about semantic logger...](http://rocketjob.github.io/semantic_logger/rails)
+Note: I chose rails_semantic_logger for its enriched splunk support. [Read more about semantic logger...](http://rocketjob.github.io/semantic_logger/rails)
 
 **Stack and Versions:**
 - Docker: 19.03.5
 - Ruby: 2.6.4
 - Rails: 6.0
 - Gems:
-    + Required:
-        * rails_semantic_logger: 4.4 - 4.4.3
-    + Related:
-        * puma: 4.3.1
+  + rails_semantic_logger: 4.4 - 4.4.3
+  + puma: 4.3.1
 - Splunk: 
-    + Locally hosted or Cloud (we will cover both)
+  + Locally hosted or Cloud (we will cover both)
 
 
 ## Step 1: Splunk sign up
