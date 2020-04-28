@@ -43,7 +43,18 @@ First you need to setup a token to use in your app or from the command line and 
 
 - Click on "New Token"
 - Give your token a name and follow steps till you create a token
-- Go back to "HTTP Event Collector" page and make sure the token in "Enabled"
+- Go back to "HTTP Event Collector" page and make sure the token in "Enabled": from "Data Inputs > HTTP Event Controller" choose "Global Settings"
+
+![](/img/splunk_rails/global_setting.png){:width="600x"}
+
+- "Enable" the token
+
+![](/img/splunk_rails/enable_token.png){:width="300x"}
+
+- Change the "Default Index" to "main"
+
+![](/img/splunk_rails/default_index.png){:width="300x"}
+
 
 ![](/img/splunk_rails/token_status_enabled.png){:width="600x"}
 
