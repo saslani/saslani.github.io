@@ -2,7 +2,7 @@
 layout: post
 title:  "Splunk Integration with Python and Flask"
 date:   2020-03-13 10:11:00
-image:  
+image:  splunk_python_flask.jpg  
 tags:   [Splunk, Logging, Python, Flask, Docker]
 ---
 
