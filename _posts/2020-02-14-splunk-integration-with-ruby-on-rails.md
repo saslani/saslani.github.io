@@ -24,39 +24,36 @@ Note: I chose rails_semantic_logger for its enriched splunk support. [Read more 
 ## Step 1: Splunk sign up
 [Create an account with splunk](https://www.splunk.com/), if you haven't one yet. You may choose to sign-up for the 14-day free trial for the cloud instance, or download splunk directly. We will cover both setups in this article!
 
-## Step 2: Install gems
-We're using `rails_sementic_logger` for logging and `puma` puma app server
-
-## Step 3: Configure Splunk
+## Step 2: Configure Splunk
 First you need to setup a token to use in your app or from the command line and this is how you do it:
 - Visit your cloud instance "https://prd-p-YOUR-INSTANCE.cloud.splunk.com" or your [self-service setup](https://splk.it/38OT28D) "http://localhost:8000/", assuming you are running on localhost port 8000
 - Click on "Settings"
 - Under "DATA", choose "Data Inputs"
  
-![](/img/splunk_rails/setting_data_input.png){:width="300x"}
+![](/img/splunk/setting_data_input.png){:width="300x"}
 
 - Under "Local inputs", choose "HTTP Event Collector"
 
-![](/img/splunk_rails/http_event_collector.png){:width="300x"}
+![](/img/splunk/http_event_collector.png){:width="300x"}
 
 - Click on "New Token"
 - Give your token a name and follow steps till you create a token
 - Go back to "HTTP Event Collector" page and make sure the token in "Enabled": from "Data Inputs > HTTP Event Controller" choose "Global Settings"
 
-![](/img/splunk_rails/global_setting.png){:width="600x"}
+![](/img/splunk/global_setting.png){:width="600x"}
 
 - "Enable" the token
 
-![](/img/splunk_rails/enable_token.png){:width="300x"}
+![](/img/splunk/enable_token.png){:width="300x"}
 
 - Change the "Default Index" to "main"
 
-![](/img/splunk_rails/default_index.png){:width="300x"}
+![](/img/splunk/default_index.png){:width="300x"}
 
 
-![](/img/splunk_rails/token_status_enabled.png){:width="600x"}
+![](/img/splunk/token_status_enabled.png){:width="600x"}
 
-## Step 4: Use command-line to make sure your token is working
+## Step 3: Use command-line to make sure your token is working
 Let's make send a simple "Hello, World!" log to splunk to make sure the token is working. Notice url is slightly different between the cloud instance and your local setup. We are looking for a success message: `{"text":"Success","code":0}`. Also, notice that by default Splunk's HTTP Event Collector (HEC) is running on port **8088**
 - Self-service cloud instances: https://input-prd-p-XXXXXXXX.cloud.splunk.com:8088
 - Managed cloud instances: https://http-inputs-XXXXXXXX.splunkcloud.com
@@ -75,6 +72,9 @@ curl -k https://docker.for.mac.host.internal:8088/services/collector/raw -H 'Aut
 {% highlight bash %}
 curl -k https://input-prd-p-XXXXXXXX.cloud.splunk.com:8088/services/collector/raw -H 'Authorization: Splunk YOUR_TOKEN' -d '{"event":"Hello, World!"}'
 {% endhighlight %}
+
+## Step 4: Install gems
+We're using `rails_sementic_logger` for logging and `puma` puma app server
 
 ## Step 5: Configure logs in development.rb
 Note: 
