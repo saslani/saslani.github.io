@@ -105,11 +105,11 @@ And this is finally what's "working" for us after 6 weeks...
 **What are we still struggling with?**
 
 - Even though we're settling with our pandemic schedule, things are still very scary for the boys:
-    - This year, Aidin made a couple of great friends and they live close by. It's so great to see their friendships blossom. He's at the age that understands social interactions and he loves it. Until a couple of months ago, we were teaching him to shake hands, have play dates, etc, now we have to suddenly revert all those and tell him not to shake hands, we can’t have play dates, and you have to stay 6 feet away from other people...
-    - Armin was very scared for the first couple of weeks. The reality of school closing, no more playing in the park, no going to music class, recital and Suzuki guitar graduation cancellation... it was very hard for him to understand.  He often asked if we were going to die. But he's doing much better now. He 
-        - learned to cook a couple of things (eggs and mac & Cheese). Boys love making us breakfast in bed on weekends
-        - making his own Hurdy Gurdy
-        - practicing playing guitar...on his head!
+    + This year, Aidin made a couple of great friends and they live close by. It's so great to see their friendships blossom. He's at the age that understands social interactions and he loves it. Until a couple of months ago, we were teaching him to shake hands, have play dates, etc, now we have to suddenly revert all those and tell him not to shake hands, we can’t have play dates, and you have to stay 6 feet away from other people...
+    + Armin was very scared for the first couple of weeks. The reality of school closing, no more playing in the park, no going to music class, recital and Suzuki guitar graduation cancellation... it was very hard for him to understand.  He often asked if we were going to die. But he's doing much better now. He 
+        * learned to cook a couple of things (eggs and mac & Cheese). Boys love making us breakfast in bed on weekends
+        * is making his own Hurdy Gurdy
+        * is practicing playing guitar...on his head!
 - Due to the current schedule, Bobby and I get hardly any time together during the weekdays :(
 - Our weekends are at least 50% catching up on either work or house chores!
 

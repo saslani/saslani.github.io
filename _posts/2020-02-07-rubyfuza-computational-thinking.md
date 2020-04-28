@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Computational Thinking - RubyFuza - February 2020 Cape Town South Africa"
+title:  "Computational Thinking - RubyFuza - February 2020, Cape Town South Africa"
 date:   2020-02-07 10:11:00
 image:  rubyfuza_za_2020.jpg
 tags:   [Computational Thinking]
