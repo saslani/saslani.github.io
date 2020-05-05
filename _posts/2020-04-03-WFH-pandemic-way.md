@@ -6,7 +6,7 @@ image:  wfh_pandemic/armin.jpeg
 tags:   [Pandemic, Social Distancing, Work from Home, Young Kids]
 ---
 
-These are a few stories on how full-time working parents are dealing with social isolation and homeschooling. It's very important to note that every family is different, so this blog is not meant to give anyone advice about “the right way” of working from home or homeschooling. I want to highlight some challenges we're all facing these days; and discuss why flexible work hours are crucial to coping with them.
+These are a few stories on how full-time working parents are dealing with social distancing and homeschooling. It's very important to note that every family is different, so this blog is not meant to give anyone advice about “the right way” of working from home or homeschooling. I want to highlight some challenges we're all facing these days; and discuss why flexible work hours are crucial to coping with them.
 
 What prompted me to write this article was when a friend (who's very loving and sweet and the best aunt, but doesn't have kids) gave me well-intentioned advice on how we should home-school our boys while WFH. It’s easy, she assured me, they understand...Let them know the hours they can come to you for questions and when they shouldn't interrupt! Print their daily schedule so they know what to do! Well, that sounds great, doesn’t it?
 
@@ -14,7 +14,7 @@ If only. I love you, friend, but you're clueless!
 
 To rectify the situation, I asked a couple of friends to write their stories about "Working from Homeschool". Again, the point was not to give advice, but rather to share their way of handling the COVID-19 pandemic.
 
-We are in the 5th month of COVID19 and [we haven’t reached the peak yet](https://www.worldometers.info/coronavirus/country/us/). It doesn’t surprise me if it takes at least 3-4 months until social distancing is over and 12-18 months until things are “back to normal”, where people feel comfortable socializing, attending classes, riding the train, etc. That’s why it's important for working parents to establish a routine that works for their family in their circumstances. We may very well face a similar situation again next school year. It's going to continue through this summer, when most working parents "used to" sign kids up for summer camp. Who dares to do it this year?
+We are in the 5th month of COVID19 and [we haven’t reached the peak yet](https://www.worldometers.info/coronavirus/country/us/). It doesn’t surprise me if it takes at least 3-4 months until social distancing is over and at least 12-18 months until things are “back to normal”, where people feel comfortable socializing, attending classes, riding the train, etc. That’s why it's important for working parents to establish a routine that works for their family in their circumstances. We may very well face a similar situation again next school year. Moreover, I am pretty sure the social distancing is going to continue through this summer, when most working parents "used to" sign kids up for summer camp. Who dares to do it this year?
 
 It might take one family a day and another a month to find a routine that works for them. So don't feel bad if you haven't found what works for you, yet. We're still working on ours!:)  
 
@@ -54,7 +54,7 @@ Here is how a few of us are WFH the pandemic way.
     And now...all pretense of civility gone...just raw desperation: "DADDY!" <strong>bang bang bang</strong>
 </p>
 
-...2020 was the year we were finally going to have a nice, sustainable routine, or so we thought. We'd moved to the suburbs, from downtown, a couple of years ago and finally felt settled. Neither of our jobs required travel anymore. I work at a company, Tandem, that not only values work/life balance but also support employees if they need a more flexible schedule.
+...2020 was the year we were finally going to have a nice, sustainable routine, or so we thought. We'd moved to the suburbs, from downtown, a couple of years ago and finally feel settled. Neither of our jobs requires travel anymore. I work at a company, Tandem, that not only values work/life balance but also support employees if they need a more flexible schedule.
 
 Our boys, 8 and 6, are finally in the same school. We live walking distance from our house, less than 5 minutes away. They're mostly independent in the mornings: getting breakfast, get ready for school, and heading out for school together. I leave around the same time to catch the train to Chicago for work, while Bobby works from home.
 
@@ -74,7 +74,7 @@ Thursday, March 12, 2020, we were notified that schools are closing for a week, 
 
 What went through my head was: It's just a week .. or two (hopefully).. we got this! But before we know it, we're in week 7...
 
-We tried many things, including, print daily schedule and leaving notes for the boys about what to do, and when we're busy. It just didn't work! It's not easy to work full-time and teach two kids at different grade levels. This is easily three full-time jobs. Add to that daily house chores, workout, grocery shopping, now cooking most days, the list goes on. Somethings gotta give!
+We tried many things, including, print our daily schedule and leaving notes for the boys about what to do, and when we're busy or should not be interrupted unless necessary. It just didn't work! It's not easy to work full-time and teach two kids at different grade levels. This is easily three full-time jobs. Add to that daily house chores, workout, grocery shopping, now cooking most days, the list goes on. Somethings gotta give!
 
 **So how's work/life schedule pandemic way for us these days?**
 
@@ -100,7 +100,7 @@ I usually stop by 6 pm and join the family for dinner and family time.
 - Bobby goes to bed by 9:30 pm
 - I finish my work for the time lost in the morning. I try to tidy around then spend a little time reading or writing to unwind, heading to bed around midnight.
 
-And this is finally what's "working" for us after 6 weeks...
+And this is finally what's "working" for us after weeks of trying...
 
 **What are we still struggling with?**
 
