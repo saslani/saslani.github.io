@@ -6,7 +6,7 @@ image:  scna_qa.jpg
 tags:   [Computer Science, Best Practices]
 ---
 
-[Computational Thinking QA - SCNA 2017](https://scna.softwarecraftsmanship.org/sarah-aslanifar/)
+[Computational Thinking QA - SCNA 2017](https://scna.softwarecraftsmanship.org/#13)
 
 I didn't learn to program when I was five, but I _have_ been developing software for the past 13 years. I am the owner of Tested Minds, where along with consulting, I built a product called Literately to teach my husband and friends to read and write Farsi. I enjoy watching my two sons apply algorithms and the basics of computer science to the real world.
 
