@@ -62,4 +62,4 @@ Implementing VSM can be a challenging process, but the benefits are well worth i
 In Part II of this series, I’ll cover a value stream map for a trading platform.
 
 
-````*```` > If we have data, let's look at data. If all we have are opinions, let's go with mine. - James Love Barksdale former president and CEO of Netscape Communications.
+\* > If we have data, let's look at data. If all we have are opinions, let's go with mine. - James Love Barksdale former president and CEO of Netscape Communications.
