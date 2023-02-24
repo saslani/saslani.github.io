@@ -12,7 +12,7 @@ This article is the first in series in which I will go over how to apply VSM for
 
 Take any business where time is money in a true sense, for example, trading stocks and options. Imagine building a trading platform where latency is measured in milliseconds and nanoseconds. When working within such tight constraints, you need to consider everything from the API language and technology of choice, to every algorithm you are running, the operating system where the API will be running in, the location of the server(s), length of the fiber optic cables, etc. In such an environment, how do you find [waste](https://www.youtube.com/watch?v=4YCi57K2jac)? Applying VSM lessons at a different scale would help you find and eliminate waste (or memory leaks) just like in physical products.
 
-Local optimizations that might make sense to one team sometimes don’t create systemic improvements. Sometimes, the current process exists because it was the highest paid person in the room “feeling” strongly that it’s the right thing to do, the HiPPO (Highest Paid Person’s Opinion) Process. In these scenarios the order comes from the “top” and teams might feel it’s “above their pay grade” to question it. The orders often come with a drop dead date attached to it and the teams need to deliver or else… often without considering the team’s skills and other priorities.
+Local optimizations that might make sense to one team sometimes don’t create systemic improvements. Sometimes, the current process exists because it was the highest paid person in the room “feeling” strongly that it’s the right thing to do, the HiPPO<sup>*</sup> (Highest Paid Person’s Opinion) Process. In these scenarios the order comes from the “top” and teams might feel it’s “above their pay grade” to question it. The orders often come with a drop dead date attached to it and the teams need to deliver or else… often without considering the team’s skills and other priorities.
 
 Rushing to pick something and get started without the understanding gained by VSM sessions could lead to disappointment, a failed mission, money and time loss, loss of trust in management, burnout, layoffs, etc. Instead of the HiPPO pathology, spend a couple of days laying out the high-level VSM of a product family or the process you need to improve on. If you are new to the team, just ask the team members about the product they are building:
 - Inputs:
@@ -62,4 +62,4 @@ Implementing VSM can be a challenging process, but the benefits are well worth i
 In Part II of this series, I’ll cover a value stream map for a trading platform.
 
 
-````* > If we have data, let's look at data. If all we have are opinions, let's go with mine. - James Love Barksdale former president and CEO of Netscape Communications.
+````*```` > If we have data, let's look at data. If all we have are opinions, let's go with mine. - James Love Barksdale former president and CEO of Netscape Communications.
