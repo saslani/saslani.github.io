@@ -1,3 +1,11 @@
+---
+layout: post
+title:  "VSM for Digital Products"
+date:   2023-02-18 21:40:00
+image:  vsm/tbd.jog
+tags:   [Value Stream Mapping, Tool Making]
+---
+
 Value Stream Mapping (VSM) is a powerful tool for organizations looking to improve their efficiency and customer satisfaction by identifying and eliminating waste in their processes. It is a visual representation of the flow of materials and information required to bring a product or service from concept to customer. VSM helps teams to identify and eliminate bottlenecks in their processes.
 This article is the first in series in which I will go over how to apply VSM for your digital product, with some examples.
 
