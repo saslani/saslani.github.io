@@ -2,7 +2,7 @@
 layout: post
 title:  "VSM for Digital Products"
 date:   2023-02-18 21:40:00
-image:  vsm/tbd.jog
+image:  vsm/vsm.jpg
 tags:   [Value Stream Mapping, Tool Making]
 ---
 
