@@ -2,7 +2,7 @@
 layout: post
 title:  "VSM for Digital Products - Example"
 date:   2023-02-18 21:40:00
-image:  vsm/inter-ServicesVSM.jpg
+image:  vsm/No-IMG.jpg
 tags:   [Value Stream Mapping, Tool Making]
 ---
 
