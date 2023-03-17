@@ -60,7 +60,7 @@ At this level we can see 2 areas for improvement:
 
 Bring the findings to your team to discuss architecture decisions. Would your case be solved better with parallelism or change the order of the operations? Or could it be a hardware issue? It’s up to you and your team how to investigate more and how to solve this problem, but you have data to prove it and track if your solution is effective.
 
-Now it’s your turn. Look into your digital product where you think waste might happen and draw a high-level VSM. Find out where is the best place to start introducing change to see the biggest bang for your buck!
+This was an example of how to find latency related waste in the system. But you can use VSM to find services or operations that do not need to exist, can be combined, etc. Now it’s your turn. Look into your digital product where you think waste might happen and draw a high-level VSM. Find out where is the best place to start introducing change to see the biggest bang for your buck!
 
 * What are the inputs to the service?
   * How do you consume the data?
