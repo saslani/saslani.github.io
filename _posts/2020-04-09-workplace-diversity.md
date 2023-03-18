@@ -17,12 +17,13 @@ When a topic of "diversity" comes up in a group, these are some thoughts that go
 * What is your plan for providing an inclusive environment?
 * What rubrics do you use to evaluate candidates to make sure they are a great fit for the same position and level you are hiring for?
 
+## TBD 1
 Let's start with some practices I have seen in the past at companies that value diversity:
-* My favorites: During resume reviews or grading take-home exams, remove the name or any identifier that might create an unconscious bias for the reviewer.
-* Companies do their very best to research the market and make sure diverse groups doing comparable work in the same region and position are getting paid as close to market value as possible. I believe more companies should be doing this.
-* They create and support groups, meetups, and organizations to promote diversity within the organization. However, in some cases, these meetups are held in a "safe" environment. I will consider these meetups successful if the lessons are put into practice at work as well to make those individuals feel happy and welcomed.
-* They have effective training programs to educate employees on what constitutes sexism, racism, bullying, etc, and how managers should handle breaches of the code of conduct. Those lessons are powerful when a company creates an environment where people are empowered to stand up for themselves as well.
-* Have a "diversity hire" program where during that week or month they hire people with "diverse" background
+* ***Anonymization during resume or code reviews:*** During resume reviews or grading take-home exams, remove the name or any identifier that might create an unconscious bias for the reviewer.
+* ***Salary and compensation:*** Companies do their very best to research the market and make sure diverse groups doing comparable work in the same region and position are getting paid as close to market value as possible. I believe more companies should be doing this.
+* ***Support groups:*** Companies sponsor, or create support groups, meetups, and organizations to promote diversity within the organization. However, in some cases, these meetups are held in a "safe" environment. I will consider these meetups successful if the lessons are put into practice at work as well to make those individuals feel happy and welcomed.
+* ***DEI training program:*** Companies have effective training programs to educate employees on what constitutes sexism, racism, bullying, etc, and how managers should handle breaches of the code of conduct. Those lessons are powerful when a company creates an environment where people are empowered to stand up for themselves as well.
+* ***Diversity hire program:*** Companies have a "diversity hire" program where during that week or month they hire people with "diverse" background
 
 Out of the list above I want to bring your attention to the last bullet. Organizing a Diversity Hire month without providing an inclusion is engaging in "diversity theater". In the past, I have been part of resume reviews and the hiring process where I was asked to look for diverse hires. I have worked at companies that had a women-only recruiting week. In one scenario, a recruiter reached out to me and I accepted her interview offer. When I arrived for my interview I found out it was a women-only recruiting event that included lectures by executives about how the company provides a safe environment for women. Even though I trust that was done with the best of intentions, I still found it odd this had never been communicated prior to my arrival.
 
@@ -31,6 +32,8 @@ For those companies who have exclusive diversity hiring programs, here are a few
 * When he or she gets hired into positions that may not best suit them and later gets criticized for lack of skills but in fact, the position was above their level, to begin with
 
 In this case, please make sure you communicate well with the internal team as well as the candidates about the intention behind the program. Moreover, make sure, the new hire is well supported, especially if they're hired into a program that allows them to grow and flourish. Most importantly, provide an inclusive environment that makes them feel welcomed and not be reminded every day that they're part of the diversity program.
+
+## Inclusion First
 
 Let's look at the importance of inclusion:
 * ***Diversity is about representation, but inclusion is about empowerment:*** Diversity is about having a variety of people with different characteristics, perspectives, and experiences in a group. Simply having diverse individuals in a group does not guarantee that they will be fully included and empowered. Inclusion is about creating an environment where everyone feels valued and respected and has an equal opportunity to contribute and succeed.
