@@ -152,7 +152,7 @@ Not every manager is a leader but in some organizations, leaders are also manage
     <p>
       Micromanagers not only have a hard time letting go, but they actively resist delegation. Unlike the Fallen Angel, they don't <i>do</i> the work themselves. Rather, they demand approval and communication in every step of a project. They get involved in other's work without consulting them and provide too much direction. They do not tolerate failure: They will drag people into Heaven kicking and screaming to save them from a Hell only they can see! Micromanagers look at every single detail of <i>how</i> a job gets done instead of the overall outcome. They require constant detail reporting and attend every meeting to ensure no decision is made without their input. They push aside the experience and knowledge of colleagues and often lead a demotivated team. Those who are highly-skilled and creative will get pushed away and eventually leave.
       <br />
-      This by far is my least style of <b>management</b>. In fact, I don't consider micromanagers leader or managers: They are a tax and a nuisance!
+      This by far is my least favored style of <b>management</b>. In fact, I don't consider micromanagers leader or managers: They are a tax and a nuisance!
     </p>
   </div>
 </div>
@@ -164,8 +164,9 @@ Like I said, this is the first of a few essays on leadership I'm writing. I'm ho
 
 If you're looking for some examples of the kind of leadership I respect and aspire to, here are a few books I've read that might help:
 
-* Principles by Ray Dalio
-* The Most Human Human by Brian Christian
-* Sources of Power, Gary Klein
-* The Phoenix Project by Gene Kim, George Spafford, and Kevin Behr
-* [Made to Stick, Chip & Dan Heath](https://heathbrothers.com/made-to-stick-introduction/)
+* [Principles by Ray Dalio](https://amzn.to/3FKwid9)
+* [The Most Human Human by Brian Christian](https://amzn.to/42GKBJF)
+* [Sources of Power, Gary Klein](https://amzn.to/3lFna2G)
+* [The Phoenix Project by Gene Kim, George Spafford, and Kevin Behr](https://amzn.to/40vlQOy)
+* [Made to Stick, Chip & Dan Heath](https://amzn.to/3LPg0ng)
+* [Dear to Lead, by Brené Brown](https://amzn.to/3FQCwbs)
