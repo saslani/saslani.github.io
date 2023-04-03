@@ -518,12 +518,9 @@ This is part 2 of the essay and focuses on "why we need organizations" after all
   <title>References</title>
   <div class="container">
     <ul>
-      <li>References of Skin in the game</li>
-      <li>Nassim Taleb - lone wolf</li>
-      <li>Sapiens: A Brief History of Humankind by Yuval Noah Harari</li>
+      <li>Skin in the game, by Nassim Taleb</li>
+      <li>Sapiens: A Brief History of Humankind, by Yuval Noah Harari</li>
       <li>Reinventing Organizations, by Fredric Laloux and Ken Wilber</li>
-      <li>Wikipedia</li>
-      <li>Various management articles online</li>
     </ul>
   </div>
 </section>
