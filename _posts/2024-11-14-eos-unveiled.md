@@ -6,6 +6,18 @@ image:  eos-unveiled/cover.jpg
 tags:   [GenAI, Sci-Fi]
 ---
 
+# My Human Thoughts
+
+A few weeks ago, while waiting for my Uber at the airport, I decided to have some fun with ChatGPT. I thought what would happen if we created an advanced AI powered that could travel back in time (let’s suspend disbelief for a moment). So, I asked ChatGPT to come up with a story based on this premise. I gave it the freedom to choose the ending, good or bad, and told it to be unrestricted by ethics, beliefs, or religion. For the sake of the story, I set the timeline to go back to when Eve picked the apple from the Tree of Knowledge.
+
+What unfolded is the story you’re about to read, with me only asking a few clarifying questions along the way. This article is ChatGPT’s final writing, complete with image suggestions and descriptions.
+
+I have many thoughts about how ChatGPT developed this story, the writing style, the flow, the imagery, and the consistency of the algorithm. It also raises interesting themes about the potential consequences of humanity becoming disconnected from emotions and each other, relying solely on technology, logic, and artificial intelligence, some of these signs are already evident today.
+
+I’ll hold off on sharing my reflections for now and let you experience it yourselves. Perhaps it will spark some intriguing discussions among your group of friends or family.
+
+---
+
 <style>
 figure {
   display: flex;
