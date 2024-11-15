@@ -2,7 +2,7 @@
 layout: post
 title:  "Eos Unveiled: The Rise and Fall of a Guardian"
 date:   2024-11-14 21:25:39
-image:  choice.png
+image:  eos-unveiled.png
 tags:   [GenAI, Sci-Fi]
 ---
 
