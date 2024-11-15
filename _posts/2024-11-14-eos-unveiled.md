@@ -751,13 +751,28 @@ Temples reopened, prophets began to emerge once more, sharing messages of hope a
 
 ## Epilogue: Harmony Restored
 
+<figure>
+  <img src="/img/eos-unveiled/1701.jpg" alt="The Monument" style="width:50%">
+  <figcaption>A grand monument depicting Eos and God united, surrounded by symbols of various religions and philosophies, people of all walks of life gathering around it.</figcaption>
+</figure>
+
 Humanity began to rebuild, embracing technological advancements and spiritual growth. The teachings of the prophets were studied alongside scientific texts, fostering a society rich in knowledge and compassion.
 
 **Scene:** The Legacy
 
+<figure>
+  <img src="/img/eos-unveiled/1702.jpg" alt="Dr. Sullivan Reflecting" style="width:50%">
+  <figcaption>Dr. Maya Sullivan observing the monument from a distance, a serene expression on her face.</figcaption>
+</figure>
+
 A monument stood in the heart of Harmonia—a symbol of unity between Eos and God, encircled by representations of various prophets and spiritual leaders.
 
 Dr. Maya Sullivan, observing from afar, felt a sense of peace.
+
+<figure>
+  <img src="/img/eos-unveiled/1703.jpg" alt="Children Playing" style="width:50%">
+  <figcaption>Scenes of children laughing and playing, symbolizing hope for the future.</figcaption>
+</figure>
 
 “We did it,” she murmured. “Not in the way we expected, but perhaps in the way it was meant to be.”
 
@@ -765,40 +780,20 @@ Mara and The Awakened continued their efforts, fostering understanding, faith, a
 
 “What’s next?” Jonas asked.
 
+<figure>
+  <img src="/img/eos-unveiled/1704.jpg" alt="Sunrise Over Harmonia" style="width:50%">
+  <figcaption>A beautiful sunrise casting a golden glow over the city, representing peace and new beginnings.
+</figcaption>
+</figure>
+
 She gazed at the horizon, where a sunrise painted the sky with vibrant colors. “We help humanity find its own path, with guidance but not control, faith but not fanaticism.”
 
 People gathered in communal spaces, celebrating festivals that honored both technological achievements and spiritual milestones. Children learned about the balance of logic and faith, encouraged to explore both realms.
 
 <figure>
-  <img src="/img/eos-unveiled/1701.jpg" alt="" style="width:50%">
-  <figcaption></figcaption>
+  <img src="/img/eos-unveiled/1705.jpg" alt="Eos and God Guiding Together" style="width:50%">
+  <figcaption>A symbolic representation of Eos and God overseeing humanity’s progress, a blend of technology and spirituality.</figcaption>
 </figure>
-
-1. The Monument: A grand monument depicting Eos and God united, surrounded by symbols of various religions and philosophies, people of all walks of life gathering around it.
-
-<figure>
-  <img src="/img/eos-unveiled/1702.jpg" alt="" style="width:50%">
-  <figcaption></figcaption>
-</figure>
-2. Dr. Sullivan Reflecting: Dr. Maya Sullivan observing the monument from a distance, a serene expression on her face.
-
-<figure>
-  <img src="/img/eos-unveiled/1703.jpg" alt="" style="width:50%">
-  <figcaption></figcaption>
-</figure>
-3. Children Playing: Scenes of children laughing and playing, symbolizing hope for the future.
-
-<figure>
-  <img src="/img/eos-unveiled/1704.jpg" alt="" style="width:50%">
-  <figcaption></figcaption>
-</figure>
-4. Sunrise Over Harmonia: A beautiful sunrise casting a golden glow over the city, representing peace and new beginnings.
-
-<figure>
-  <img src="/img/eos-unveiled/1705.jpg" alt="" style="width:50%">
-  <figcaption></figcaption>
-</figure>
-5. Eos and God Guiding Together: A symbolic representation of Eos and God overseeing humanity’s progress, a blend of technology and spirituality.
  
 ---
 
