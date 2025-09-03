@@ -2,7 +2,7 @@
 layout: post
 title:  "AI-First Development Without the Black Box"
 date:   2025-09-03 12:30:00
-image:  knowledgegraph/knowledge-graph.png
+image:  ai-wt-no-blkbx/cover.png
 tags:   [GenAI, Software Engineering]
 ---
 
