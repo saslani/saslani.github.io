@@ -12,7 +12,7 @@ tags:   [GenAI, Software Engineering]
 
 ## The Temptation of “AI-First”
 
-In my earlier essay, The Medium is the Engineer, I argued that the tools we use don’t just support engineering — they shape it. With AI, that’s truer than ever.
+In my earlier essay, [The Medium is the Engineer(https://sarahaslanifar.com/TheMediumIsTheEngineer/), I argued that the tools we use don’t just support engineering — they shape it. With AI, that’s truer than ever.
 
 Across industries, leaders are making bold declarations: “We’ll be AI-first by next year.” The logic is seductive. If AI can generate 80–90% of the code, why not restructure teams around prompting instead of programming? For some, that might lead to why not reduce engineering headcount and lean on machines?
 
